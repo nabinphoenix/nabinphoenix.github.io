@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nabin Nepali - ML Engineer</title>
+    <meta name="description" content="ML Engineer specializing in FastAPI, Python, and Machine Learning with expertise in time series forecasting and computer vision.">
+    <meta property="og:title" content="Nabin Nepali - ML Engineer">
+    <meta property="og:description" content="ML Engineer specializing in FastAPI, Python, and Machine Learning">
+    <meta property="og:type" content="website">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Header/Navigation -->
+    <header class="header" id="header">
+        <div class="container">
+            <div class="header__brand">
+                <h1 class="header__name">NABIN NEPALI</h1>
+                <span class="header__role">ML Engineer</span>
+            </div>
+            <nav class="nav" id="nav">
+                <button class="nav__toggle" id="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+                    <span class="nav__toggle-bar"></span>
+                    <span class="nav__toggle-bar"></span>
+                    <span class="nav__toggle-bar"></span>
+                </button>
+                <ul class="nav__list">
+                    <li class="nav__item"><a href="#home" class="nav__link">Home</a></li>
+                    <li class="nav__item"><a href="#about" class="nav__link">About</a></li>
+                    <li class="nav__item"><a href="#projects" class="nav__link">Projects</a></li>
+                    <li class="nav__item"><a href="#experience" class="nav__link">Experience</a></li>
+                    <li class="nav__item"><a href="#education" class="nav__link">Education</a></li>
+                    <li class="nav__item"><a href="#skills" class="nav__link">Skills</a></li>
+                    <li class="nav__item"><a href="#contact" class="nav__link">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero__content">
+                <div class="hero__text">
+                    <h2 class="hero__name">NABIN NEPALI</h2>
+                    <div class="hero__role-container">
+                        <span class="hero__role" id="typed-role">ML Engineer</span>
+                    </div>
+                    <p class="hero__summary">
+                        Proficient in backend development using FastAPI with databases, with strong expertise in machine learning, particularly time series forecasting (ARIMA, SARIMA, LSTM). Currently expanding skills in computer vision with CNN and YOLO. Passionate about building scalable systems and applying AI solutions to real-world problems.
+                    </p>
+                    <div class="hero__contact">
+                        <a href="mailto:nabinepali012@gmail.com" class="hero__contact-link">
+                            <span class="hero__contact-icon">✉️</span>
+                            nabinepali012@gmail.com
+                        </a>
+                        <a href="tel:9829592158" class="hero__contact-link">
+                            <span class="hero__contact-icon">📱</span>
+                            9829592158
+                        </a>
+                        <span class="hero__contact-link">
+                            <span class="hero__contact-icon">📍</span>
+                            Shankhamul, Kathmandu
+                        </span>
+                    </div>
+                    <div class="hero__actions">
+                        <a href="#projects" class="btn btn--primary">View Projects</a>
+                        <a href="#" class="btn btn--secondary">Download Resume</a>
+                    </div>
+                </div>
+                <div class="hero__image">
+                    <div class="hero__image-container">
+                        <img src="nabin.jpg" alt="Nabin Nepali - profile photo" class="hero__img" loading="lazy">
+                        <div class="hero__image-ring"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about section" id="about">
+        <div class="container">
+            <h2 class="section__title">About Me</h2>
+            <div class="about__content">
+                <p class="about__text">
+                    I'm an ML Engineer with a strong foundation in backend development and machine learning. My expertise spans from building robust APIs with FastAPI to implementing advanced machine learning models for time series forecasting and computer vision tasks.
+                </p>
+                <div class="about__strengths">
+                    <h3 class="about__subtitle">Strengths & Focus Areas</h3>
+                    <ul class="about__list">
+                        <li class="about__list-item">Backend development with FastAPI and Python</li>
+                        <li class="about__list-item">Time series forecasting (ARIMA, SARIMA, LSTM)</li>
+                        <li class="about__list-item">Computer vision (CNN, YOLO)</li>
+                        <li class="about__list-item">Database design and optimization (MongoDB, MySQL)</li>
+                        <li class="about__list-item">Building scalable and maintainable systems</li>
+                    </ul>
+                </div>
+                <div class="about__expertise">
+                    <h3 class="about__subtitle">Core Expertise</h3>
+                    <div class="chips">
+                        <span class="chip">FastAPI</span>
+                        <span class="chip">Python</span>
+                        <span class="chip">MongoDB</span>
+                        <span class="chip">Time Series</span>
+                        <span class="chip">CNN</span>
+                        <span class="chip">YOLO</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="projects section" id="projects">
+        <div class="container">
+            <h2 class="section__title">Projects</h2>
+            <div class="projects__grid">
+                <!-- Project 1 -->
+                <div class="project-card" data-tech="FastAPI,MongoDB,Python">
+                    <div class="project-card__content">
+                        <h3 class="project-card__title">To-Do List CRUD API (FastAPI + MongoDB)</h3>
+                        <span class="project-card__date">August 2024</span>
+                        <p class="project-card__description">
+                            Developed a secure RESTful API using FastAPI, MongoDB, and JWT authentication, enabling user registration, login, and role-based task management with full CRUD operations. Added auto-incremented task IDs, bcrypt-based password hashing, and Pydantic validation for a scalable, clean backend architecture.
+                        </p>
+                        <div class="project-card__tech">
+                            <span class="chip">FastAPI</span>
+                            <span class="chip">MongoDB</span>
+                            <span class="chip">Python</span>
+                        </div>
+                    </div>
+                    <div class="project-card__actions">
+                        <button class="btn btn--small btn--outline project-details-btn" data-project="1">Details</button>
+                        <a href="https://github.com/nabinphoenix" class="btn btn--small btn--outline" target="_blank" rel="noopener noreferrer">GitHub</a>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="project-card" data-tech="Python,SARIMAX,Time Series">
+                    <div class="project-card__content">
+                        <h3 class="project-card__title">Energy Consumption Forecasting (SARIMAX)</h3>
+                        <span class="project-card__date">July 2025</span>
+                        <p class="project-card__description">
+                            Built a SARIMAX model with weather variables to forecast daily energy demand. Processed time series data with resampling, feature engineering, and validation.
+                        </p>
+                        <div class="project-card__tech">
+                            <span class="chip">Python</span>
+                            <span class="chip">SARIMAX</span>
+                            <span class="chip">Time Series</span>
+                        </div>
+                    </div>
+                    <div class="project-card__actions">
+                        <button class="btn btn--small btn--outline project-details-btn" data-project="2">Details</button>
+                        <a href="https://github.com/nabinphoenix" class="btn btn--small btn--outline" target="_blank" rel="noopener noreferrer">GitHub</a>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="project-card" data-tech="PyTorch,CNN,Computer Vision">
+                    <div class="project-card__content">
+                        <h3 class="project-card__title">CNN (Cat vs. Dog Classification)</h3>
+                        <span class="project-card__date">June 2025</span>
+                        <p class="project-card__description">
+                            Built and trained a CNN in PyTorch with data augmentation for robust image classification. Implemented model checkpointing and loss/accuracy visualization to track performance.
+                        </p>
+                        <div class="project-card__tech">
+                            <span class="chip">PyTorch</span>
+                            <span class="chip">CNN</span>
+                            <span class="chip">Computer Vision</span>
+                        </div>
+                    </div>
+                    <div class="project-card__actions">
+                        <button class="btn btn--small btn--outline project-details-btn" data-project="3">Details</button>
+                        <a href="https://github.com/nabinphoenix" class="btn btn--small btn--outline" target="_blank" rel="noopener noreferrer">GitHub</a>
+                    </div>
+                </div>
+
+                <!-- Project 4 -->
+                <div class="project-card" data-tech="Python,CLI,File System">
+                    <div class="project-card__content">
+                        <h3 class="project-card__title">Test Management System</h3>
+                        <span class="project-card__date">August 2024</span>
+                        <p class="project-card__description">
+                            Built a CLI-based Test Question Management System in Python with role-based access for Admins, Lecturers, and Students, featuring input validation primarily using string methods. Utilized the Python file system for persistent data storage and implemented modular functions to manage users, questions, and exam papers efficiently.
+                        </p>
+                        <div class="project-card__tech">
+                            <span class="chip">Python</span>
+                            <span class="chip">CLI</span>
+                            <span class="chip">File System</span>
+                        </div>
+                    </div>
+                    <div class="project-card__actions">
+                        <button class="btn btn--small btn--outline project-details-btn" data-project="4">Details</button>
+                        <a href="https://github.com/nabinphoenix" class="btn btn--small btn--outline" target="_blank" rel="noopener noreferrer">GitHub</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section class="experience section" id="experience">
+        <div class="container">
+            <h2 class="section__title">Experience</h2>
+            <div class="experience__list">
+                <div class="experience__item">
+                    <h3 class="experience__title">ML Engineer & Backend Developer</h3>
+                    <span class="experience__period">2024 - Present</span>
+                    <p class="experience__description">
+                        Developed machine learning models and backend systems for various projects, including time series forecasting and computer vision applications.
+                    </p>
+                </div>
+                <div class="experience__item">
+                    <h3 class="experience__title">Python Developer</h3>
+                    <span class="experience__period">2023 - 2024</span>
+                    <p class="experience__description">
+                        Built CLI applications and APIs using Python, focusing on clean architecture and efficient data management.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section class="education section" id="education">
+        <div class="container">
+            <h2 class="section__title">Education</h2>
+            <div class="education__list">
+                <div class="education__item">
+                    <h3 class="education__degree">BSc.IT (APU affiliated)</h3>
+                    <span class="education__institution">Techspire College</span>
+                    <span class="education__period">Sep 2023 - Present</span>
+                    <span class="education__gpa">CGPA: 3.48/4.0</span>
+                </div>
+                <div class="education__item">
+                    <h3 class="education__degree">+2 Biology</h3>
+                    <span class="education__institution">Tulsi Boarding Secondary School</span>
+                    <span class="education__period">June 2021 - May 2023</span>
+                    <span class="education__gpa">GPA: 3.31</span>
+                </div>
+                <div class="education__item">
+                    <h3 class="education__degree">SEE</h3>
+                    <span class="education__institution">Bright Pearl Academy</span>
+                    <span class="education__period">Graduated 2021</span>
+                    <span class="education__gpa">GPA: 3.85</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="skills section" id="skills">
+        <div class="container">
+            <h2 class="section__title">Skills</h2>
+            <div class="skills__grid">
+                <div class="skills__category">
+                    <h3 class="skills__category-title">Technical Skills</h3>
+                    <div class="skill">
+                        <span class="skill__name">Python</span>
+                        <div class="skill__bar">
+                            <div class="skill__level" data-level="90"></div>
+                        </div>
+                    </div>
+                    <div class="skill">
+                        <span class="skill__name">FastAPI</span>
+                        <div class="skill__bar">
+                            <div class="skill__level" data-level="85"></div>
+                        </div>
+                    </div>
+                    <div class="skill">
+                        <span class="skill__name">MongoDB</span>
+                        <div class="skill__bar">
+                            <div class="skill__level" data-level="80"></div>
+                        </div>
+                    </div>
+                    <div class="skill">
+                        <span class="skill__name">MySQL</span>
+                        <div class="skill__bar">
+                            <div class="skill__level" data-level="75"></div>
+                        </div>
+                    </div>
+                    <div class="skill">
+                        <span class="skill__name">ARIMA/SARIMA</span>
+                        <div class="skill__bar">
+                            <div class="skill__level" data-level="80"></div>
+                        </div>
+                    </div>
+                    <div class="skill">
+                        <span class="skill__name">LSTM</span>
+                        <div class="skill__bar">
+                            <div class="skill__level" data-level="75"></div>
+                        </div>
+                    </div>
+                    <div class="skill">
+                        <span class="skill__name">CNN</span>
+                        <div class="skill__bar">
+                            <div class="skill__level" data-level="70"></div>
+                        </div>
+                    </div>
+                    <div class="skill">
+                        <span class="skill__name">YOLO</span>
+                        <div class="skill__bar">
+                            <div class="skill__level" data-level="65"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="skills__category">
+                    <h3 class="skills__category-title">Soft Skills</h3>
+                    <div class="skill">
+                        <span class="skill__name">Leadership</span>
+                        <div class="skill__bar">
+                            <div class="skill__level" data-level="85"></div>
+                        </div>
+                    </div>
+                    <div class="skill">
+                        <span class="skill__name">Brainstorming</span>
+                        <div class="skill__bar">
+                            <div class="skill__level" data-level="90"></div>
+                        </div>
+                    </div>
+                    <div class="skill">
+                        <span class="skill__name">Fast Learning</span>
+                        <div class="skill__bar">
+                            <div class="skill__level" data-level="95"></div>
+                        </div>
+                    </div>
+                    <h3 class="skills__category-title">Languages</h3>
+                    <div class="chips">
+                        <span class="chip">English (Intermediate)</span>
+                        <span class="chip">Nepali (Fluent)</span>
+                        <span class="chip">Hindi (Intermediate)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certifications Section -->
+    <section class="certifications section">
+        <div class="container">
+            <h2 class="section__title">Certifications & Awards</h2>
+            <div class="certifications__list">
+                <div class="certification">
+                    <h3 class="certification__title">Programiz Python Certificate</h3>
+                    <span class="certification__issuer">Programiz</span>
+                </div>
+                <div class="certification">
+                    <h3 class="certification__title">NYEF Participation Certificate</h3>
+                    <span class="certification__issuer">Nepal Youth Entrepreneurship Forum</span>
+                </div>
+                <div class="certification">
+                    <h3 class="certification__title">Hackathon Certificate</h3>
+                    <span class="certification__issuer">Techspire College</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact section" id="contact">
+        <div class="container">
+            <h2 class="section__title">Contact Me</h2>
+            <div class="contact__content">
+                <div class="contact__info">
+                    <h3 class="contact__subtitle">Get in Touch</h3>
+                    <div class="contact__details">
+                        <div class="contact__detail">
+                            <span class="contact__icon">✉️</span>
+                            <div>
+                                <span class="contact__label">Email</span>
+                                <span class="contact__value copy-target" data-value="nabinepali012@gmail.com">
+                                    nabinepali012@gmail.com
+                                    <button class="copy-btn" aria-label="Copy email to clipboard">📋</button>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="contact__detail">
+                            <span class="contact__icon">📱</span>
+                            <div>
+                                <span class="contact__label">Phone</span>
+                                <span class="contact__value copy-target" data-value="9829592158">
+                                    9829592158
+                                    <button class="copy-btn" aria-label="Copy phone number to clipboard">📋</button>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="contact__detail">
+                            <span class="contact__icon">📍</span>
+                            <div>
+                                <span class="contact__label">Location</span>
+                                <span class="contact__value">Shankhamul, Kathmandu</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="contact__social">
+                        <h3 class="contact__subtitle">Follow Me</h3>
+                        <div class="social-links">
+                            <a href="https://github.com/nabinphoenix" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                                <span class="social-icon">🐙</span>
+                                GitHub
+                            </a>
+                            <a href="www.linkedin.com/in/nabinnepali" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                                <span class="social-icon">💼</span>
+                                LinkedIn
+                            </a>
+                            <a href="https://www.facebook.com/nab.in.nepali.149047/" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                                <span class="social-icon">👤</span>
+                                Facebook
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <form class="contact__form" id="contact-form">
+                    <div class="form__group">
+                        <label for="name" class="form__label">Name</label>
+                        <input type="text" id="name" name="name" class="form__input" required>
+                        <span class="form__error" id="name-error"></span>
+                    </div>
+                    <div class="form__group">
+                        <label for="email" class="form__label">Email</label>
+                        <input type="email" id="email" name="email" class="form__input" required>
+                        <span class="form__error" id="email-error"></span>
+                    </div>
+                    <div class="form__group">
+                        <label for="message" class="form__label">Message</label>
+                        <textarea id="message" name="message" class="form__textarea" rows="5" required></textarea>
+                        <span class="form__error" id="message-error"></span>
+                    </div>
+                    <button type="submit" class="btn btn--primary form__submit">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__content">
+                <p class="footer__copyright">&copy; 2025 Nabin Nepali. All rights reserved.</p>
+                <div class="footer__nav">
+                    <a href="#home" class="footer__link">Home</a>
+                    <a href="#about" class="footer__link">About</a>
+                    <a href="#projects" class="footer__link">Projects</a>
+                    <a href="#contact" class="footer__link">Contact</a>
+                </div>
+                <p class="footer__built">Built with ❤️</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Theme Toggle -->
+    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+        <span class="theme-toggle__icon">🌙</span>
+    </button>
+
+    <!-- Project Details Modal -->
+    <div class="modal" id="project-modal">
+        <div class="modal__content">
+            <button class="modal__close" id="modal-close" aria-label="Close modal">×</button>
+            <div class="modal__body" id="modal-body">
+                <!-- Project details will be inserted here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
