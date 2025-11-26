@@ -21,14 +21,8 @@ function formatDate(date: Date | string): string {
     });
 }
 
-// Generate static params for all blog posts
-export async function generateStaticParams() {
-    await dbConnect();
-    const blogs = await Blog.find({}, { slug: 1 }).lean();
-    return blogs.map((blog) => ({
-        slug: blog.slug,
-    }));
-}
+// Allow dynamic params for blog posts created after build
+export const dynamicParams = true;
 
 // Page component
 export default async function BlogPostPage({
