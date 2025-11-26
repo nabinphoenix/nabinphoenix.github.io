@@ -14,27 +14,77 @@ const inter = Inter({
 })
 
 export const metadata: Metadata = {
-  title: 'Nabin Nepali - ML Engineer | FastAPI Developer',
-  description: 'ML Engineer proficient in backend development using FastAPI with databases, with strong expertise in machine learning, particularly time series forecasting (ARIMA, SARIMA, LSTM).',
-  keywords: ['Nabin Nepali', 'ML Engineer Nepal', 'Machine Learning Engineer', 'FastAPI Developer', 'Python Developer', 'Nepal Machine Learning Portfolio', 'Nabin Nepali Salyan Barala', 'Salyan Barala'],
+  title: 'Nabin Nepali - ML Engineer | AI Developer | FastAPI Expert Nepal',
+  description: 'Nabin Nepali - Machine Learning Engineer from Nepal specializing in AI, Deep Learning, Computer Vision, Time Series Forecasting (ARIMA, SARIMA, LSTM), FastAPI backend development, TensorFlow, PyTorch. Based in Kathmandu, Nepal.',
+  keywords: [
+    // Name & Brand
+    'Nabin Nepali',
+    'Nabin Nepali Portfolio',
+    'Nabin Nepali ML Engineer',
+    'Nabin Nepali Nepal',
+    'Nabin Nepali Salyan Barala',
+
+    // Professional Titles
+    'ML Engineer Nepal',
+    'Machine Learning Engineer Nepal',
+    'AI Engineer Nepal',
+    'AI Developer Nepal',
+    'Data Scientist Nepal',
+    'Python Developer Nepal',
+    'FastAPI Developer Nepal',
+    'Deep Learning Engineer Nepal',
+
+    // Location-Based
+    'ML Engineer Kathmandu',
+    'Machine Learning Engineer Kathmandu',
+    'AI Developer Kathmandu',
+    'Tech Professional Nepal',
+    'Software Engineer Nepal',
+
+    // Technical Skills
+    'TensorFlow Developer Nepal',
+    'PyTorch Engineer Nepal',
+    'Computer Vision Nepal',
+    'Time Series Forecasting Nepal',
+    'LSTM Neural Networks Nepal',
+    'ARIMA SARIMA Expert',
+    'FastAPI Backend Developer',
+    'Python Machine Learning',
+
+    // Project-Based
+    'Fish Detection System',
+    'Object Detection Nepal',
+    'AI Projects Nepal',
+    'Machine Learning Portfolio',
+    'Computer Vision Projects',
+
+    // Services
+    'ML Consultant Nepal',
+    'AI Solutions Nepal',
+    'Machine Learning Services Nepal',
+    'Freelance ML Engineer Nepal',
+  ],
   authors: [{ name: 'Nabin Nepali' }],
   creator: 'Nabin Nepali',
   publisher: 'Nabin Nepali',
-  robots: 'index, follow',
+  robots: 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1',
   openGraph: {
     type: 'website',
     locale: 'en_US',
     url: 'https://nabinnepali.com.np',
-    title: 'Nabin Nepali - ML Engineer | Salyan Barala',
-    description: 'ML Engineer from Salyan Barala specializing in FastAPI, Time Series Forecasting, and Computer Vision',
-    siteName: 'Nabin Nepali Portfolio',
+    title: 'Nabin Nepali - ML Engineer | AI Developer | Nepal',
+    description: 'Professional Machine Learning Engineer from Nepal specializing in AI, Deep Learning, Computer Vision, Time Series Forecasting, and FastAPI backend development. Portfolio showcasing ML projects and expertise.',
+    siteName: 'Nabin Nepali - ML Engineer Portfolio',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Nabin Nepali - ML Engineer',
-    description: 'ML Engineer from Salyan Barala specializing in FastAPI, Time Series Forecasting, and Computer Vision',
+    title: 'Nabin Nepali - ML Engineer | AI Developer Nepal',
+    description: 'Machine Learning Engineer specializing in AI, Deep Learning, Computer Vision, Time Series Forecasting (LSTM, ARIMA), and FastAPI development in Nepal',
   },
   metadataBase: new URL('https://nabinnepali.com.np'),
+  alternates: {
+    canonical: 'https://nabinnepali.com.np',
+  },
 }
 
 export default function RootLayout({

@@ -1,48 +1,30 @@
-import { promises as fs } from 'fs';
-import path from 'path';
+import dbConnect from '@/lib/db';
+import Blog, { IBlog } from '@/models/Blog';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 
-// Define the Blog type
-interface Blog {
-    id: number;
-    title: string;
-    slug: string;
-    content: string;
-    date: string;
-}
-
-// Function to get all blogs
-async function getBlogs(): Promise<Blog[]> {
-    try {
-        const blogsFilePath = path.join(process.cwd(), 'data', 'blogs.json');
-        const fileContent = await fs.readFile(blogsFilePath, 'utf-8');
-        return JSON.parse(fileContent);
-    } catch (error) {
-        console.error('Error reading blogs:', error);
-        return [];
-    }
-}
-
 // Function to get a single blog by slug
-async function getBlogBySlug(slug: string): Promise<Blog | null> {
-    const blogs = await getBlogs();
-    return blogs.find((blog) => blog.slug === slug) || null;
+async function getBlogBySlug(slug: string): Promise<IBlog | null> {
+    await dbConnect();
+    const blog = await Blog.findOne({ slug }).lean();
+    if (!blog) return null;
+    return JSON.parse(JSON.stringify(blog));
 }
 
 // Format date for display
-function formatDate(dateString: string): string {
-    const date = new Date(dateString);
-    return date.toLocaleDateString('en-US', {
+function formatDate(date: Date | string): string {
+    const d = new Date(date);
+    return d.toLocaleDateString('en-US', {
         year: 'numeric',
         month: 'long',
         day: 'numeric',
     });
 }
 
-// Generate static params for all blog posts (optional, for static generation)
+// Generate static params for all blog posts
 export async function generateStaticParams() {
-    const blogs = await getBlogs();
+    await dbConnect();
+    const blogs = await Blog.find({}, { slug: 1 }).lean();
     return blogs.map((blog) => ({
         slug: blog.slug,
     }));

@@ -1,24 +1,16 @@
-import { promises as fs } from 'fs';
-import path from 'path';
+import dbConnect from '@/lib/db';
+import Blog, { IBlog } from '@/models/Blog';
 import Link from 'next/link';
 
-// Define the Blog type
-interface Blog {
-    id: number;
-    title: string;
-    slug: string;
-    content: string;
-    date: string;
-}
-
 // Function to get all blogs
-async function getBlogs(): Promise<Blog[]> {
+async function getBlogs(): Promise<IBlog[]> {
     try {
-        const blogsFilePath = path.join(process.cwd(), 'data', 'blogs.json');
-        const fileContent = await fs.readFile(blogsFilePath, 'utf-8');
-        const blogs: Blog[] = JSON.parse(fileContent);
-        // Sort by date (newest first)
-        return blogs.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+        await dbConnect();
+        const blogs = await Blog.find({}).sort({ date: -1 }).lean();
+        // Convert _id and date to simple types if needed, but lean() helps. 
+        // We need to serialize for Next.js if passing to client components, but this is a server component.
+        // However, Mongoose documents might have non-serializable fields.
+        return JSON.parse(JSON.stringify(blogs));
     } catch (error) {
         console.error('Error reading blogs:', error);
         return [];
@@ -26,9 +18,9 @@ async function getBlogs(): Promise<Blog[]> {
 }
 
 // Format date for display
-function formatDate(dateString: string): string {
-    const date = new Date(dateString);
-    return date.toLocaleDateString('en-US', {
+function formatDate(date: Date | string): string {
+    const d = new Date(date);
+    return d.toLocaleDateString('en-US', {
         year: 'numeric',
         month: 'long',
         day: 'numeric',
@@ -63,7 +55,7 @@ export default async function BlogPage() {
                     <div className="space-y-6">
                         {blogs.map((blog) => (
                             <Link
-                                key={blog.id}
+                                key={String(blog._id)}
                                 href={`/blog/${blog.slug}`}
                                 className="block group"
                             >
