@@ -3,12 +3,20 @@ import Blog, { IBlog } from '@/models/Blog';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 
+// Dynamic blog post page - reads from MongoDB
 // Function to get a single blog by slug
 async function getBlogBySlug(slug: string): Promise<IBlog | null> {
-    await dbConnect();
-    const blog = await Blog.findOne({ slug }).lean();
-    if (!blog) return null;
-    return JSON.parse(JSON.stringify(blog));
+    try {
+        await dbConnect();
+        console.log('Looking for blog with slug:', slug);
+        const blog = await Blog.findOne({ slug }).lean();
+        console.log('Blog found:', blog ? 'YES' : 'NO');
+        if (!blog) return null;
+        return JSON.parse(JSON.stringify(blog));
+    } catch (error) {
+        console.error('Error fetching blog:', error);
+        return null;
+    }
 }
 
 // Format date for display
@@ -28,9 +36,11 @@ export const dynamicParams = true;
 export default async function BlogPostPage({
     params,
 }: {
-    params: { slug: string };
+    params: Promise<{ slug: string }>;
 }) {
-    const blog = await getBlogBySlug(params.slug);
+    // Await params in Next.js 15+
+    const { slug } = await params;
+    const blog = await getBlogBySlug(slug);
 
     // If blog not found, show 404
     if (!blog) {

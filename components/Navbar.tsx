@@ -62,6 +62,7 @@ export default function Navbar() {
                 fill
                 className="object-contain"
                 priority
+                unoptimized
               />
             </motion.div>
           </Link>
