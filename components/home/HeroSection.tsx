@@ -1,7 +1,7 @@
 'use client'
 
-import { useState } from 'react'
-import { motion } from 'framer-motion'
+import { useState, useEffect } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 import Link from 'next/link'
 import Image from 'next/image'
 import { Download, ArrowRight, Mail, Phone, MapPin } from 'lucide-react'
@@ -12,6 +12,24 @@ export default function HeroSection() {
     const [parachuteY, setParachuteY] = useState(60)
     const [isBroken, setIsBroken] = useState(false)
     const [showCancelMessage, setShowCancelMessage] = useState(false)
+    const [showTechStack, setShowTechStack] = useState(true)
+    const [mounted, setMounted] = useState(false)
+
+    // Ensure client-side only rendering to avoid hydration errors
+    useEffect(() => {
+        setMounted(true)
+    }, [])
+
+    // Rotate badges every 5 seconds (only after mounted)
+    useEffect(() => {
+        if (!mounted) return
+
+        const interval = setInterval(() => {
+            setShowTechStack(prev => !prev)
+        }, 5000)
+
+        return () => clearInterval(interval)
+    }, [mounted])
 
     const containerVariants = {
         hidden: { opacity: 0 },
@@ -115,7 +133,7 @@ export default function HeroSection() {
 
     return (
         <>
-            <section className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 relative">
+            <section className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 relative" suppressHydrationWarning>
                 <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                     {/* Text Content */}
                     <motion.div
@@ -224,28 +242,98 @@ export default function HeroSection() {
                                 </div>
                             </motion.div>
 
-                            {/* Floating elements */}
-                            <motion.div
-                                animate={{
-                                    y: [0, -30, 0],
-                                    rotate: [0, 5, 0]
-                                }}
-                                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-                                className="absolute -top-4 -right-4 bg-primary-500 text-white p-3 rounded-lg shadow-lg"
-                            >
-                                <div className="text-sm font-semibold">Python</div>
-                            </motion.div>
+                            {/* Floating elements - Rotating between Tech and Titles */}
+                            {mounted && (
+                                <AnimatePresence mode="wait">
+                                    {showTechStack ? (
+                                        <>
+                                            <motion.div
+                                                key="python"
+                                                initial={{ opacity: 0, scale: 0.5, y: 20 }}
+                                                animate={{
+                                                    opacity: 1,
+                                                    scale: 1,
+                                                    y: [0, -30, 0],
+                                                    rotate: [0, 5, 0]
+                                                }}
+                                                exit={{ opacity: 0, scale: 0.5, y: -20 }}
+                                                transition={{
+                                                    opacity: { duration: 0.3 },
+                                                    scale: { duration: 0.3 },
+                                                    y: { duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1 }
+                                                }}
+                                                className="absolute -top-4 -right-4 bg-primary-500 text-white p-3 rounded-lg shadow-lg"
+                                            >
+                                                <div className="text-sm font-semibold">Python</div>
+                                            </motion.div>
 
-                            <motion.div
-                                animate={{
-                                    y: [0, -20, 0],
-                                    rotate: [0, -5, 0]
-                                }}
-                                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-                                className="absolute -bottom-4 -left-4 bg-teal-500 text-white p-3 rounded-lg shadow-lg"
-                            >
-                                <div className="text-sm font-semibold">FastAPI</div>
-                            </motion.div>
+                                            <motion.div
+                                                key="fastapi"
+                                                initial={{ opacity: 0, scale: 0.5, y: -20 }}
+                                                animate={{
+                                                    opacity: 1,
+                                                    scale: 1,
+                                                    y: [0, -20, 0],
+                                                    rotate: [0, -5, 0]
+                                                }}
+                                                exit={{ opacity: 0, scale: 0.5, y: 20 }}
+                                                transition={{
+                                                    opacity: { duration: 0.3 },
+                                                    scale: { duration: 0.3 },
+                                                    y: { duration: 5, repeat: Infinity, ease: "easeInOut", delay: 2 }
+                                                }}
+                                                className="absolute -bottom-4 -left-4 text-white p-3 rounded-lg shadow-lg"
+                                                style={{ backgroundColor: '#2dd4bf' }}
+                                            >
+                                                <div className="text-sm font-semibold">FastAPI</div>
+                                            </motion.div>
+                                        </>
+                                    ) : (
+                                        <>
+                                            <motion.div
+                                                key="ml-engineer"
+                                                initial={{ opacity: 0, scale: 0.5, y: 20 }}
+                                                animate={{
+                                                    opacity: 1,
+                                                    scale: 1,
+                                                    y: [0, -30, 0],
+                                                    rotate: [0, 5, 0]
+                                                }}
+                                                exit={{ opacity: 0, scale: 0.5, y: -20 }}
+                                                transition={{
+                                                    opacity: { duration: 0.3 },
+                                                    scale: { duration: 0.3 },
+                                                    y: { duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1 }
+                                                }}
+                                                className="absolute -top-4 -right-4 bg-primary-500 text-white p-3 rounded-lg shadow-lg"
+                                            >
+                                                <div className="text-sm font-semibold">ML Engineer</div>
+                                            </motion.div>
+
+                                            <motion.div
+                                                key="ai-developer"
+                                                initial={{ opacity: 0, scale: 0.5, y: -20 }}
+                                                animate={{
+                                                    opacity: 1,
+                                                    scale: 1,
+                                                    y: [0, -20, 0],
+                                                    rotate: [0, -5, 0]
+                                                }}
+                                                exit={{ opacity: 0, scale: 0.5, y: 20 }}
+                                                transition={{
+                                                    opacity: { duration: 0.3 },
+                                                    scale: { duration: 0.3 },
+                                                    y: { duration: 5, repeat: Infinity, ease: "easeInOut", delay: 2 }
+                                                }}
+                                                className="absolute -bottom-4 -left-4 text-white p-3 rounded-lg shadow-lg"
+                                                style={{ backgroundColor: '#2dd4bf' }}
+                                            >
+                                                <div className="text-sm font-semibold">AI Developer</div>
+                                            </motion.div>
+                                        </>
+                                    )}
+                                </AnimatePresence>
+                            )}
                         </div>
                     </motion.div>
                 </div>

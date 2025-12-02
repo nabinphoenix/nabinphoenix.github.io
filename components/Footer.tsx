@@ -21,7 +21,7 @@ const socialLinks = [
   {
     name: 'Facebook',
     icon: Facebook,
-    url: 'https://www.facebook.com/nab.in.nepali.149047/',
+    url: 'https://www.facebook.com/nabin.nepali.ml/',
     color: 'hover:text-blue-500',
   },
 ]

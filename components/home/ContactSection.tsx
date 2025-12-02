@@ -44,7 +44,7 @@ export default function ContactSection() {
                                     {[
                                         { icon: Github, url: 'https://github.com/nabinphoenix', label: 'GitHub', color: 'hover:text-gray-700 dark:hover:text-white' },
                                         { icon: Linkedin, url: 'https://www.linkedin.com/in/nabinnepali', label: 'LinkedIn', color: 'hover:text-blue-600' },
-                                        { icon: Facebook, url: 'https://www.facebook.com/nab.in.nepali.149047/', label: 'Facebook', color: 'hover:text-blue-500' },
+                                        { icon: Facebook, url: 'https://www.facebook.com/nabin.nepali.ml/', label: 'Facebook', color: 'hover:text-blue-500' },
                                     ].map((social, index) => (
                                         <motion.a
                                             key={social.label}

@@ -40,17 +40,67 @@ export default function About() {
           {/* Header */}
           <AnimatedSection className="text-center mb-16">
             <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
-              About Me
+              About <span className="gradient-text">Nabin Nepali</span>
             </h1>
-            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-              Learn more about my background, education, and the technologies I work with.
+            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+              Machine Learning Engineer | AI Developer | Kathmandu, Nepal
             </p>
+          </AnimatedSection>
+
+          {/* Professional Summary */}
+          <AnimatedSection delay={0.1} className="mb-16">
+            <div className="bg-white/50 dark:bg-gray-800/50 rounded-lg border border-gray-200 dark:border-gray-700 p-8">
+              <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+                Professional Summary
+              </h2>
+              <div className="text-gray-600 dark:text-gray-300 space-y-4 leading-relaxed">
+                <p>
+                  I'm <strong>Nabin Nepali</strong>, a passionate Machine Learning Engineer based in Kathmandu, Nepal.
+                  Originally from Salyan Barala, I've dedicated my career to advancing AI and machine learning
+                  technologies in Nepal and beyond.
+                </p>
+                <p>
+                  As an ML Engineer in Nepal, <strong>Nabin Nepali</strong> specializes in developing intelligent systems
+                  using FastAPI, Python, and modern machine learning frameworks. With expertise in time series forecasting
+                  (ARIMA, SARIMA, LSTM) and computer vision (CNN, YOLO), I bring comprehensive technical knowledge to
+                  every project.
+                </p>
+                <p>
+                  Currently pursuing BSc.IT at Techspire College with a GPA of 3.48, I combine academic excellence
+                  with practical experience in building production-ready ML systems. My work focuses on creating
+                  scalable solutions that solve real-world problems.
+                </p>
+              </div>
+            </div>
+          </AnimatedSection>
+
+          {/* Contact & Location */}
+          <AnimatedSection delay={0.15} className="mb-16">
+            <div className="bg-gradient-to-r from-primary-50 to-teal-50 dark:from-gray-800 dark:to-gray-700 rounded-lg border border-primary-100 dark:border-gray-600 p-8">
+              <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+                Get In Touch
+              </h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-gray-600 dark:text-gray-300">
+                <div>
+                  <strong>Email:</strong> nabinepali012@gmail.com
+                </div>
+                <div>
+                  <strong>Phone:</strong> +977-9829592158
+                </div>
+                <div>
+                  <strong>Location:</strong> Shankhamul, Kathmandu, Nepal
+                </div>
+                <div>
+                  <strong>Origin:</strong> Salyan Barala, Nepal
+                </div>
+              </div>
+            </div>
           </AnimatedSection>
 
           {/* Expertise */}
           <AnimatedSection delay={0.2} className="mb-16">
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-8">
-              Expertise
+              Technical Expertise
             </h2>
             <div className="flex flex-wrap gap-3">
               {expertise.map((skill, index) => (

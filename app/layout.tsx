@@ -1,4 +1,4 @@
-// app/layout.tsx
+﻿// app/layout.tsx
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
@@ -68,6 +68,14 @@ export const metadata: Metadata = {
   creator: 'Nabin Nepali',
   publisher: 'Nabin Nepali',
   robots: 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1',
+  icons: {
+    icon: [
+      { url: '/favicon.ico', sizes: 'any' },
+      { url: '/favicon.ico', type: 'image/x-icon' },
+    ],
+    shortcut: '/favicon.ico',
+    apple: '/favicon.ico',
+  },
   openGraph: {
     type: 'website',
     locale: 'en_US',
@@ -129,7 +137,7 @@ export default function RootLayout({
               "sameAs": [
                 "https://github.com/nabinphoenix",
                 "https://www.linkedin.com/in/nabinnepali",
-                "https://www.facebook.com/nab.in.nepali.149047/"
+                "https://www.facebook.com/nabin.nepali.ml/"
               ]
             })
           }}

@@ -63,7 +63,7 @@ export default function Contact() {
     },
     {
       icon: Facebook,
-      url: 'https://www.facebook.com/nab.in.nepali.149047/',
+      url: 'https://www.facebook.com/nabin.nepali.ml/',
       label: 'Facebook',
       color: 'hover:text-blue-500',
     },
@@ -90,7 +90,7 @@ export default function Contact() {
                 <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
                   Contact Information
                 </h2>
-                
+
                 {/* Contact Details */}
                 <div className="space-y-6">
                   {contactInfo.map((info, index) => (
