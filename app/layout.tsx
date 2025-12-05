@@ -5,6 +5,7 @@ import './globals.css'
 import { ThemeProvider } from '@/components/ThemeProvider'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
+import ChatWidget from '@/components/ChatWidget'
 
 // Initialize Inter font
 const inter = Inter({
@@ -149,6 +150,7 @@ export default function RootLayout({
             <Navbar />
             <main>{children}</main>
             <Footer />
+            <ChatWidget />
           </div>
         </ThemeProvider>
       </body>

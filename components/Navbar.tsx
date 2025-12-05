@@ -57,7 +57,7 @@ export default function Navbar() {
               className="relative w-10 h-10"
             >
               <Image
-                src="/assets/images/logo.png"
+                src={theme === 'dark' ? "/assets/icons/dark logo.png" : "/assets/icons/logo.png"}
                 alt="Nabin Nepali Logo"
                 fill
                 className="object-contain"
