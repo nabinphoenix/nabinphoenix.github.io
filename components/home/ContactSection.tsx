@@ -44,10 +44,30 @@ export default function ContactSection() {
                                 </h4>
                                 <div className="flex gap-6">
                                     {[
-                                        { icon: Github, url: 'https://github.com/nabinphoenix', name: 'GitHub' },
-                                        { icon: Linkedin, url: 'https://www.linkedin.com/in/nabinnepali', name: 'LinkedIn' },
-                                        { icon: Facebook, url: 'https://www.facebook.com/nabin.nepali.ml/', name: 'Facebook' },
-                                        { icon: Instagram, url: 'https://www.instagram.com/nabinepali012/', name: 'Instagram' },
+                                        {
+                                            name: 'GitHub',
+                                            icon: Github,
+                                            url: 'https://github.com/nabinphoenix',
+                                            color: 'hover:text-gray-700 dark:hover:text-white',
+                                        },
+                                        {
+                                            name: 'LinkedIn',
+                                            icon: Linkedin,
+                                            url: 'https://www.linkedin.com/in/nabinnepali',
+                                            color: 'hover:text-blue-600',
+                                        },
+                                        {
+                                            name: 'Facebook',
+                                            icon: Facebook,
+                                            url: 'https://www.facebook.com/nabin.nepali.ml/',
+                                            color: 'hover:text-blue-500',
+                                        },
+                                        {
+                                            name: 'Instagram',
+                                            icon: Instagram,
+                                            url: 'https://www.instagram.com/nabinepali012/',
+                                            color: 'hover:text-pink-600',
+                                        },
                                     ].map((social) => (
                                         <SocialIcon key={social.name} social={social} />
                                     ))}

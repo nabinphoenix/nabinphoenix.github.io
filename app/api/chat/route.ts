@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-const N8N_WEBHOOK_URL = process.env.N8N_WEBHOOK_URL || 'https://nabin8n.tridevinnovation.com/webhook/maya-ai';
+const N8N_WEBHOOK_URL = process.env.N8N_WEBHOOK_URL;
 
 export async function POST(request: NextRequest) {
     try {
@@ -26,6 +26,14 @@ export async function POST(request: NextRequest) {
             timestamp: timestamp || new Date().toISOString(),
             source: source || 'chat-widget',
         };
+
+        if (!N8N_WEBHOOK_URL) {
+            console.error('❌ Configuration error: N8N_WEBHOOK_URL is missing');
+            return NextResponse.json(
+                { error: 'Server configuration error' },
+                { status: 500 }
+            );
+        }
 
         console.log('🔄 Forwarding to n8n webhook:', N8N_WEBHOOK_URL);
         console.log('📦 Payload:', JSON.stringify(payload, null, 2));

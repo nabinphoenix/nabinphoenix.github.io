@@ -49,46 +49,43 @@ export default function BlogCard({ blog }: BlogCardProps) {
 
     return (
         <motion.div
-            className="group relative bg-gray-900 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden border border-gray-800 hover:border-cyan-500/50 cursor-pointer h-full flex flex-col"
-            whileHover={{ y: -5, scale: 1.01 }}
+            className="group relative bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100 dark:border-gray-700 cursor-pointer h-full flex flex-col"
+            whileHover={{ y: -5 }}
             onHoverStart={() => setIsHovered(true)}
             onHoverEnd={() => setIsHovered(false)}
             onClick={handleCardClick}
         >
-            {/* Background Gradient Effect */}
+            {/* Decorative Gradient Overlay (Subtle) */}
             <div
-                className={`absolute inset-0 bg-gradient-to-br ${getGradient(blog.title)} opacity-0 group-hover:opacity-100 transition-opacity duration-500`}
+                className={`absolute top-0 right-0 w-32 h-32 bg-gradient-to-br ${getGradient(blog.title)} opacity-10 rounded-bl-full -mr-6 -mt-6 transition-transform group-hover:scale-110`}
             />
 
             {/* Content */}
             <div className="relative z-10 p-6 flex flex-col h-full">
                 {/* Date Badge */}
                 <div className="flex items-center space-x-2 mb-4">
-                    <div className="flex items-center text-xs font-medium text-cyan-400 bg-cyan-950/30 px-2.5 py-1 rounded-md border border-cyan-500/20 backdrop-blur-sm">
+                    <div className="flex items-center text-xs font-medium text-gray-600 dark:text-gray-400 bg-gray-100 dark:bg-gray-700/50 px-2.5 py-1 rounded-full">
                         <Calendar size={12} className="mr-1.5" />
                         {formatDate(blog.date)}
                     </div>
                 </div>
 
                 {/* Title */}
-                <h3 className="text-2xl font-bold text-gray-100 group-hover:text-cyan-300 transition-colors mb-3 line-clamp-2">
+                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 line-clamp-2 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
                     {blog.title}
                 </h3>
 
                 {/* Excerpt */}
-                <div className="text-gray-400 text-sm leading-relaxed line-clamp-3 mb-6 flex-grow">
+                <div className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed line-clamp-3 mb-6 flex-grow">
                     {blog.content.replace(/<[^>]*>/g, '').substring(0, 150)}...
                 </div>
 
                 {/* Read More Link */}
-                <div className="flex items-center text-cyan-500 text-sm font-medium group-hover:translate-x-2 transition-transform duration-300 mt-auto">
+                <div className="flex items-center text-primary-600 dark:text-primary-400 text-sm font-medium group-hover:translate-x-2 transition-transform duration-300 mt-auto">
                     Read Article
                     <ArrowRight size={16} className="ml-2" />
                 </div>
             </div>
-
-            {/* Hover Glow Effect */}
-            <div className="absolute -inset-1 bg-gradient-to-r from-cyan-500 to-blue-500 opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-500 pointer-events-none" />
         </motion.div>
     )
 }

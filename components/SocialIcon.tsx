@@ -26,7 +26,10 @@ export default function SocialIcon({ social }: SocialIconProps) {
             <div className="relative w-[60px] h-[60px] bg-white dark:bg-gray-800 rounded-full flex items-center justify-center cursor-pointer transition-transform duration-300 ease-in-out group-hover:scale-110 border border-gray-200 dark:border-gray-700 shadow-sm group-hover:shadow-md">
                 <Icon
                     size={24}
-                    className="text-gray-700 dark:text-gray-300 transition-colors duration-300 group-hover:text-primary-600 dark:group-hover:text-primary-400"
+                    className={`text-gray-700 dark:text-gray-300 transition-colors duration-300 ${social.color
+                            ? social.color.split(' ').map(c => c.replace('hover:', 'group-hover:')).join(' ')
+                            : 'group-hover:text-primary-600 dark:group-hover:text-primary-400'
+                        }`}
                 />
             </div>
 

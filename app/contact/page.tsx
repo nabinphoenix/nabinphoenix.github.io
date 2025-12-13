@@ -4,6 +4,7 @@
 import { useState } from 'react'
 import AnimatedSection from '@/components/AnimatedSection'
 import PageTransition from '@/components/PageTransition'
+import SocialIcon from '@/components/SocialIcon'
 import { motion } from 'framer-motion'
 import { Mail, Phone, MapPin, Github, Linkedin, Facebook, Copy, Check, Loader2, Send } from 'lucide-react'
 import { toast } from 'sonner'
@@ -101,8 +102,8 @@ export default function Contact() {
         <div className="max-w-6xl mx-auto">
           {/* Header */}
           <AnimatedSection className="text-center mb-16">
-            <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
-              Get In Touch
+            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
+              <span className="gradient-text">Get In Touch</span>
             </h1>
             <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
               I'm always open to discussing new opportunities, projects, or just having a chat about technology.
@@ -160,21 +161,14 @@ export default function Contact() {
                   <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
                     Follow me on
                   </h3>
-                  <div className="flex space-x-4">
-                    {socialLinks.map((social, index) => (
-                      <motion.a
-                        key={social.label}
-                        href={social.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        initial={{ opacity: 0, scale: 0.8 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        whileHover={{ scale: 1.1 }}
-                        transition={{ duration: 0.3, delay: index * 0.1 }}
-                        className={`p-4 bg-white dark:bg-gray-800 rounded-lg shadow-md border border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-400 ${social.color} transition-all duration-300`}
-                      >
-                        <social.icon size={24} />
-                      </motion.a>
+                  <div className="flex gap-6">
+                    {socialLinks.map((social) => (
+                      <SocialIcon key={social.label} social={{
+                        name: social.label,
+                        icon: social.icon,
+                        url: social.url,
+                        color: social.color
+                      }} />
                     ))}
                   </div>
                 </div>

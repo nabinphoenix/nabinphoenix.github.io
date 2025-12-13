@@ -57,7 +57,7 @@ export default function AboutSection() {
                                 period: '2023 – Present',
                                 gpa: '3.48',
                                 status: 'Current',
-                                color: 'border-blue-500 bg-blue-500'
+                                color: 'border-teal-500 bg-teal-500'
                             },
                             {
                                 institution: 'Tulsi Boarding School',
@@ -65,7 +65,7 @@ export default function AboutSection() {
                                 period: 'Completed',
                                 gpa: '3.31',
                                 status: 'Graduated',
-                                color: 'border-emerald-500 bg-emerald-500'
+                                color: 'border-blue-500 bg-blue-500'
                             },
                             {
                                 institution: 'Bright Pearl Academy',
@@ -154,8 +154,8 @@ export default function AboutSection() {
                                 name: 'Hindi',
                                 level: 'Intermediate',
                                 percent: 70,
-                                barColor: 'bg-orange-500',
-                                badgeClass: 'bg-orange-100 text-orange-700 dark:bg-orange-500/20 dark:text-orange-300'
+                                barColor: 'bg-purple-500',
+                                badgeClass: 'bg-purple-100 text-purple-700 dark:bg-purple-500/20 dark:text-purple-300'
                             }
                         ].map((lang, index) => (
                             <motion.div

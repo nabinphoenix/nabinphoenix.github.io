@@ -1,10 +1,11 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Link from 'next/link'
 import Image from 'next/image'
 import { Download, ArrowRight, Mail, Phone, MapPin } from 'lucide-react'
+import { useRouter } from 'next/navigation'
 
 export default function HeroSection() {
     const [isDownloading, setIsDownloading] = useState(false)
@@ -14,11 +15,28 @@ export default function HeroSection() {
     const [showCancelMessage, setShowCancelMessage] = useState(false)
     const [showTechStack, setShowTechStack] = useState(true)
     const [mounted, setMounted] = useState(false)
+    const intervalRef = useRef<NodeJS.Timeout | null>(null)
+    const [isZooming, setIsZooming] = useState(false)
+    const router = useRouter()
+
+    useEffect(() => {
+        router.prefetch('/projects')
+    }, [router])
 
     // Ensure client-side only rendering to avoid hydration errors
     useEffect(() => {
         setMounted(true)
+        return () => {
+            if (intervalRef.current) clearInterval(intervalRef.current)
+        }
     }, [])
+
+    const handleViewProjects = () => {
+        setIsZooming(true)
+        setTimeout(() => {
+            router.push('/projects')
+        }, 400)
+    }
 
     // Rotate badges every 5 seconds (only after mounted)
     useEffect(() => {
@@ -85,12 +103,14 @@ export default function HeroSection() {
         setIsDownloading(true)
         setIsBroken(false)
 
-        const interval = setInterval(() => {
+        if (intervalRef.current) clearInterval(intervalRef.current)
+
+        intervalRef.current = setInterval(() => {
             setProgress((prev) => {
                 const newProgress = prev + Math.random() * 10
 
                 if (newProgress >= 100) {
-                    clearInterval(interval)
+                    if (intervalRef.current) clearInterval(intervalRef.current)
                     setIsDownloading(false)
 
                     setTimeout(() => {
@@ -118,6 +138,12 @@ export default function HeroSection() {
     const handleCancelDownload = () => {
         if (!isDownloading) return
 
+        // Clear the interval immediately to stop progress
+        if (intervalRef.current) {
+            clearInterval(intervalRef.current)
+            intervalRef.current = null
+        }
+
         setIsBroken(true)
         setShowCancelMessage(true)
         setIsDownloading(false)
@@ -125,219 +151,266 @@ export default function HeroSection() {
         setTimeout(() => {
             setShowCancelMessage(false)
         }, 2000)
-
-        setTimeout(() => {
-            setIsBroken(false)
-        }, 1500)
     }
 
     return (
         <>
             <section className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 relative overflow-hidden" suppressHydrationWarning>
-                <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                    {/* Text Content */}
+                <div className="max-w-7xl mx-auto w-full relative z-10">
                     <motion.div
-                        variants={containerVariants}
-                        initial="hidden"
-                        animate="visible"
-                        className="space-y-8"
+                        className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
+                        animate={isZooming ? {
+                            scale: 1.5,
+                            opacity: 0,
+                            filter: "blur(10px)"
+                        } : {
+                            scale: 1,
+                            opacity: 1,
+                            filter: "blur(0px)"
+                        }}
+                        transition={{ duration: 0.4, ease: "easeInOut" }}
                     >
-                        <motion.div variants={itemVariants} className="space-y-4">
-                            <motion.h1
-                                className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white"
-                                initial={{ opacity: 0, y: 30 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.6 }}
-                            >
-                                <span className="block">NABIN</span>
-                                <span className="block gradient-text">NEPALI</span>
-                            </motion.h1>
-                            <motion.h2
-                                className="text-xl sm:text-2xl text-primary-600 dark:text-primary-400 font-semibold"
+                        {/* Text Content */}
+                        <motion.div
+                            variants={containerVariants}
+                            initial="hidden"
+                            animate="visible"
+                            className="space-y-8"
+                        >
+                            <motion.div variants={itemVariants} className="space-y-4">
+                                <motion.h1
+                                    className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white"
+                                    initial={{ opacity: 0, y: 30 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ duration: 0.6 }}
+                                >
+                                    <span className="block">NABIN</span>
+                                    <span className="block gradient-text">NEPALI</span>
+                                </motion.h1>
+                                <motion.h2
+                                    className="text-xl sm:text-2xl text-primary-600 dark:text-primary-400 font-semibold"
+                                    initial={{ opacity: 0, y: 20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ duration: 0.6, delay: 0.2 }}
+                                >
+                                    ML Engineer
+                                </motion.h2>
+                            </motion.div>
+
+                            <motion.p
+                                className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed"
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.6, delay: 0.2 }}
+                                transition={{ duration: 0.6, delay: 0.4 }}
                             >
-                                ML Engineer
-                            </motion.h2>
-                        </motion.div>
+                                Proficient in backend development using FastAPI with databases, with strong expertise in machine learning, particularly time series forecasting (ARIMA, SARIMA, LSTM). Currently expanding skills in computer vision with CNN and YOLO. Passionate about building scalable systems and applying AI solutions to real-world problems.
+                            </motion.p>
 
-                        <motion.p
-                            className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed"
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.6, delay: 0.4 }}
-                        >
-                            Proficient in backend development using FastAPI with databases, with strong expertise in machine learning, particularly time series forecasting (ARIMA, SARIMA, LSTM). Currently expanding skills in computer vision with CNN and YOLO. Passionate about building scalable systems and applying AI solutions to real-world problems.
-                        </motion.p>
-
-                        {/* Contact Info */}
-                        <motion.div
-                            className="flex flex-col sm:flex-row items-start sm:items-center gap-4 text-sm text-gray-600 dark:text-gray-400"
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.6, delay: 0.6 }}
-                        >
-                            <div className="flex items-center gap-2">
-                                <Mail size={16} />
-                                <span>nabinepali012@gmail.com</span>
-                            </div>
-                            <div className="flex items-center gap-2">
-                                <Phone size={16} />
-                                <span>9829592158</span>
-                            </div>
-                            <div className="flex items-center gap-2">
-                                <MapPin size={16} />
-                                <span>Shankhamul, Kathmandu</span>
-                            </div>
-                        </motion.div>
-
-                        {/* CTA Buttons */}
-                        <motion.div
-                            className="flex flex-col sm:flex-row gap-4"
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.6, delay: 0.8 }}
-                        >
-                            <Link
-                                href="/projects"
-                                className="inline-flex items-center justify-center px-6 py-3 bg-primary-600 hover:bg-primary-700 text-white font-medium rounded-lg transition-colors group"
-                            >
-                                View Projects
-                                <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={20} />
-                            </Link>
-                            <button
-                                onClick={handleDownload}
-                                disabled={isDownloading}
-                                suppressHydrationWarning={true}
-                                className="inline-flex items-center justify-center px-6 py-3 border border-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-300 font-medium rounded-lg transition-colors group disabled:opacity-50 disabled:cursor-not-allowed"
-                            >
-                                <Download className="mr-2 group-hover:scale-110 transition-transform" size={20} />
-                                Download Resume
-                            </button>
-                        </motion.div>
-                    </motion.div>
-
-                    {/* Profile Image */}
-                    <motion.div
-                        initial={{ opacity: 0, scale: 0.8 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        transition={{ duration: 0.8, delay: 0.5 }}
-                        className="relative flex justify-center"
-                    >
-                        <div className="relative">
+                            {/* Contact Info */}
                             <motion.div
-                                animate={{ y: [0, -20, 0] }}
-                                transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-                                className="w-80 h-80 lg:w-96 lg:h-96 rounded-full bg-gradient-to-r from-primary-400 to-teal-400 p-1"
+                                className="flex flex-col sm:flex-row items-start sm:items-center gap-4 text-sm text-gray-600 dark:text-gray-400"
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.6, delay: 0.6 }}
                             >
-                                <div className="w-full h-full rounded-full bg-white dark:bg-gray-800 overflow-hidden">
-                                    <Image
-                                        src="/assets/images/nabin2.jpg"
-                                        alt="Nabin Nepali"
-                                        width={400}
-                                        height={400}
-                                        className="w-full h-full object-cover"
-                                        priority
-                                    />
+                                <div className="flex items-center gap-2">
+                                    <Mail size={16} />
+                                    <span>nabinepali012@gmail.com</span>
+                                </div>
+                                <div className="flex items-center gap-2">
+                                    <Phone size={16} />
+                                    <span>9829592158</span>
+                                </div>
+                                <div className="flex items-center gap-2">
+                                    <MapPin size={16} />
+                                    <span>Shankhamul, Kathmandu</span>
                                 </div>
                             </motion.div>
 
-                            {/* Floating elements - Rotating between Tech and Titles */}
-                            {mounted && (
-                                <AnimatePresence mode="wait">
-                                    {showTechStack ? (
-                                        <>
-                                            <motion.div
-                                                key="python"
-                                                initial={{ opacity: 0, scale: 0.5, y: 20 }}
-                                                animate={{
-                                                    opacity: 1,
-                                                    scale: 1,
-                                                    y: [0, -30, 0],
-                                                    rotate: [0, 5, 0]
-                                                }}
-                                                exit={{ opacity: 0, scale: 0.5, y: -20 }}
-                                                transition={{
-                                                    opacity: { duration: 0.3 },
-                                                    scale: { duration: 0.3 },
-                                                    y: { duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1 }
-                                                }}
-                                                className="absolute -top-2 -right-2 md:-top-4 md:-right-4 bg-primary-500 text-white p-3 rounded-lg shadow-lg"
-                                            >
-                                                <div className="text-sm font-semibold">Python</div>
-                                            </motion.div>
+                            {/* CTA Buttons */}
+                            <motion.div
+                                className="flex flex-col sm:flex-row gap-4"
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.6, delay: 0.8 }}
+                            >
+                                <button
+                                    onClick={handleViewProjects}
+                                    className="inline-flex items-center justify-center px-6 py-3 bg-primary-600 hover:bg-primary-700 text-white font-medium rounded-lg transition-colors group relative overflow-hidden"
+                                >
+                                    <span className="relative z-10 flex items-center">
+                                        View Projects
+                                        <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={20} />
+                                    </span>
+                                </button>
+                                <button
+                                    onClick={handleDownload}
+                                    disabled={isDownloading}
+                                    suppressHydrationWarning={true}
+                                    className="inline-flex items-center justify-center px-6 py-3 border border-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-300 font-medium rounded-lg transition-colors group disabled:opacity-50 disabled:cursor-not-allowed"
+                                >
+                                    <Download className="mr-2 group-hover:scale-110 transition-transform" size={20} />
+                                    Download Resume
+                                </button>
+                            </motion.div>
+                        </motion.div>
 
-                                            <motion.div
-                                                key="fastapi"
-                                                initial={{ opacity: 0, scale: 0.5, y: -20 }}
-                                                animate={{
-                                                    opacity: 1,
-                                                    scale: 1,
-                                                    y: [0, -20, 0],
-                                                    rotate: [0, -5, 0]
-                                                }}
-                                                exit={{ opacity: 0, scale: 0.5, y: 20 }}
-                                                transition={{
-                                                    opacity: { duration: 0.3 },
-                                                    scale: { duration: 0.3 },
-                                                    y: { duration: 5, repeat: Infinity, ease: "easeInOut", delay: 2 }
-                                                }}
-                                                className="absolute -bottom-2 -left-2 md:-bottom-4 md:-left-4 text-white p-3 rounded-lg shadow-lg"
-                                                style={{ backgroundColor: '#2dd4bf' }}
-                                            >
-                                                <div className="text-sm font-semibold">FastAPI</div>
-                                            </motion.div>
-                                        </>
-                                    ) : (
-                                        <>
-                                            <motion.div
-                                                key="ml-engineer"
-                                                initial={{ opacity: 0, scale: 0.5, y: 20 }}
-                                                animate={{
-                                                    opacity: 1,
-                                                    scale: 1,
-                                                    y: [0, -30, 0],
-                                                    rotate: [0, 5, 0]
-                                                }}
-                                                exit={{ opacity: 0, scale: 0.5, y: -20 }}
-                                                transition={{
-                                                    opacity: { duration: 0.3 },
-                                                    scale: { duration: 0.3 },
-                                                    y: { duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1 }
-                                                }}
-                                                className="absolute -top-2 -right-2 md:-top-4 md:-right-4 bg-primary-500 text-white p-3 rounded-lg shadow-lg"
-                                            >
-                                                <div className="text-sm font-semibold">ML Engineer</div>
-                                            </motion.div>
+                        {/* Profile Image */}
+                        <motion.div
+                            initial={{ opacity: 0, scale: 0.8 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            transition={{ duration: 0.8, delay: 0.5 }}
+                            className="relative flex justify-center lg:justify-end lg:pr-12"
+                        >
+                            <div className="relative">
+                                <motion.div
+                                    animate={{ y: [0, -20, 0] }}
+                                    transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+                                    className="w-80 h-80 lg:w-96 lg:h-96 rounded-full bg-gradient-to-r from-primary-400 to-teal-400 p-1"
+                                >
+                                    <div className="w-full h-full rounded-full bg-white dark:bg-gray-800 overflow-hidden">
+                                        <Image
+                                            src="/assets/images/nabin2.jpg"
+                                            alt="Nabin Nepali"
+                                            width={400}
+                                            height={400}
+                                            className="w-full h-full object-cover"
+                                            priority
+                                        />
+                                    </div>
+                                </motion.div>
 
-                                            <motion.div
-                                                key="ai-developer"
-                                                initial={{ opacity: 0, scale: 0.5, y: -20 }}
-                                                animate={{
-                                                    opacity: 1,
-                                                    scale: 1,
-                                                    y: [0, -20, 0],
-                                                    rotate: [0, -5, 0]
-                                                }}
-                                                exit={{ opacity: 0, scale: 0.5, y: 20 }}
-                                                transition={{
-                                                    opacity: { duration: 0.3 },
-                                                    scale: { duration: 0.3 },
-                                                    y: { duration: 5, repeat: Infinity, ease: "easeInOut", delay: 2 }
-                                                }}
-                                                className="absolute -bottom-2 -left-2 md:-bottom-4 md:-left-4 text-white p-3 rounded-lg shadow-lg"
-                                                style={{ backgroundColor: '#2dd4bf' }}
-                                            >
-                                                <div className="text-sm font-semibold">AI Developer</div>
-                                            </motion.div>
-                                        </>
-                                    )}
-                                </AnimatePresence>
-                            )}
-                        </div>
+                                {/* Floating elements - Rotating between Tech and Titles */}
+                                {mounted && (
+                                    <AnimatePresence mode="wait">
+                                        {showTechStack ? (
+                                            <>
+                                                <motion.div
+                                                    key="python"
+                                                    initial={{ opacity: 0, scale: 0.5, y: 20 }}
+                                                    animate={{
+                                                        opacity: 1,
+                                                        scale: 1,
+                                                        y: [0, -30, 0],
+                                                        rotate: [0, 5, 0]
+                                                    }}
+                                                    exit={{ opacity: 0, scale: 0.5, y: -20 }}
+                                                    transition={{
+                                                        opacity: { duration: 0.3 },
+                                                        scale: { duration: 0.3 },
+                                                        y: { duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1 }
+                                                    }}
+                                                    className="absolute -top-2 -right-2 md:-top-4 md:-right-4 bg-primary-500 text-white p-3 rounded-lg shadow-lg"
+                                                >
+                                                    <div className="text-sm font-semibold">Python</div>
+                                                </motion.div>
+
+                                                <motion.div
+                                                    key="fastapi"
+                                                    initial={{ opacity: 0, scale: 0.5, y: -20 }}
+                                                    animate={{
+                                                        opacity: 1,
+                                                        scale: 1,
+                                                        y: [0, -20, 0],
+                                                        rotate: [0, -5, 0]
+                                                    }}
+                                                    exit={{ opacity: 0, scale: 0.5, y: 20 }}
+                                                    transition={{
+                                                        opacity: { duration: 0.3 },
+                                                        scale: { duration: 0.3 },
+                                                        y: { duration: 5, repeat: Infinity, ease: "easeInOut", delay: 2 }
+                                                    }}
+                                                    className="absolute -bottom-2 -left-2 md:-bottom-4 md:-left-4 text-white p-3 rounded-lg shadow-lg"
+                                                    style={{ backgroundColor: '#2dd4bf' }}
+                                                >
+                                                    <div className="text-sm font-semibold">FastAPI</div>
+                                                </motion.div>
+                                            </>
+                                        ) : (
+                                            <>
+                                                <motion.div
+                                                    key="ml-engineer"
+                                                    initial={{ opacity: 0, scale: 0.5, y: 20 }}
+                                                    animate={{
+                                                        opacity: 1,
+                                                        scale: 1,
+                                                        y: [0, -30, 0],
+                                                        rotate: [0, 5, 0]
+                                                    }}
+                                                    exit={{ opacity: 0, scale: 0.5, y: -20 }}
+                                                    transition={{
+                                                        opacity: { duration: 0.3 },
+                                                        scale: { duration: 0.3 },
+                                                        y: { duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1 }
+                                                    }}
+                                                    className="absolute -top-2 -right-2 md:-top-4 md:-right-4 bg-primary-500 text-white p-3 rounded-lg shadow-lg"
+                                                >
+                                                    <div className="text-sm font-semibold">ML Engineer</div>
+                                                </motion.div>
+
+                                                <motion.div
+                                                    key="ai-developer"
+                                                    initial={{ opacity: 0, scale: 0.5, y: -20 }}
+                                                    animate={{
+                                                        opacity: 1,
+                                                        scale: 1,
+                                                        y: [0, -20, 0],
+                                                        rotate: [0, -5, 0]
+                                                    }}
+                                                    exit={{ opacity: 0, scale: 0.5, y: 20 }}
+                                                    transition={{
+                                                        opacity: { duration: 0.3 },
+                                                        scale: { duration: 0.3 },
+                                                        y: { duration: 5, repeat: Infinity, ease: "easeInOut", delay: 2 }
+                                                    }}
+                                                    className="absolute -bottom-2 -left-2 md:-bottom-4 md:-left-4 text-white p-3 rounded-lg shadow-lg"
+                                                    style={{ backgroundColor: '#2dd4bf' }}
+                                                >
+                                                    <div className="text-sm font-semibold">AI Developer</div>
+                                                </motion.div>
+                                            </>
+                                        )}
+                                    </AnimatePresence>
+                                )}
+                            </div>
+                        </motion.div>
                     </motion.div>
                 </div>
+
+                {/* Speed Lines Overlay */}
+                <AnimatePresence>
+                    {isZooming && (
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            transition={{ duration: 0.2 }}
+                            className="absolute inset-0 z-0 pointer-events-none"
+                        >
+                            <div className="absolute inset-0 bg-primary-50/20 dark:bg-primary-900/10 mix-blend-overlay" />
+                            <svg className="w-full h-full opacity-30" viewBox="0 0 100 100" preserveAspectRatio="none">
+                                <motion.path
+                                    d="M50 50 L0 0 M50 50 L100 0 M50 50 L100 100 M50 50 L0 100"
+                                    stroke="currentColor"
+                                    strokeWidth="0.5"
+                                    className="text-primary-500"
+                                    initial={{ pathLength: 0 }}
+                                    animate={{ pathLength: 1 }}
+                                    transition={{ duration: 0.4, ease: "easeIn" }}
+                                />
+                                <motion.circle
+                                    cx="50"
+                                    cy="50"
+                                    r="0"
+                                    className="fill-none stroke-primary-500"
+                                    strokeWidth="0.5"
+                                    animate={{ r: 100, opacity: 0 }}
+                                    transition={{ duration: 0.8, ease: "easeOut" }}
+                                />
+                            </svg>
+                        </motion.div>
+                    )}
+                </AnimatePresence>
 
                 {/* Parachute Animation */}
                 <div

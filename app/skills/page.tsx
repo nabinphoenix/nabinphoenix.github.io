@@ -25,8 +25,8 @@ export default function Skills() {
         <div className="max-w-6xl mx-auto">
           {/* Header */}
           <AnimatedSection className="text-center mb-16">
-            <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
-              Skills & Expertise
+            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
+              <span className="gradient-text">Skills & Expertise</span>
             </h1>
             <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
               A comprehensive overview of my technical capabilities and professional strengths.
@@ -38,7 +38,7 @@ export default function Skills() {
             <div className="mb-12">
               <AnimatedSection delay={0.2}>
                 <div className="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg border border-gray-200 dark:border-gray-700">
-                  <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-8 text-center">
+                  <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-8 text-center">
                     Technical Skills & Tools
                   </h2>
                   <SkillSlider />
@@ -48,8 +48,8 @@ export default function Skills() {
 
             {/* Soft Skills */}
             <AnimatedSection delay={0.4}>
-              <div className="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg border border-gray-200 dark:border-gray-700 max-w-6xl mx-auto">
-                <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-8 text-center">
+              <div className="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg border border-gray-200 dark:border-gray-700">
+                <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-8 text-center">
                   Soft Skills
                 </h2>
                 <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
@@ -64,7 +64,7 @@ export default function Skills() {
                       <div className="p-3 bg-primary-100 dark:bg-primary-900/30 rounded-full text-primary-600 dark:text-primary-400 mb-4 group-hover:scale-110 transition-transform">
                         <skill.icon size={24} />
                       </div>
-                      <h3 className="font-semibold text-gray-900 dark:text-gray-100">
+                      <h3 className="font-bold text-sm md:text-base text-gray-900 dark:text-gray-100">
                         {skill.name}
                       </h3>
                     </motion.div>
