@@ -300,6 +300,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
               onClick={(e) => handleLinkClick(e, project.githubUrl!)}
               className="p-2.5 bg-white/10 backdrop-blur-md border border-white/20 rounded-full hover:bg-white/20 hover:scale-110 transition-all text-white"
               aria-label="View on GitHub"
+              suppressHydrationWarning
             >
               <Github size={18} />
             </button>
@@ -309,6 +310,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
               onClick={(e) => handleLinkClick(e, project.liveUrl!)}
               className="p-2.5 bg-cyan-500/20 backdrop-blur-md border border-cyan-500/30 rounded-full hover:bg-cyan-500/40 hover:scale-110 transition-all text-cyan-300"
               aria-label="View live demo"
+              suppressHydrationWarning
             >
               <ExternalLink size={18} />
             </button>

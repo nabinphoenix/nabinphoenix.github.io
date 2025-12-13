@@ -133,7 +133,7 @@ export default function HeroSection() {
 
     return (
         <>
-            <section className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 relative" suppressHydrationWarning>
+            <section className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 relative overflow-hidden" suppressHydrationWarning>
                 <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                     {/* Text Content */}
                     <motion.div
@@ -209,6 +209,7 @@ export default function HeroSection() {
                             <button
                                 onClick={handleDownload}
                                 disabled={isDownloading}
+                                suppressHydrationWarning={true}
                                 className="inline-flex items-center justify-center px-6 py-3 border border-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-300 font-medium rounded-lg transition-colors group disabled:opacity-50 disabled:cursor-not-allowed"
                             >
                                 <Download className="mr-2 group-hover:scale-110 transition-transform" size={20} />
@@ -262,7 +263,7 @@ export default function HeroSection() {
                                                     scale: { duration: 0.3 },
                                                     y: { duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1 }
                                                 }}
-                                                className="absolute -top-4 -right-4 bg-primary-500 text-white p-3 rounded-lg shadow-lg"
+                                                className="absolute -top-2 -right-2 md:-top-4 md:-right-4 bg-primary-500 text-white p-3 rounded-lg shadow-lg"
                                             >
                                                 <div className="text-sm font-semibold">Python</div>
                                             </motion.div>
@@ -282,7 +283,7 @@ export default function HeroSection() {
                                                     scale: { duration: 0.3 },
                                                     y: { duration: 5, repeat: Infinity, ease: "easeInOut", delay: 2 }
                                                 }}
-                                                className="absolute -bottom-4 -left-4 text-white p-3 rounded-lg shadow-lg"
+                                                className="absolute -bottom-2 -left-2 md:-bottom-4 md:-left-4 text-white p-3 rounded-lg shadow-lg"
                                                 style={{ backgroundColor: '#2dd4bf' }}
                                             >
                                                 <div className="text-sm font-semibold">FastAPI</div>
@@ -305,7 +306,7 @@ export default function HeroSection() {
                                                     scale: { duration: 0.3 },
                                                     y: { duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1 }
                                                 }}
-                                                className="absolute -top-4 -right-4 bg-primary-500 text-white p-3 rounded-lg shadow-lg"
+                                                className="absolute -top-2 -right-2 md:-top-4 md:-right-4 bg-primary-500 text-white p-3 rounded-lg shadow-lg"
                                             >
                                                 <div className="text-sm font-semibold">ML Engineer</div>
                                             </motion.div>
@@ -325,7 +326,7 @@ export default function HeroSection() {
                                                     scale: { duration: 0.3 },
                                                     y: { duration: 5, repeat: Infinity, ease: "easeInOut", delay: 2 }
                                                 }}
-                                                className="absolute -bottom-4 -left-4 text-white p-3 rounded-lg shadow-lg"
+                                                className="absolute -bottom-2 -left-2 md:-bottom-4 md:-left-4 text-white p-3 rounded-lg shadow-lg"
                                                 style={{ backgroundColor: '#2dd4bf' }}
                                             >
                                                 <div className="text-sm font-semibold">AI Developer</div>

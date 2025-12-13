@@ -22,7 +22,7 @@ export const projects: Project[] = [
     fullDescription: 'A comprehensive RESTful API built with FastAPI and MongoDB that provides secure to-do list management. The application features complete CRUD operations for tasks, robust user authentication using JWT tokens, and secure password hashing. The API follows RESTful principles and includes proper error handling, validation, and response formatting.',
     technologies: ['FastAPI', 'MongoDB', 'JWT', 'Python'],
     image: '/assets/images/project1.png',
-    githubUrl: 'https://github.com/nabinphoenix/todo-api',
+    githubUrl: 'https://github.com/nabinphoenix/projects',
     liveUrl: null,
     features: [
       'User authentication with JWT tokens',
@@ -41,7 +41,7 @@ export const projects: Project[] = [
     fullDescription: 'A sophisticated time series forecasting project that uses SARIMAX (Seasonal AutoRegressive Integrated Moving Average with eXogenous regressors) to predict energy consumption patterns. The model includes comprehensive data preprocessing, feature engineering, and provides confidence intervals for predictions. The project demonstrates advanced statistical modeling techniques and time series analysis.',
     technologies: ['SARIMAX', 'Time Series', 'Python', 'Statsmodels'],
     image: '/assets/images/project2.png',
-    githubUrl: 'https://github.com/nabinphoenix/energy-forecasting',
+    githubUrl: 'https://github.com/nabinphoenix/projects',
     liveUrl: null,
     features: [
       'SARIMAX model implementation',
@@ -60,7 +60,7 @@ export const projects: Project[] = [
     fullDescription: 'A deep learning project that implements a Convolutional Neural Network (CNN) using PyTorch for binary image classification between cats and dogs. The project utilizes advanced techniques including data augmentation, transfer learning, and comprehensive hyperparameter tuning to achieve high classification accuracy. The model demonstrates proficiency in computer vision and deep learning.',
     technologies: ['PyTorch', 'CNN', 'Python', 'Computer Vision'],
     image: '/assets/images/project3.png',
-    githubUrl: 'https://github.com/nabinphoenix/cat-dog-cnn',
+    githubUrl: 'https://github.com/nabinphoenix/projects',
     liveUrl: null,
     features: [
       'CNN architecture design',
@@ -79,7 +79,7 @@ export const projects: Project[] = [
     fullDescription: 'A command-line application for managing and tracking educational assessments. The system allows for test creation, student result tracking, and comprehensive performance analytics. Data is stored using file system operations, demonstrating proficiency in Python programming, data structures, and system design.',
     technologies: ['Python', 'CLI', 'File System', 'Data Structures'],
     image: '/assets/images/project4.png',
-    githubUrl: 'https://github.com/nabinphoenix/test-management',
+    githubUrl: 'https://github.com/nabinphoenix/projects',
     liveUrl: null,
     features: [
       'Test creation and management',
@@ -98,7 +98,7 @@ export const projects: Project[] = [
     fullDescription: 'A comprehensive computer vision application that uses Ultralytics YOLO model for real-time fish species detection. The system consists of a FastAPI backend that processes uploaded images and returns annotated results with bounding boxes, confidence scores, and detailed metadata. The React frontend provides an intuitive interface for uploading images and displaying detection results. The application can identify 13 different fish species including AngelFish, BlueTang, ClownFish, GoldFish, and more. Each detection includes species-specific information such as diet preferences, average lifespan, and estimated weight, making it useful for marine biologists, aquarium enthusiasts, and educational purposes.',
     technologies: ['FastAPI', 'React', 'YOLO', 'Computer Vision', 'Python', 'Ultralytics', 'PIL', 'Vite'],
     image: '/assets/images/project5.png',
-    githubUrl: null,
+    githubUrl: 'https://github.com/nabinphoenix/projects',
     liveUrl: null,
     features: [
       'Real-time fish species detection using YOLO',

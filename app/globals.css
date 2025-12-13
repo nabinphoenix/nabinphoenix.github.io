@@ -7,8 +7,38 @@
     scroll-behavior: smooth;
   }
 
+  /* Global Typography */
   body {
-    @apply antialiased;
+    @apply font-inter text-base leading-relaxed;
+    font-size: 16px;
+    /* Mobile-first */
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-montserrat font-semibold;
+  }
+
+  h1 {
+    font-size: clamp(2rem, 5vw, 3rem);
+    @apply font-bold;
+  }
+
+  h2 {
+    font-size: clamp(1.5rem, 4vw, 2.25rem);
+  }
+
+  h3 {
+    font-size: clamp(1.25rem, 3vw, 1.5rem);
+  }
+
+  code,
+  pre {
+    font-family: 'JetBrains Mono', 'Fira Code', monospace;
   }
 }
 

@@ -66,7 +66,7 @@ export default function ChatWidget() {
             timestamp: formatTimestamp(),
           },
         ]);
-      }, 1000); // 2-second delay
+      }, 1000); // 1-second delay
 
       return () => clearTimeout(timer);
     }
@@ -120,7 +120,9 @@ export default function ChatWidget() {
       clearTimeout(timeoutId);
 
       if (!response.ok) {
-        throw new Error(`Server error: ${response.status}`);
+        const errorData = await response.json().catch(() => ({}));
+        console.error("Server error details:", errorData);
+        throw new Error(errorData.details || errorData.error || `Server error: ${response.status}`);
       }
 
       const data = await response.json();

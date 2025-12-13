@@ -4,6 +4,7 @@
 import { useParams } from 'next/navigation'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
+import Image from 'next/image'
 import { ArrowLeft, Github, ExternalLink, Calendar, Tag } from 'lucide-react'
 import AnimatedSection from '@/components/AnimatedSection'
 import PageTransition from '@/components/PageTransition'
@@ -65,8 +66,14 @@ export default function ProjectDetail() {
 
           {/* Project Image */}
           <AnimatedSection delay={0.3}>
-            <div className="relative h-64 md:h-96 rounded-2xl overflow-hidden mb-8 bg-gradient-to-br from-primary-500 to-teal-500 flex items-center justify-center">
-              <span className="text-white font-semibold text-2xl md:text-3xl">{project.title}</span>
+            <div className="relative h-64 md:h-96 rounded-2xl overflow-hidden mb-8 border border-gray-200 dark:border-gray-700 bg-gray-100 dark:bg-gray-800">
+              <Image
+                src={project.image}
+                alt={project.title}
+                fill
+                className="object-cover hover:scale-105 transition-transform duration-500"
+                priority
+              />
             </div>
           </AnimatedSection>
 

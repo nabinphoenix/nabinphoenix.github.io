@@ -2,8 +2,10 @@
 
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { Mail, Phone, MapPin, Github, Linkedin, Facebook, Copy, Check } from 'lucide-react'
+import { Mail, Phone, MapPin, Github, Linkedin, Facebook, Copy, Check, Instagram, Loader2, Send } from 'lucide-react'
 import AnimatedSection from '@/components/AnimatedSection'
+import SocialIcon from '@/components/SocialIcon'
+import { toast } from 'sonner'
 
 export default function ContactSection() {
     return (
@@ -28,9 +30,9 @@ export default function ContactSection() {
 
                             <div className="space-y-6">
                                 {[
-                                    { icon: Mail, label: 'Email', value: 'nabinepali012@gmail.com', copyField: 'email' },
-                                    { icon: Phone, label: 'Phone', value: '+977-9829592158', copyField: 'phone' },
-                                    { icon: MapPin, label: 'Location', value: 'Shankhamul, Kathmandu, Nepal', copyField: 'location' },
+                                    { icon: Mail, label: 'Email', value: 'nabinepali012@gmail.com', copyField: 'Email' },
+                                    { icon: Phone, label: 'Phone', value: '+977-9829592158', copyField: 'Phone number' },
+                                    { icon: MapPin, label: 'Location', value: 'Shankhamul, Kathmandu, Nepal', copyField: 'Address' },
                                 ].map((info, index) => (
                                     <ContactInfoCard key={info.label} info={info} index={index} />
                                 ))}
@@ -40,25 +42,14 @@ export default function ContactSection() {
                                 <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
                                     Follow me on
                                 </h4>
-                                <div className="flex space-x-4">
+                                <div className="flex gap-6">
                                     {[
-                                        { icon: Github, url: 'https://github.com/nabinphoenix', label: 'GitHub', color: 'hover:text-gray-700 dark:hover:text-white' },
-                                        { icon: Linkedin, url: 'https://www.linkedin.com/in/nabinnepali', label: 'LinkedIn', color: 'hover:text-blue-600' },
-                                        { icon: Facebook, url: 'https://www.facebook.com/nabin.nepali.ml/', label: 'Facebook', color: 'hover:text-blue-500' },
-                                    ].map((social, index) => (
-                                        <motion.a
-                                            key={social.label}
-                                            href={social.url}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            initial={{ opacity: 0, scale: 0.8 }}
-                                            whileInView={{ opacity: 1, scale: 1 }}
-                                            whileHover={{ scale: 1.1 }}
-                                            transition={{ duration: 0.3, delay: index * 0.1 }}
-                                            className={`p-4 bg-white dark:bg-gray-800 rounded-lg shadow-md border border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-400 ${social.color} transition-all duration-300`}
-                                        >
-                                            <social.icon size={24} />
-                                        </motion.a>
+                                        { icon: Github, url: 'https://github.com/nabinphoenix', name: 'GitHub' },
+                                        { icon: Linkedin, url: 'https://www.linkedin.com/in/nabinnepali', name: 'LinkedIn' },
+                                        { icon: Facebook, url: 'https://www.facebook.com/nabin.nepali.ml/', name: 'Facebook' },
+                                        { icon: Instagram, url: 'https://www.instagram.com/nabinepali012/', name: 'Instagram' },
+                                    ].map((social) => (
+                                        <SocialIcon key={social.name} social={social} />
                                     ))}
                                 </div>
                             </div>
@@ -82,6 +73,7 @@ function ContactInfoCard({ info, index }: { info: any; index: number }) {
         navigator.clipboard.writeText(text)
         setCopiedField(field)
         setTimeout(() => setCopiedField(null), 2000)
+        toast.success(`${field} copied to clipboard!`)
     }
 
     return (
@@ -107,6 +99,7 @@ function ContactInfoCard({ info, index }: { info: any; index: number }) {
             <button
                 onClick={() => handleCopy(info.value, info.copyField)}
                 className="p-2 text-gray-500 hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
+                title="Copy to clipboard"
                 suppressHydrationWarning
             >
                 {copiedField === info.copyField ? (
@@ -125,11 +118,35 @@ function ContactForm() {
         email: '',
         message: '',
     })
+    const [isSubmitting, setIsSubmitting] = useState(false)
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
-        const mailtoLink = `mailto:nabinepali012@gmail.com?subject=Contact from ${formData.name}&body=${formData.message}`
-        window.location.href = mailtoLink
+        setIsSubmitting(true)
+
+        try {
+            const response = await fetch('/api/contact', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData),
+            })
+
+            const data = await response.json()
+
+            if (!response.ok) {
+                throw new Error(data.error || 'Failed to send message')
+            }
+
+            toast.success('Message sent successfully! Check your email for confirmation.')
+            setFormData({ name: '', email: '', message: '' })
+        } catch (error) {
+            console.error('Error sending message:', error)
+            toast.error('Failed to send message. Please try again or email directly.')
+        } finally {
+            setIsSubmitting(false)
+        }
     }
 
     return (
@@ -149,6 +166,8 @@ function ContactForm() {
                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                         className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white transition-colors"
                         required
+                        placeholder="Your name"
+                        disabled={isSubmitting}
                         suppressHydrationWarning
                     />
                 </div>
@@ -164,6 +183,8 @@ function ContactForm() {
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                         className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white transition-colors"
                         required
+                        placeholder="your.email@example.com"
+                        disabled={isSubmitting}
                         suppressHydrationWarning
                     />
                 </div>
@@ -179,6 +200,8 @@ function ContactForm() {
                         onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                         className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white transition-colors resize-none"
                         required
+                        placeholder="How can I help you?"
+                        disabled={isSubmitting}
                         suppressHydrationWarning
                     />
                 </div>
@@ -187,10 +210,21 @@ function ContactForm() {
                     type="submit"
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
-                    className="w-full bg-primary-600 hover:bg-primary-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-300"
+                    disabled={isSubmitting}
+                    className="w-full bg-primary-600 hover:bg-primary-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-300 flex items-center justify-center space-x-2 disabled:opacity-70 disabled:cursor-not-allowed"
                     suppressHydrationWarning
                 >
-                    Send Message
+                    {isSubmitting ? (
+                        <>
+                            <Loader2 className="animate-spin" size={20} />
+                            <span>Sending...</span>
+                        </>
+                    ) : (
+                        <>
+                            <Send size={20} />
+                            <span>Send Message</span>
+                        </>
+                    )}
                 </motion.button>
             </form>
         </div>

@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-const N8N_WEBHOOK_URL = 'https://n8n.srv1132810.hstgr.cloud/webhook/sastosale-chat';
+const N8N_WEBHOOK_URL = process.env.N8N_WEBHOOK_URL || 'https://nabin8n.tridevinnovation.com/webhook/maya-ai';
 
 export async function POST(request: NextRequest) {
     try {
@@ -58,7 +58,8 @@ export async function POST(request: NextRequest) {
                     {
                         error: 'Webhook error',
                         response: 'Sorry, the AI assistant is currently unavailable. Please try again later.',
-                        success: false
+                        success: false,
+                        details: `Status: ${response.status}. Error: ${errorText.substring(0, 200)}`
                     },
                     { status: 500 }
                 );

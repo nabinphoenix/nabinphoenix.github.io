@@ -5,7 +5,8 @@ import { useState } from 'react'
 import AnimatedSection from '@/components/AnimatedSection'
 import PageTransition from '@/components/PageTransition'
 import { motion } from 'framer-motion'
-import { Mail, Phone, MapPin, Github, Linkedin, Facebook, Copy, Check } from 'lucide-react'
+import { Mail, Phone, MapPin, Github, Linkedin, Facebook, Copy, Check, Loader2, Send } from 'lucide-react'
+import { toast } from 'sonner'
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -13,18 +14,43 @@ export default function Contact() {
     email: '',
     message: '',
   })
+  const [isSubmitting, setIsSubmitting] = useState(false)
   const [copiedField, setCopiedField] = useState<string | null>(null)
 
   const handleCopy = (text: string, field: string) => {
     navigator.clipboard.writeText(text)
     setCopiedField(field)
     setTimeout(() => setCopiedField(null), 2000)
+    toast.success(`${field} copied to clipboard!`)
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    const mailtoLink = `mailto:nabinepali012@gmail.com?subject=Contact from ${formData.name}&body=${formData.message}`
-    window.location.href = mailtoLink
+    setIsSubmitting(true)
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      })
+
+      const data = await response.json()
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Failed to send message')
+      }
+
+      toast.success('Message sent successfully! Check your email for confirmation.')
+      setFormData({ name: '', email: '', message: '' })
+    } catch (error) {
+      console.error('Error sending message:', error)
+      toast.error('Failed to send message. Please try again or email directly.')
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   const contactInfo = [
@@ -32,19 +58,19 @@ export default function Contact() {
       icon: Mail,
       label: 'Email',
       value: 'nabinepali012@gmail.com',
-      copyField: 'email',
+      copyField: 'Email',
     },
     {
       icon: Phone,
       label: 'Phone',
       value: '+977-9829592158',
-      copyField: 'phone',
+      copyField: 'Phone number',
     },
     {
       icon: MapPin,
       label: 'Location',
       value: 'Shankhamul, Kathmandu, Nepal',
-      copyField: 'location',
+      copyField: 'Address',
     },
   ]
 
@@ -117,7 +143,7 @@ export default function Contact() {
                       <button
                         onClick={() => handleCopy(info.value, info.copyField)}
                         className="p-2 text-gray-500 hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
-                        suppressHydrationWarning
+                        title="Copy to clipboard"
                       >
                         {copiedField === info.copyField ? (
                           <Check size={20} className="text-green-500" />
@@ -173,7 +199,8 @@ export default function Contact() {
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                       className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white transition-colors"
                       required
-                      suppressHydrationWarning
+                      placeholder="Your name"
+                      disabled={isSubmitting}
                     />
                   </div>
 
@@ -188,7 +215,8 @@ export default function Contact() {
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                       className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white transition-colors"
                       required
-                      suppressHydrationWarning
+                      placeholder="your.email@example.com"
+                      disabled={isSubmitting}
                     />
                   </div>
 
@@ -203,7 +231,8 @@ export default function Contact() {
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                       className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white transition-colors resize-none"
                       required
-                      suppressHydrationWarning
+                      placeholder="How can I help you?"
+                      disabled={isSubmitting}
                     />
                   </div>
 
@@ -211,10 +240,20 @@ export default function Contact() {
                     type="submit"
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
-                    className="w-full bg-primary-600 hover:bg-primary-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-300"
-                    suppressHydrationWarning
+                    disabled={isSubmitting}
+                    className="w-full bg-primary-600 hover:bg-primary-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-300 flex items-center justify-center space-x-2 disabled:opacity-70 disabled:cursor-not-allowed"
                   >
-                    Send Message
+                    {isSubmitting ? (
+                      <>
+                        <Loader2 className="animate-spin" size={20} />
+                        <span>Sending...</span>
+                      </>
+                    ) : (
+                      <>
+                        <Send size={20} />
+                        <span>Send Message</span>
+                      </>
+                    )}
                   </motion.button>
                 </form>
               </div>

@@ -1,17 +1,26 @@
 ﻿// app/layout.tsx
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import { Inter, Montserrat } from 'next/font/google' // Import Google Fonts
 import './globals.css'
 import { ThemeProvider } from '@/components/ThemeProvider'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
-import ChatWidget from '@/components/ChatWidget'
+import ClientChatWidget from '@/components/ClientChatWidget'
+import { Toaster } from 'sonner'
 
-// Initialize Inter font
+// Initialize Outfit font
 const inter = Inter({
   subsets: ['latin'],
   display: 'swap',
   variable: '--font-inter',
+  weight: ['300', '400', '500', '600', '700'],
+})
+
+const montserrat = Montserrat({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-montserrat',
+  weight: ['400', '600', '700'],
 })
 
 export const metadata: Metadata = {
@@ -102,7 +111,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={inter.variable} suppressHydrationWarning>
+    <html lang="en" className={`${inter.variable} ${montserrat.variable} font-sans`} suppressHydrationWarning>
       <head>
         <script
           type="application/ld+json"
@@ -144,13 +153,14 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="font-sans antialiased" suppressHydrationWarning>
+      <body className="font-inter antialiased overflow-x-hidden" suppressHydrationWarning>
         <ThemeProvider>
           <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors">
             <Navbar />
             <main>{children}</main>
             <Footer />
-            <ChatWidget />
+            <ClientChatWidget />
+            <Toaster position="top-right" />
           </div>
         </ThemeProvider>
       </body>
