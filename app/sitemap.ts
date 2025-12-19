@@ -1,4 +1,6 @@
 import { MetadataRoute } from 'next'
+import { projects } from '@/data/projects'
+import { aiAgents } from '@/data/ai-agents'
 import { promises as fs } from 'fs'
 import path from 'path'
 
@@ -6,7 +8,7 @@ import path from 'path'
 interface Blog {
     id: number;
     title: string;
-    slug: string;
+    slug: string
     content: string;
     date: string;
 }
@@ -24,57 +26,78 @@ async function getBlogs(): Promise<Blog[]> {
 }
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-    // Get all blogs
+    const domain = 'https://nabinnepali.com.np'
     const blogs = await getBlogs();
-
-    // Create blog entries for sitemap
-    const blogEntries: MetadataRoute.Sitemap = blogs.map((blog) => ({
-        url: `https://nabinnepali.com.np/blog/${blog.slug}`,
-        lastModified: new Date(blog.date),
-        changeFrequency: 'monthly' as const,
-        priority: 0.7,
-    }));
 
     // Static pages
     const staticPages: MetadataRoute.Sitemap = [
         {
-            url: 'https://nabinnepali.com.np',
+            url: domain,
             lastModified: new Date(),
-            changeFrequency: 'monthly',
-            priority: 1,
+            changeFrequency: 'daily',
+            priority: 1.0,
         },
         {
-            url: 'https://nabinnepali.com.np/about',
+            url: `${domain}/about`,
             lastModified: new Date(),
             changeFrequency: 'monthly',
             priority: 0.8,
         },
         {
-            url: 'https://nabinnepali.com.np/projects',
+            url: `${domain}/projects`,
             lastModified: new Date(),
             changeFrequency: 'weekly',
-            priority: 0.8,
+            priority: 0.9,
         },
         {
-            url: 'https://nabinnepali.com.np/skills',
+            url: `${domain}/ai-agents`,
+            lastModified: new Date(),
+            changeFrequency: 'weekly',
+            priority: 0.9,
+        },
+        {
+            url: `${domain}/skills`,
             lastModified: new Date(),
             changeFrequency: 'monthly',
-            priority: 0.8,
+            priority: 0.7,
         },
         {
-            url: 'https://nabinnepali.com.np/contact',
-            lastModified: new Date(),
-            changeFrequency: 'yearly',
-            priority: 0.5,
-        },
-        {
-            url: 'https://nabinnepali.com.np/blog',
+            url: `${domain}/blog`,
             lastModified: new Date(),
             changeFrequency: 'daily',
             priority: 0.9,
         },
+        {
+            url: `${domain}/contact`,
+            lastModified: new Date(),
+            changeFrequency: 'monthly',
+            priority: 0.7,
+        },
     ];
 
-    // Combine static pages and blog entries
-    return [...staticPages, ...blogEntries];
+    // Project Detail Pages (IDs 1-5, etc.)
+    const projectEntries: MetadataRoute.Sitemap = projects.map((project) => ({
+        url: `${domain}/projects/${project.id}`,
+        lastModified: new Date(),
+        changeFrequency: 'monthly',
+        priority: 0.8,
+    }));
+
+    // AI Agent Detail Pages (IDs 101, 102, etc.)
+    const aiAgentEntries: MetadataRoute.Sitemap = aiAgents.map((agent) => ({
+        url: `${domain}/projects/${agent.id}`,
+        lastModified: new Date(),
+        changeFrequency: 'monthly',
+        priority: 0.8,
+    }));
+
+    // Blog Post Detail Pages
+    const blogEntries: MetadataRoute.Sitemap = blogs.map((blog) => ({
+        url: `${domain}/blog/${blog.slug}`,
+        lastModified: new Date(blog.date),
+        changeFrequency: 'monthly',
+        priority: 0.7,
+    }));
+
+    return [...staticPages, ...projectEntries, ...aiAgentEntries, ...blogEntries];
 }

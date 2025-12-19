@@ -27,10 +27,6 @@ export async function POST(req: Request) {
             throw new Error('Failed to submit to Google Script')
         }
 
-        // Google Script often returns a 302 Redirect for "text/html", handling strictly might be tricky.
-        // However, fetch commonly follows redirects by default.
-        // If the script returns JSON, we are good.
-
         return NextResponse.json({ success: true, message: 'Message sent successfully' })
 
     } catch (error) {

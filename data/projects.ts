@@ -11,6 +11,15 @@ export interface Project {
   liveUrl: string | null
   fullDescription?: string
   features?: string[]
+  workflowAnalysis?: {
+    pattern: string
+    whatItDoes: string
+    replaces: string
+    totalSavings: string
+    setupTime: string
+    realAdvantage: string
+    workflowSteps: string[]
+  }
 }
 
 export const projects: Project[] = [

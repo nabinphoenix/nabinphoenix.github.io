@@ -27,6 +27,12 @@ export default function Contact() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+
+    if (formData.message.length < 7) {
+      toast.error('Message must be at least 7 characters long.')
+      return
+    }
+
     setIsSubmitting(true)
 
     try {

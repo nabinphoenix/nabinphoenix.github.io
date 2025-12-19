@@ -678,13 +678,35 @@ export default function ChatWidget() {
         /* Mobile Responsive */
         @media (max-width: 768px) {
           .chat-window {
-            width: 100vw !important;
-            height: 100vh !important;
-            max-width: 100vw !important;
-            max-height: 100vh !important;
-            bottom: 0 !important;
+            position: fixed !important;
+            width: 100% !important;
+            height: 100% !important;
+            height: 100dvh !important;
+            max-width: none !important;
+            max-height: none !important;
+            top: 0 !important;
+            left: 0 !important;
             right: 0 !important;
+            bottom: 0 !important;
             border-radius: 0 !important;
+            margin: 0 !important;
+            display: flex !important;
+            flex-direction: column !important;
+          }
+
+          .chat-messages {
+            flex: 1 !important;
+            height: auto !important;
+            overflow-y: auto !important;
+            -webkit-overflow-scrolling: touch !important;
+          }
+
+          .chat-input-area {
+            padding-bottom: max(16px, env(safe-area-inset-bottom)) !important;
+          }
+
+          .chat-input {
+            font-size: 16px !important; /* Prevent iOS zoom */
           }
 
           .chat-toggle-button {
@@ -692,6 +714,7 @@ export default function ChatWidget() {
             height: 56px;
             bottom: 20px;
             right: 20px;
+            z-index: 60; /* Ensure it stays above if needed */
           }
         }
 

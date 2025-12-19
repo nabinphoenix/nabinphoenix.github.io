@@ -236,6 +236,7 @@ export default function HeroSection() {
                             >
                                 <button
                                     onClick={handleViewProjects}
+                                    suppressHydrationWarning={true}
                                     className="inline-flex items-center justify-center px-6 py-3 bg-primary-600 hover:bg-primary-700 text-white font-medium rounded-lg transition-colors group relative overflow-hidden"
                                 >
                                     <span className="relative z-10 flex items-center">

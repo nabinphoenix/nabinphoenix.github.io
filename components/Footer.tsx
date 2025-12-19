@@ -37,6 +37,7 @@ const quickLinks = [
   { name: 'Home', href: '/' },
   { name: 'About', href: '/about' },
   { name: 'Projects', href: '/projects' },
+  { name: 'AI Agents', href: '/ai-agents' },
   { name: 'Skills', href: '/skills' },
   { name: 'Blog', href: '/blog' },
   { name: 'Contact', href: '/contact' },
@@ -50,20 +51,20 @@ export default function Footer() {
           {/* Brand Section */}
           <div className="space-y-4">
             <h3 className="text-2xl font-bold gradient-text">Nabin Nepali</h3>
-            <p className="text-sm text-gray-600 dark:text-gray-400">
+            <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
               ML Engineer passionate about building scalable systems and applying AI solutions to real-world problems.
             </p>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Quick Links</h4>
+            <h4 className="text-base font-bold text-gray-900 dark:text-white mb-4 tracking-tight">Quick Links</h4>
             <ul className="space-y-2">
               {quickLinks.map((link) => (
                 <li key={link.name}>
                   <Link
                     href={link.href}
-                    className="text-sm text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
+                    className="text-sm text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors inline-block"
                   >
                     {link.name}
                   </Link>
@@ -74,18 +75,18 @@ export default function Footer() {
 
           {/* Contact Info */}
           <div>
-            <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Contact</h4>
+            <h4 className="text-base font-bold text-gray-900 dark:text-white mb-4 tracking-tight">Contact</h4>
             <ul className="space-y-3">
               <li className="flex items-center space-x-2 text-sm text-gray-600 dark:text-gray-400">
-                <Mail size={16} className="text-primary-600 dark:text-primary-400" />
+                <Mail size={16} className="text-primary-600 dark:text-primary-400 flex-shrink-0" />
                 <span>nabinepali012@gmail.com</span>
               </li>
               <li className="flex items-center space-x-2 text-sm text-gray-600 dark:text-gray-400">
-                <Phone size={16} className="text-primary-600 dark:text-primary-400" />
+                <Phone size={16} className="text-primary-600 dark:text-primary-400 flex-shrink-0" />
                 <span>+977-9829592158</span>
               </li>
               <li className="flex items-center space-x-2 text-sm text-gray-600 dark:text-gray-400">
-                <MapPin size={16} className="text-primary-600 dark:text-primary-400" />
+                <MapPin size={16} className="text-primary-600 dark:text-primary-400 flex-shrink-0" />
                 <span>Kathmandu, Nepal</span>
               </li>
             </ul>
@@ -93,7 +94,7 @@ export default function Footer() {
 
           {/* Social Media */}
           <div>
-            <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Follow Me</h4>
+            <h4 className="text-base font-bold text-gray-900 dark:text-white mb-4 tracking-tight">Follow Me</h4>
             <div className="flex gap-6">
               {socialLinks.map((social) => (
                 <SocialIcon key={social.name} social={social} />
