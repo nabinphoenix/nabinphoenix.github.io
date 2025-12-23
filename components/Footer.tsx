@@ -3,7 +3,7 @@
 
 import Link from 'next/link'
 import { motion } from 'framer-motion'
-import { Github, Linkedin, Facebook, Heart, Mail, Phone, MapPin, Instagram } from 'lucide-react'
+import { Github, Linkedin, Facebook, Heart, Mail, Phone, MapPin, Instagram, GraduationCap } from 'lucide-react'
 import SocialIcon from './SocialIcon'
 
 const socialLinks = [
@@ -30,6 +30,12 @@ const socialLinks = [
     icon: Instagram,
     url: 'https://www.instagram.com/nabinepali012/',
     color: 'hover:text-pink-600',
+  },
+  {
+    name: 'ResearchGate',
+    icon: GraduationCap,
+    url: 'https://www.researchgate.net/profile/Nabin-Nepali-2',
+    color: 'hover:text-emerald-500',
   },
 ]
 

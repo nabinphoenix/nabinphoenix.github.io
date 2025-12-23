@@ -37,28 +37,28 @@ export default function SkillsSection() {
                             <h3 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-8 text-center">
                                 Soft Skills
                             </h3>
-                            <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
+                            <div className="grid grid-cols-2 md:grid-cols-3 gap-y-10 gap-x-12 md:gap-x-16">
                                 {[
-                                    { name: 'Leadership', icon: Users },
-                                    { name: 'Brainstorming', icon: Lightbulb },
-                                    { name: 'Fast Learning', icon: Zap },
-                                    { name: 'Problem Solving', icon: Puzzle },
-                                    { name: 'Communication', icon: MessageCircle },
-                                    { name: 'Team Collaboration', icon: Handshake },
+                                    { name: 'Leadership', icon: Users, color: 'text-blue-500', bgColor: 'bg-blue-100 dark:bg-blue-900/30' },
+                                    { name: 'Brainstorming', icon: Lightbulb, color: 'text-amber-500', bgColor: 'bg-amber-100 dark:bg-amber-900/30' },
+                                    { name: 'Fast Learning', icon: Zap, color: 'text-cyan-500', bgColor: 'bg-cyan-100 dark:bg-cyan-900/30' },
+                                    { name: 'Problem Solving', icon: Puzzle, color: 'text-purple-500', bgColor: 'bg-purple-100 dark:bg-purple-900/30' },
+                                    { name: 'Communication', icon: MessageCircle, color: 'text-emerald-500', bgColor: 'bg-emerald-100 dark:bg-emerald-900/30' },
+                                    { name: 'Team-Work', icon: Handshake, color: 'text-indigo-500', bgColor: 'bg-indigo-100 dark:bg-indigo-900/30' },
                                 ].map((skill, index) => (
                                     <motion.div
                                         key={skill.name}
-                                        initial={{ opacity: 0, scale: 0.9 }}
-                                        whileInView={{ opacity: 1, scale: 1 }}
-                                        transition={{ duration: 0.3, delay: index * 0.1 }}
-                                        className="flex flex-col items-center justify-center p-6 bg-gray-50 dark:bg-gray-700/50 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors group text-center h-full"
+                                        initial={{ opacity: 0, y: 20 }}
+                                        whileInView={{ opacity: 1, y: 0 }}
+                                        transition={{ duration: 0.5, delay: index * 0.1 }}
+                                        className="flex flex-col items-center group cursor-default"
                                     >
-                                        <div className="p-3 bg-primary-100 dark:bg-primary-900/30 rounded-full text-primary-600 dark:text-primary-400 mb-4 group-hover:scale-110 transition-transform">
-                                            <skill.icon size={24} />
+                                        <div className={`w-20 h-20 md:w-24 md:h-24 rounded-2xl ${skill.bgColor} flex items-center justify-center mb-4 transition-all duration-300 group-hover:scale-110 group-hover:rotate-3 shadow-sm group-hover:shadow-md border border-transparent hover:border-gray-200 dark:hover:border-gray-700`}>
+                                            <skill.icon size={32} className={`${skill.color} transition-transform duration-300 group-hover:scale-110`} />
                                         </div>
-                                        <h3 className="font-bold text-sm md:text-base text-gray-900 dark:text-gray-100">
+                                        <h4 className="text-lg md:text-xl font-bold text-gray-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors text-center tracking-tight">
                                             {skill.name}
-                                        </h3>
+                                        </h4>
                                     </motion.div>
                                 ))}
                             </div>

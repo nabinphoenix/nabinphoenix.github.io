@@ -6,7 +6,7 @@ import AnimatedSection from '@/components/AnimatedSection'
 import PageTransition from '@/components/PageTransition'
 import SocialIcon from '@/components/SocialIcon'
 import { motion } from 'framer-motion'
-import { Mail, Phone, MapPin, Github, Linkedin, Facebook, Copy, Check, Loader2, Send } from 'lucide-react'
+import { Mail, Phone, MapPin, Github, Linkedin, Facebook, Copy, Check, Loader2, Send, Instagram, GraduationCap } from 'lucide-react'
 import { toast } from 'sonner'
 
 export default function Contact() {
@@ -99,6 +99,18 @@ export default function Contact() {
       url: 'https://www.facebook.com/nabin.nepali.ml/',
       label: 'Facebook',
       color: 'hover:text-blue-500',
+    },
+    {
+      icon: Instagram,
+      url: 'https://www.instagram.com/nabinepali012/',
+      label: 'Instagram',
+      color: 'hover:text-pink-600',
+    },
+    {
+      icon: GraduationCap,
+      url: 'https://www.researchgate.net/profile/Nabin-Nepali-2',
+      label: 'ResearchGate',
+      color: 'hover:text-emerald-500',
     },
   ]
 

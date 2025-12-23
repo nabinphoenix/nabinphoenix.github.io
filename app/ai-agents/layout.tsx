@@ -1,8 +1,9 @@
-import type { Metadata } from 'next'
+import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-    title: 'AI Agents | Nabin Nepali',
-    description: 'Explore autonomous AI agents and intelligent systems built by Nabin Nepali.',
+    title: 'AI Agents & Automation | Nabin Nepali',
+    description: 'Explore autonomous AI agents developed by Nabin Nepali using cutting-edge technologies like n8n, OpenAI, and custom ML models for business automation.',
+    keywords: ['AI Agents Nepal', 'Autonomous AI', 'Automation Solutions Nepal', 'Nabin Nepali AI Agents'],
 }
 
 export default function AiAgentsLayout({
@@ -10,5 +11,5 @@ export default function AiAgentsLayout({
 }: {
     children: React.ReactNode
 }) {
-    return children
+    return <>{children}</>
 }

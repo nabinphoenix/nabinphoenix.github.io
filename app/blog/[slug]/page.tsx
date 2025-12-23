@@ -2,6 +2,7 @@ import dbConnect from '@/lib/db';
 import Blog, { IBlog } from '@/models/Blog';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
+import { Metadata } from 'next';
 
 // Dynamic blog post page - reads from MongoDB
 // Function to get a single blog by slug
@@ -31,6 +32,34 @@ function formatDate(date: Date | string): string {
 
 // Allow dynamic params for blog posts created after build
 export const dynamicParams = true;
+
+// Generate metadata for each blog post
+export async function generateMetadata({
+    params,
+}: {
+    params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+    const { slug } = await params;
+    const blog = await getBlogBySlug(slug);
+
+    if (!blog) {
+        return {
+            title: 'Post Not Found | Nabin Nepali Blog',
+        };
+    }
+
+    return {
+        title: `${blog.title} | Nabin Nepali Blog`,
+        description: blog.title, // Or generate a summary if available
+        openGraph: {
+            title: blog.title,
+            description: blog.title,
+            type: 'article',
+            publishedTime: new Date(blog.date).toISOString(),
+            authors: ['Nabin Nepali'],
+        },
+    };
+}
 
 // Page component
 export default async function BlogPostPage({

@@ -31,8 +31,12 @@ export const metadata: Metadata = {
     'Nabin Nepali',
     'Nabin Nepali Portfolio',
     'Nabin Nepali ML Engineer',
+    'Nabin Nepali AI',
     'Nabin Nepali Nepal',
     'Nabin Nepali Salyan Barala',
+    'Nabin Nepali Machine Learning',
+    'Nabin Nepali Computer Vision',
+    'Nabin Nepali FastAPI',
 
     // Professional Titles
     'ML Engineer Nepal',
@@ -147,7 +151,9 @@ export default function RootLayout({
               "sameAs": [
                 "https://github.com/nabinphoenix",
                 "https://www.linkedin.com/in/nabinnepali",
-                "https://www.facebook.com/nabin.nepali.ml/"
+                "https://www.facebook.com/nabin.nepali.ml/",
+                "https://www.instagram.com/nabinepali012/",
+                "https://www.researchgate.net/profile/Nabin-Nepali-2"
               ]
             })
           }}

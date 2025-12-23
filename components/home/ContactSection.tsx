@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { Mail, Phone, MapPin, Github, Linkedin, Facebook, Copy, Check, Instagram, Loader2, Send } from 'lucide-react'
+import { Mail, Phone, MapPin, Github, Linkedin, Facebook, Copy, Check, Instagram, Loader2, Send, GraduationCap } from 'lucide-react'
 import AnimatedSection from '@/components/AnimatedSection'
 import SocialIcon from '@/components/SocialIcon'
 import { toast } from 'sonner'
@@ -67,6 +67,12 @@ export default function ContactSection() {
                                             icon: Instagram,
                                             url: 'https://www.instagram.com/nabinepali012/',
                                             color: 'hover:text-pink-600',
+                                        },
+                                        {
+                                            name: 'ResearchGate',
+                                            icon: GraduationCap,
+                                            url: 'https://www.researchgate.net/profile/Nabin-Nepali-2',
+                                            color: 'hover:text-emerald-500',
                                         },
                                     ].map((social) => (
                                         <SocialIcon key={social.name} social={social} />

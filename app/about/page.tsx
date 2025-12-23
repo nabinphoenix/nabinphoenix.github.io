@@ -5,7 +5,7 @@ import PageTransition from '@/components/PageTransition'
 import { motion } from 'framer-motion'
 import { Globe, GraduationCap, Calendar, Award } from 'lucide-react'
 
-const expertise = ['FastAPI', 'Python', 'MongoDB', 'Time Series', 'CNN', 'YOLO', 'SARIMA']
+
 
 const education = [
   {
@@ -81,63 +81,21 @@ export default function About() {
               </h2>
               <div className="text-gray-600 dark:text-gray-300 space-y-4 leading-relaxed">
                 <p>
-                  I am a passionate <strong>Machine Learning Engineer</strong> based in Kathmandu, Nepal, with a deep curiosity for building intelligent systems.
-                  Originally from Salyan Barala, I have dedicated my journey to mastering Artificial Intelligence, seeking to create impactful solutions.
+                  I'm a <strong>Machine Learning Engineer</strong> based in Kathmandu, Nepal, with a real passion for building systems that think. Originally from Salyan Barala, I've spent most of my journey diving deep into Artificial Intelligence, constantly looking for ways to build solutions that actually make a difference.
                 </p>
                 <p>
-                  My expertise lies in developing robust backend systems with <strong>FastAPI</strong> and <strong>Python</strong>, coupled with advanced machine learning models.
-                  I specialize in intricate fields such as <strong>Time Series Forecasting</strong> (ARIMA, SARIMA, LSTM) and <strong>Computer Vision</strong> (CNN, YOLO), bringing comprehensive technical knowledge to every project.
+                  My main focus these days is building <strong>intelligent AI agents</strong> that don't just automate tasks—they help businesses scale. I love creating systems that reduce manual grunt work and can practically run and generate value for you while you're sleeping. On the tech side, I build robust backends using <strong>FastAPI</strong> and <strong>Python</strong>, and I'm particularly fond of working with <strong>Time Series Forecasting</strong> (like ARIMA, SARIMA, LSTM) and <strong>Computer Vision</strong> (CNN, YOLO) to solve complex problems.
                 </p>
                 <p>
-                  Currently pursuing my BSc.IT at Techspire College, I bridge the gap between academic theory and practical application.
-                  I excel in transforming complex data into actionable insights and deploying scalable AI solutions that solve real-world problems.
+                  Right now, I'm finishing up my BSc.IT at <a href="https://techspire.edu.np/" target="_blank" rel="noopener noreferrer" className="text-primary-600 hover:underline">Techspire College</a>, which is affiliated with the <a href="https://www.apu.edu.my/" target="_blank" rel="noopener noreferrer" className="text-primary-600 hover:underline">Asia Pacific University of Technology & Innovation (APU)</a>. For me, it's all about bridging the gap between what's taught in books and what actually works in the real world. I thrive on turning messy data into clear, actionable insights and deploying AI that actually works at scale.
                 </p>
               </div>
             </div>
           </AnimatedSection>
 
-          {/* Contact & Location */}
-          <AnimatedSection delay={0.15} className="mb-16">
-            <div className="bg-gradient-to-r from-primary-50 to-teal-50 dark:from-gray-800 dark:to-gray-700 rounded-lg border border-primary-100 dark:border-gray-600 p-8">
-              <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
-                Get In Touch
-              </h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-gray-600 dark:text-gray-300">
-                <div>
-                  <strong>Email:</strong> nabinepali012@gmail.com
-                </div>
-                <div>
-                  <strong>Phone:</strong> +977-9829592158
-                </div>
-                <div>
-                  <strong>Location:</strong> Shankhamul, Kathmandu, Nepal
-                </div>
-                <div>
-                  <strong>Origin:</strong> Salyan Barala, Nepal
-                </div>
-              </div>
-            </div>
-          </AnimatedSection>
 
-          {/* Expertise */}
-          <AnimatedSection delay={0.2} className="mb-16">
-            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-8">
-              Technical Expertise
-            </h2>
-            <div className="flex flex-wrap gap-3">
-              {expertise.map((skill, index) => (
-                <motion.span
-                  key={skill}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.3, delay: index * 0.1 }}
-                  className="px-4 py-2 bg-primary-100 dark:bg-primary-900/30 text-primary-700 dark:text-primary-300 rounded-full text-sm font-medium"
-                >
-                  {skill}
-                </motion.span>
-              ))}
-            </div>
-          </AnimatedSection>
+
+
 
           {/* Education Timeline */}
           <AnimatedSection delay={0.4} className="mb-16">
