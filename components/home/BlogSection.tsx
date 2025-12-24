@@ -2,21 +2,30 @@
 
 import { motion } from 'framer-motion'
 import Link from 'next/link'
-import { ArrowRight } from 'lucide-react'
+import { ArrowRight, BookOpen } from 'lucide-react'
 import AnimatedSection from '@/components/AnimatedSection'
-import ProjectCard from '@/components/ProjectCard'
-import { projects } from '@/data/projects'
+import BlogCard from '@/components/BlogCard'
 
-export default function ProjectsSection() {
+interface BlogSectionProps {
+    blogs: any[]
+}
+
+export default function BlogSection({ blogs }: BlogSectionProps) {
+    if (!blogs || blogs.length === 0) return null;
+
     return (
-        <section id="projects" className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-gray-900/50">
+        <section id="blog" className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-gray-900/50">
             <div className="max-w-7xl mx-auto">
                 <AnimatedSection className="text-center mb-20">
+                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-teal-100 dark:bg-teal-900/30 text-teal-600 dark:text-teal-400 text-sm font-medium mb-4">
+                        <BookOpen size={16} />
+                        <span>Knowledge Hub</span>
+                    </div>
                     <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6">
-                        Projects
+                        Latest <span className="gradient-text">Insights</span>
                     </h2>
                     <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto leading-relaxed">
-                        A collection of my work showcasing expertise in machine learning, backend development, and data analysis.
+                        Exploring the latest trends and insights in AI, machine learning, and emerging technologies.
                     </p>
                 </AnimatedSection>
 
@@ -24,21 +33,19 @@ export default function ProjectsSection() {
                     <div className="hidden md:flex justify-end absolute -top-12 right-0">
                         <AnimatedSection delay={0.2}>
                             <Link
-                                href="/projects"
+                                href="/blog"
                                 className="inline-flex items-center gap-2 text-primary-600 dark:text-primary-400 font-semibold hover:gap-3 transition-all group px-2"
                             >
-                                View All Projects
+                                Read More Articles
                                 <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
                             </Link>
                         </AnimatedSection>
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                        {projects.slice(0, 3).map((project, index) => (
-                            <AnimatedSection key={project.id} delay={index * 0.1}>
-                                <div className="h-full">
-                                    <ProjectCard project={project} />
-                                </div>
+                        {blogs.map((blog, index) => (
+                            <AnimatedSection key={blog._id} delay={index * 0.1}>
+                                <BlogCard blog={blog} />
                             </AnimatedSection>
                         ))}
                     </div>
@@ -47,10 +54,10 @@ export default function ProjectsSection() {
                     <div className="md:hidden text-center mt-12">
                         <AnimatedSection delay={0.2}>
                             <Link
-                                href="/projects"
+                                href="/blog"
                                 className="inline-flex items-center gap-2 text-primary-600 dark:text-primary-400 font-semibold hover:gap-3 transition-all group"
                             >
-                                View All Projects
+                                Read More Articles
                                 <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
                             </Link>
                         </AnimatedSection>

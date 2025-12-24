@@ -19,6 +19,7 @@ export interface Project {
     setupTime: string
     realAdvantage: string
     workflowSteps: string[]
+    workflowImage?: string
   }
 }
 

@@ -29,7 +29,7 @@ export default function Skills() {
               <span className="gradient-text">Skills & Expertise</span>
             </h1>
             <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-              A comprehensive overview of my technical capabilities and professional strengths.
+              A detailed summary of my technical expertise, soft skills, and professional capabilities.
             </p>
           </AnimatedSection>
 

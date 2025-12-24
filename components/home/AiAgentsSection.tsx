@@ -2,21 +2,31 @@
 
 import { motion } from 'framer-motion'
 import Link from 'next/link'
-import { ArrowRight } from 'lucide-react'
+import { ArrowRight, Bot } from 'lucide-react'
 import AnimatedSection from '@/components/AnimatedSection'
 import ProjectCard from '@/components/ProjectCard'
-import { projects } from '@/data/projects'
+import { aiAgents } from '@/data/ai-agents'
 
-export default function ProjectsSection() {
+export default function AiAgentsSection() {
     return (
-        <section id="projects" className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-gray-900/50">
-            <div className="max-w-7xl mx-auto">
+        <section id="ai-agents" className="py-20 px-4 sm:px-6 lg:px-8">
+            {/* Background Decoration */}
+            <div className="absolute top-0 left-0 w-full h-full pointer-events-none z-0">
+                <div className="absolute top-1/4 -left-20 w-80 h-80 bg-primary-500/5 rounded-full blur-3xl" />
+                <div className="absolute bottom-1/4 -right-20 w-80 h-80 bg-teal-500/5 rounded-full blur-3xl" />
+            </div>
+
+            <div className="max-w-7xl mx-auto relative z-10">
                 <AnimatedSection className="text-center mb-20">
+                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary-100 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400 text-sm font-medium mb-4">
+                        <Bot size={16} />
+                        <span>Autonomous Intelligence</span>
+                    </div>
                     <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6">
-                        Projects
+                        AI Agents <span className="text-primary-600 dark:text-primary-400">&</span> Automations
                     </h2>
                     <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto leading-relaxed">
-                        A collection of my work showcasing expertise in machine learning, backend development, and data analysis.
+                        Next-generation AI agents designed for automation, interaction, and practical problem-solving.
                     </p>
                 </AnimatedSection>
 
@@ -24,21 +34,19 @@ export default function ProjectsSection() {
                     <div className="hidden md:flex justify-end absolute -top-12 right-0">
                         <AnimatedSection delay={0.2}>
                             <Link
-                                href="/projects"
+                                href="/ai-agents"
                                 className="inline-flex items-center gap-2 text-primary-600 dark:text-primary-400 font-semibold hover:gap-3 transition-all group px-2"
                             >
-                                View All Projects
+                                View All Agents
                                 <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
                             </Link>
                         </AnimatedSection>
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                        {projects.slice(0, 3).map((project, index) => (
-                            <AnimatedSection key={project.id} delay={index * 0.1}>
-                                <div className="h-full">
-                                    <ProjectCard project={project} />
-                                </div>
+                        {aiAgents.map((agent, index) => (
+                            <AnimatedSection key={agent.id} delay={index * 0.1}>
+                                <ProjectCard project={agent} />
                             </AnimatedSection>
                         ))}
                     </div>
@@ -47,10 +55,10 @@ export default function ProjectsSection() {
                     <div className="md:hidden text-center mt-12">
                         <AnimatedSection delay={0.2}>
                             <Link
-                                href="/projects"
+                                href="/ai-agents"
                                 className="inline-flex items-center gap-2 text-primary-600 dark:text-primary-400 font-semibold hover:gap-3 transition-all group"
                             >
-                                View All Projects
+                                View All Agents
                                 <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
                             </Link>
                         </AnimatedSection>

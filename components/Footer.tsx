@@ -42,9 +42,9 @@ const socialLinks = [
 const quickLinks = [
   { name: 'Home', href: '/' },
   { name: 'About', href: '/about' },
+  { name: 'Skills', href: '/skills' },
   { name: 'Projects', href: '/projects' },
   { name: 'AI Agents', href: '/ai-agents' },
-  { name: 'Skills', href: '/skills' },
   { name: 'Blog', href: '/blog' },
   { name: 'Contact', href: '/contact' },
 ]
@@ -55,15 +55,15 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
           {/* Brand Section */}
-          <div className="space-y-4">
+          <div className="space-y-4 flex flex-col items-center md:items-start text-center md:text-left">
             <h3 className="text-2xl font-bold gradient-text">Nabin Nepali</h3>
-            <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+            <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed max-w-xs">
               ML Engineer passionate about building scalable systems and applying AI solutions to real-world problems.
             </p>
           </div>
 
           {/* Quick Links */}
-          <div>
+          <div className="flex flex-col items-center md:items-start text-center md:text-left">
             <h4 className="text-base font-bold text-gray-900 dark:text-white mb-4 tracking-tight">Quick Links</h4>
             <ul className="space-y-2">
               {quickLinks.map((link) => (
@@ -80,7 +80,7 @@ export default function Footer() {
           </div>
 
           {/* Contact Info */}
-          <div>
+          <div className="flex flex-col items-center md:items-start text-center md:text-left">
             <h4 className="text-base font-bold text-gray-900 dark:text-white mb-4 tracking-tight">Contact</h4>
             <ul className="space-y-3">
               <li className="flex items-center space-x-2 text-sm text-gray-600 dark:text-gray-400">
@@ -98,10 +98,9 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Social Media */}
-          <div>
+          <div className="flex flex-col items-center md:items-start text-center md:text-left">
             <h4 className="text-base font-bold text-gray-900 dark:text-white mb-4 tracking-tight">Follow Me</h4>
-            <div className="flex gap-6">
+            <div className="flex items-center gap-3 sm:gap-4">
               {socialLinks.map((social) => (
                 <SocialIcon key={social.name} social={social} />
               ))}

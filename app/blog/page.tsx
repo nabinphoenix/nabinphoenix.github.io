@@ -30,7 +30,7 @@ export default async function BlogPage() {
                             <span className="gradient-text">Blog & Insights</span>
                         </h1>
                         <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto leading-relaxed">
-                            Thoughts on software engineering, artificial intelligence, and the journey of continuous learning.
+                            Exploring the latest trends and insights in AI, machine learning, cloud computing, cybersecurity, and emerging technologies.
                         </p>
                     </AnimatedSection>
 

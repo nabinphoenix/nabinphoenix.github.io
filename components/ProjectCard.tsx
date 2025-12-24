@@ -325,7 +325,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
               {project.date}
             </div>
           </div>
-          <h3 className="text-2xl font-bold text-white group-hover:text-cyan-300 transition-colors leading-tight drop-shadow-lg">
+          <h3 className="text-xl sm:text-2xl font-bold text-white group-hover:text-cyan-300 transition-colors leading-tight drop-shadow-lg">
             {project.title}
           </h3>
         </div>

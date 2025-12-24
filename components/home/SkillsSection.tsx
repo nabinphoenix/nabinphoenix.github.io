@@ -10,11 +10,11 @@ export default function SkillsSection() {
         <section id="skills" className="py-20 px-4 sm:px-6 lg:px-8">
             <div className="max-w-6xl mx-auto">
                 <AnimatedSection className="text-center mb-16">
-                    <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
+                    <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6">
                         Skills & Expertise
                     </h2>
-                    <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-                        A comprehensive overview of my technical capabilities and professional strengths.
+                    <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto leading-relaxed">
+                        A detailed summary of my technical expertise, soft skills, and professional capabilities.
                     </p>
                 </AnimatedSection>
 
@@ -23,7 +23,7 @@ export default function SkillsSection() {
                     <div className="mb-12">
                         <AnimatedSection delay={0.2}>
                             <div className="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg border border-gray-200 dark:border-gray-700">
-                                <h3 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-8 text-center">
+                                <h3 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-8 text-center">
                                     Technical Skills & Tools
                                 </h3>
                                 <SkillSlider />
@@ -34,7 +34,7 @@ export default function SkillsSection() {
                     {/* Soft Skills */}
                     <AnimatedSection delay={0.4}>
                         <div className="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg border border-gray-200 dark:border-gray-700">
-                            <h3 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-8 text-center">
+                            <h3 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-8 text-center">
                                 Soft Skills
                             </h3>
                             <div className="grid grid-cols-2 md:grid-cols-3 gap-y-10 gap-x-12 md:gap-x-16">

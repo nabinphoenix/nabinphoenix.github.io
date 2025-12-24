@@ -171,17 +171,13 @@ export default function ProjectDetailClient() {
                                     </div>
                                 </div>
 
-                                {/* Workflow Diagram - For AI Agents (101, 102) */}
-                                {(project.id === 101 || project.id === 102) && (
+                                {/* Workflow Diagram */}
+                                {project.workflowAnalysis.workflowImage && (
                                     <div className="mb-8">
                                         <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">Workflow Diagram</h3>
                                         <div className="relative rounded-2xl overflow-hidden border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800/50">
                                             <Image
-                                                src={
-                                                    project.id === 101
-                                                        ? "/assets/ai_agents/workflow_image/Automated Blo_Generation_Engine.png"
-                                                        : "/assets/ai_agents/workflow_image/maya_ai_agent.png"
-                                                }
+                                                src={project.workflowAnalysis.workflowImage}
                                                 alt={`${project.title} Workflow Diagram`}
                                                 width={1200}
                                                 height={800}

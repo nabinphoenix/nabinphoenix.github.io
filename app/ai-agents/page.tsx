@@ -16,7 +16,7 @@ export default function AiAgents() {
                             <span className="gradient-text">AI Agents</span>
                         </h1>
                         <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-                            Deployment of autonomous intelligence. Next-generation AI agents built for automation, interaction, and problem-solving.
+                            Built and deployed next-generation AI agents designed for automation, interaction, and practical problem-solving, reducing manual labor and increasing business operational efficiency.
                         </p>
                     </AnimatedSection>
 

@@ -179,13 +179,13 @@ export default function HeroSection() {
                         >
                             <motion.div variants={itemVariants} className="space-y-4">
                                 <motion.h1
-                                    className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white"
+                                    className="text-[2.5rem] leading-[1.1] sm:text-5xl lg:text-7xl font-bold text-gray-900 dark:text-white"
                                     initial={{ opacity: 0, y: 30 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     transition={{ duration: 0.6 }}
                                 >
                                     <span className="block">NABIN</span>
-                                    <span className="block gradient-text">NEPALI</span>
+                                    <span className="block gradient-text uppercase tracking-tighter">NEPALI</span>
                                 </motion.h1>
                                 <motion.h2
                                     className="text-xl sm:text-2xl text-primary-600 dark:text-primary-400 font-semibold"
@@ -193,7 +193,7 @@ export default function HeroSection() {
                                     animate={{ opacity: 1, y: 0 }}
                                     transition={{ duration: 0.6, delay: 0.2 }}
                                 >
-                                    ML Engineer
+                                    ML Engineer 
                                 </motion.h2>
                             </motion.div>
 
@@ -203,7 +203,7 @@ export default function HeroSection() {
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ duration: 0.6, delay: 0.4 }}
                             >
-                                Proficient in backend development using FastAPI with databases, with strong expertise in machine learning, particularly time series forecasting (ARIMA, SARIMA, LSTM). Currently expanding skills in computer vision with CNN and YOLO. Passionate about building scalable systems and applying AI solutions to real-world problems.
+                                Machine Learning Engineer specializing in AI automation, time-series forecasting (ARIMA, SARIMA), and intelligent workflow orchestration using n8n. Experienced in computer vision with CNN and YOLO-based object detection, as well as NLP for text analysis and language understanding. Focused on building scalable, production-ready AI systems that solve real-world business problems and improve operational efficiency.
                             </motion.p>
 
                             {/* Contact Info */}
@@ -267,7 +267,7 @@ export default function HeroSection() {
                                 <motion.div
                                     animate={{ y: [0, -20, 0] }}
                                     transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-                                    className="w-80 h-80 lg:w-96 lg:h-96 rounded-full bg-gradient-to-r from-primary-400 to-teal-400 p-1"
+                                    className="w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96 rounded-full bg-gradient-to-r from-primary-400 to-teal-400 p-1"
                                 >
                                     <div className="w-full h-full rounded-full bg-white dark:bg-gray-800 overflow-hidden">
                                         <Image
@@ -301,7 +301,7 @@ export default function HeroSection() {
                                                         scale: { duration: 0.3 },
                                                         y: { duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1 }
                                                     }}
-                                                    className="absolute -top-2 -right-2 md:-top-4 md:-right-4 bg-primary-500 text-white p-3 rounded-lg shadow-lg"
+                                                    className="absolute top-0 -right-2 sm:-top-2 sm:-right-2 md:-top-4 md:-right-4 bg-primary-500 text-white p-2 sm:p-3 rounded-lg shadow-lg z-20"
                                                 >
                                                     <div className="text-sm font-semibold">Python</div>
                                                 </motion.div>
@@ -321,7 +321,7 @@ export default function HeroSection() {
                                                         scale: { duration: 0.3 },
                                                         y: { duration: 5, repeat: Infinity, ease: "easeInOut", delay: 2 }
                                                     }}
-                                                    className="absolute -bottom-2 -left-2 md:-bottom-4 md:-left-4 text-white p-3 rounded-lg shadow-lg"
+                                                    className="absolute bottom-0 -left-2 sm:-bottom-2 sm:-left-2 md:-bottom-4 md:-left-4 text-white p-2 sm:p-3 rounded-lg shadow-lg z-20"
                                                     style={{ backgroundColor: '#2dd4bf' }}
                                                 >
                                                     <div className="text-sm font-semibold">FastAPI</div>
@@ -344,9 +344,9 @@ export default function HeroSection() {
                                                         scale: { duration: 0.3 },
                                                         y: { duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1 }
                                                     }}
-                                                    className="absolute -top-2 -right-2 md:-top-4 md:-right-4 bg-primary-500 text-white p-3 rounded-lg shadow-lg"
+                                                    className="absolute top-0 -right-2 sm:-top-2 sm:-right-2 md:-top-4 md:-right-4 bg-primary-500 text-white p-2 sm:p-3 rounded-lg shadow-lg z-20"
                                                 >
-                                                    <div className="text-sm font-semibold">ML Engineer</div>
+                                                    <div className="text-sm font-semibold">ML Engineer </div>
                                                 </motion.div>
 
                                                 <motion.div
@@ -364,7 +364,7 @@ export default function HeroSection() {
                                                         scale: { duration: 0.3 },
                                                         y: { duration: 5, repeat: Infinity, ease: "easeInOut", delay: 2 }
                                                     }}
-                                                    className="absolute -bottom-2 -left-2 md:-bottom-4 md:-left-4 text-white p-3 rounded-lg shadow-lg"
+                                                    className="absolute bottom-0 -left-2 sm:-bottom-2 sm:-left-2 md:-bottom-4 md:-left-4 text-white p-2 sm:p-3 rounded-lg shadow-lg z-20"
                                                     style={{ backgroundColor: '#2dd4bf' }}
                                                 >
                                                     <div className="text-sm font-semibold">AI Developer</div>

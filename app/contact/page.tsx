@@ -124,7 +124,7 @@ export default function Contact() {
               <span className="gradient-text">Get In Touch</span>
             </h1>
             <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-              I'm always open to discussing new opportunities, projects, or just having a chat about technology.
+              Whether it’s a new opportunity, a project idea, or a tech discussion, feel free to reach out using the form below.
             </p>
           </AnimatedSection>
 
@@ -179,7 +179,7 @@ export default function Contact() {
                   <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
                     Follow me on
                   </h3>
-                  <div className="flex gap-6">
+                  <div className="flex flex-wrap gap-3 sm:gap-6">
                     {socialLinks.map((social) => (
                       <SocialIcon key={social.label} social={{
                         name: social.label,

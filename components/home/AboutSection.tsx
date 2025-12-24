@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion'
 
-import { Globe, GraduationCap, Calendar, Award } from 'lucide-react'
+import { Globe, GraduationCap, Calendar, Award, Cpu, MapPin, ExternalLink } from 'lucide-react'
 import AnimatedSection from '@/components/AnimatedSection'
 
 export default function AboutSection() {
@@ -10,15 +10,104 @@ export default function AboutSection() {
         <section id="about" className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-gray-900/50">
             <div className="max-w-4xl mx-auto">
                 <AnimatedSection className="text-center mb-16">
-                    <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
+                    <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6">
                         About Me
                     </h2>
-                    <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-                        Learn more about Nabin Nepali's background, education, and the technologies I work with as an ML Engineer.
+                    <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto leading-relaxed">
+                        Learn more about my journey, including my background, education, experience, and the technologies I work with as an ML Engineer.
                     </p>
                 </AnimatedSection>
 
 
+
+                {/* Experience Timeline */}
+                <AnimatedSection delay={0.2} className="mb-16">
+                    <div className="flex items-center gap-3 mb-8">
+                        <div className="p-2.5 bg-primary-100 dark:bg-primary-900/30 rounded-xl">
+                            <Cpu className="w-6 h-6 text-primary-600 dark:text-primary-400" />
+                        </div>
+                        <h3 className="text-2xl font-bold text-gray-900 dark:text-white">
+                            Work Experience
+                        </h3>
+                    </div>
+
+                    <div className="grid grid-cols-1 gap-6">
+                        {[
+                            {
+                                company: 'Tridev Innovation',
+                                position: 'Machine Learning Engineer Intern',
+                                period: 'Sep 2025 – Present',
+                                location: 'Kupondole, Lalitpur',
+                                website: 'https://www.tridevinnovation.com/',
+                                responsibilities: [
+                                    'Designing, developing, and deploying machine learning models with a focus on computer vision.',
+                                    'Built and deployed production-ready models for real-world applications.',
+                                    'Implemented workflow automations using n8n to improve operational efficiency.',
+                                    'Enabled 24/7 automated business processes through reliable automation pipelines.',
+                                    'Collaborated with teams to translate requirements into scalable AI solutions.'
+                                ],
+                                color: 'border-primary-500 bg-primary-500'
+                            }
+                        ].map((exp, index) => (
+                            <motion.div
+                                key={index}
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.5, delay: index * 0.1 }}
+                                className="group relative bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 hover:shadow-xl transition-all duration-300 overflow-hidden"
+                            >
+                                <div className="flex flex-col md:flex-row">
+                                    {/* Left Panel: Company & Role */}
+                                    <div className="md:w-1/3 p-5 sm:p-6 md:p-8 bg-gray-50/50 dark:bg-gray-700/30 border-b md:border-b-0 md:border-r border-gray-100 dark:border-gray-700 flex flex-col justify-center">
+                                        <div className="flex justify-end items-start mb-4">
+                                            <a
+                                                href={exp.website}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="p-2 text-gray-400 hover:text-primary-500 hover:bg-primary-50 dark:hover:bg-primary-900/20 rounded-lg transition-all"
+                                            >
+                                                <ExternalLink size={18} />
+                                            </a>
+                                        </div>
+
+                                        <h4 className="text-xl md:text-2xl font-bold text-gray-900 dark:text-white mb-1 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
+                                            {exp.position}
+                                        </h4>
+                                        <div className="text-primary-600 dark:text-primary-400 font-semibold mb-4">
+                                            {exp.company}
+                                        </div>
+
+                                        <div className="space-y-2 mt-auto">
+                                            <div className="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
+                                                <Calendar size={14} className="text-primary-500" />
+                                                <span>{exp.period}</span>
+                                            </div>
+                                            <div className="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
+                                                <MapPin size={14} className="text-primary-500" />
+                                                <span>{exp.location}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    {/* Right Panel: Responsibilities */}
+                                    <div className="md:w-2/3 p-5 sm:p-6 md:p-8 flex flex-col justify-center">
+                                        <h5 className="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-4 border-b border-gray-100 dark:border-gray-700 pb-2">
+                                            Key Responsibilities
+                                        </h5>
+                                        <ul className="space-y-4">
+                                            {exp.responsibilities.map((resp, idx) => (
+                                                <li key={idx} className="text-gray-600 dark:text-gray-300 text-sm md:text-base leading-relaxed flex gap-3">
+                                                    <span className="mt-2 h-1.5 w-1.5 rounded-full bg-primary-500 shrink-0 shadow-[0_0_8px_rgba(var(--primary-600),0.4)]" />
+                                                    {resp}
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </div>
+                                </div>
+                            </motion.div>
+                        ))}
+                    </div>
+                </AnimatedSection>
 
                 {/* Education Timeline */}
                 <AnimatedSection delay={0.4} className="mb-16">

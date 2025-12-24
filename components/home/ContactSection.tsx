@@ -12,11 +12,11 @@ export default function ContactSection() {
         <section id="contact" className="py-20 px-4 sm:px-6 lg:px-8">
             <div className="max-w-6xl mx-auto">
                 <AnimatedSection className="text-center mb-16">
-                    <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
+                    <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6">
                         Get In Touch
                     </h2>
-                    <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-                        I'm always open to discussing new opportunities, projects, or just having a chat about technology.
+                    <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto leading-relaxed">
+                        Whether it’s a new opportunity, a project idea, or a tech discussion, feel free to reach out using the form below.
                     </p>
                 </AnimatedSection>
 
@@ -24,7 +24,7 @@ export default function ContactSection() {
                     {/* Contact Information */}
                     <AnimatedSection delay={0.2}>
                         <div className="space-y-8">
-                            <h3 className="text-2xl font-bold text-gray-900 dark:text-white">
+                            <h3 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-6">
                                 Contact Information
                             </h3>
 
@@ -42,7 +42,7 @@ export default function ContactSection() {
                                 <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
                                     Follow me on
                                 </h4>
-                                <div className="flex gap-6">
+                                <div className="flex items-center gap-3 sm:gap-4">
                                     {[
                                         {
                                             name: 'GitHub',

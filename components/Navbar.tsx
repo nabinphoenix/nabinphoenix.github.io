@@ -12,9 +12,9 @@ import { Moon, Sun, Menu, X } from 'lucide-react'
 const navItems = [
   { name: 'Home', href: '/' },
   { name: 'About', href: '/about' },
+  { name: 'Skills', href: '/skills' },
   { name: 'Projects', href: '/projects' },
   { name: 'AI Agent', href: '/ai-agents' },
-  { name: 'Skills', href: '/skills' },
   { name: 'Blog', href: '/blog' },
   { name: 'Contact', href: '/contact' },
 ]
@@ -69,7 +69,7 @@ export default function Navbar() {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden lg:flex items-center space-x-6">
             {navItems.map((item) => (
               <Link
                 key={item.name}
@@ -102,7 +102,7 @@ export default function Navbar() {
 
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="md:hidden p-2 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+              className="lg:hidden p-2 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
               aria-label="Toggle menu"
             >
               {isOpen ? <X size={20} /> : <Menu size={20} />}
@@ -117,9 +117,9 @@ export default function Navbar() {
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
-              className="md:hidden overflow-hidden"
+              className="lg:hidden overflow-hidden"
             >
-              <div className="py-4 space-y-2 border-t border-gray-200 dark:border-gray-700">
+              <div className="py-4 space-y-2 border-t border-gray-200 dark:border-gray-700 max-h-[70vh] overflow-y-auto">
                 {navItems.map((item) => (
                   <Link
                     key={item.name}
