@@ -18,6 +18,7 @@ function PaymentSuccessContent() {
     useEffect(() => {
         // Notify the parent window (chat widget) about the success
         if (status === "Completed" && !isNotified) {
+            // 1. Notify chat widget
             if (window.opener) {
                 window.opener.postMessage(
                     {
@@ -31,8 +32,33 @@ function PaymentSuccessContent() {
                     },
                     "*"
                 );
-                setIsNotified(true);
             }
+
+            // 2. Notify n8n backend to process order
+            const notifyBackend = async () => {
+                try {
+                    const webhookUrl = new URL('https://nabin8n.tridevinnovation.com/webhook/payment-verify');
+                    if (pidx) webhookUrl.searchParams.append('pidx', pidx);
+                    if (status) webhookUrl.searchParams.append('status', status);
+                    if (txnId) webhookUrl.searchParams.append('transaction_id', txnId);
+                    if (purchaseOrderId) webhookUrl.searchParams.append('purchase_order_id', purchaseOrderId);
+                    if (amount) webhookUrl.searchParams.append('amount', amount);
+
+                    console.log('🔔 Calling n8n webhook:', webhookUrl.toString());
+                    const response = await fetch(webhookUrl.toString(), { method: 'GET' });
+
+                    if (response.ok) {
+                        console.log('✅ Backend notified successfully');
+                    } else {
+                        console.error('❌ Backend notification failed:', response.status);
+                    }
+                } catch (error) {
+                    console.error('❌ Error notifying backend:', error);
+                }
+            };
+
+            notifyBackend();
+            setIsNotified(true);
         }
 
         // Auto-close or redirect countdown
