@@ -39,17 +39,17 @@ function PaymentSuccessContent() {
 
                 console.log('🔍 Verifying payment with pidx:', paymentId);
 
-                // Call n8n webhook to verify and process payment
-                const webhookUrl = new URL('https://nabin8n.tridevinnovation.com/webhook/payment-verify');
-                webhookUrl.searchParams.append('pidx', paymentId);
-                webhookUrl.searchParams.append('status', status || 'Completed');
-                if (txnId) webhookUrl.searchParams.append('transaction_id', txnId);
-                if (purchaseOrderId) webhookUrl.searchParams.append('purchase_order_id', purchaseOrderId);
-                if (amount) webhookUrl.searchParams.append('amount', amount);
+                // Call local proxy API instead of n8n directly (to avoid CORS)
+                const verifyUrl = new URL('/api/payment/verify', window.location.origin);
+                verifyUrl.searchParams.append('pidx', paymentId);
+                verifyUrl.searchParams.append('status', status || 'Completed');
+                if (txnId) verifyUrl.searchParams.append('transaction_id', txnId);
+                if (purchaseOrderId) verifyUrl.searchParams.append('purchase_order_id', purchaseOrderId);
+                if (amount) verifyUrl.searchParams.append('amount', amount);
 
-                console.log('🔔 Calling n8n webhook:', webhookUrl.toString());
+                console.log('🔔 Calling verification proxy:', verifyUrl.toString());
 
-                const response = await fetch(webhookUrl.toString(), { method: 'GET' });
+                const response = await fetch(verifyUrl.toString(), { method: 'GET' });
 
                 if (response.ok) {
                     const data = await response.json();
