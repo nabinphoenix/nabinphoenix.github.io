@@ -78,9 +78,9 @@ export default function ChatWidget() {
   useEffect(() => {
     const handlePaymentMessage = (event: MessageEvent) => {
       if (event.data.type === 'PAYMENT_SUCCESS') {
-        const { purchase_order_id } = event.data.data;
+        const { orderId } = event.data.data;
         const successMsg: Message = {
-          text: `✅ Payment completed successfully! Order ID: ${purchase_order_id}. Your order is confirmed and you'll receive an email shortly.`,
+          text: `✅ Payment received successfully! Order ID: ${orderId}. Your order is confirmed. Please check your email for the order confirmation and summary.`,
           sender: "ai",
           timestamp: formatTimestamp(),
         };
