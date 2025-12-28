@@ -113,6 +113,13 @@ export default function ChatWidget() {
   };
 
   const openPaymentPopup = (url: string) => {
+    // Backup pidx to localStorage in case redirect strips parameters
+    const pidxMatch = url.match(/pidx=([^&]+)/);
+    if (pidxMatch) {
+      localStorage.setItem('last_pidx', pidxMatch[1]);
+      console.log('Saved pidx to backup:', pidxMatch[1]);
+    }
+
     const width = 500;
     const height = 750;
     const left = (window.screen.width - width) / 2;

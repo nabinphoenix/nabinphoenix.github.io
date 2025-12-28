@@ -26,28 +26,48 @@ function PaymentSuccessContent() {
         // 1. Log the full URL for debugging
         const fullUrl = window.location.href;
         setDebugUrl(fullUrl);
-        console.log('📍 Full Redirect URL:', fullUrl);
+        console.log('📍 Starting pidx search. Full URL:', fullUrl);
 
-        // 2. Try to find pidx using 3 different ways
+        // 2. Try to find pidx using 5 different fallback methods
         let pidx = searchParams.get('pidx');
 
+        // Method 2: Manual Regex on current URL
         if (!pidx) {
-            // Way 2: Regex search (most reliable if standard params are stripped)
             const pidxMatch = fullUrl.match(/[?&]pidx=([^&]+)/);
-            if (pidxMatch) pidx = pidxMatch[1];
+            if (pidxMatch) {
+                pidx = pidxMatch[1];
+                console.log('🔍 Found pidx via Regex on URL:', pidx);
+            }
+        }
+
+        // Method 3: Check localStorage backup (Saved when user clicked "Pay Now")
+        if (!pidx) {
+            const backupPidx = localStorage.getItem('last_pidx');
+            if (backupPidx) {
+                pidx = backupPidx;
+                console.log('🔍 Found pidx in localStorage backup:', pidx);
+            }
+        }
+
+        // Method 4: Scan the entire search string manually
+        if (!pidx) {
+            const urlParams = new URLSearchParams(window.location.search);
+            pidx = urlParams.get('pidx') || urlParams.get('transaction_id');
+        }
+
+        // Method 5: Check document referrer
+        if (!pidx && document.referrer.includes('pidx=')) {
+            const refMatch = document.referrer.match(/[?&]pidx=([^&]+)/);
+            if (refMatch) pidx = refMatch[1];
         }
 
         if (!pidx) {
-            // Way 3: Check status and transaction_id as fallbacks
-            const txnId = searchParams.get('transaction_id');
-            if (txnId) pidx = txnId;
-        }
-
-        if (!pidx) {
+            console.error('❌ Payment verification failed: No Transaction ID (pidx) could be detected.');
             setVerificationStatus('failed');
             return;
         }
 
+        console.log('✅ Success! Proceeding to verify pidx:', pidx);
         verifyPayment(pidx);
     }, [searchParams]);
 
