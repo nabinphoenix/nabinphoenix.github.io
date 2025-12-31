@@ -193,7 +193,7 @@ export default function HeroSection() {
                                     animate={{ opacity: 1, y: 0 }}
                                     transition={{ duration: 0.6, delay: 0.2 }}
                                 >
-                                    ML Engineer 
+                                    Machine Learning Engineer & AI Automation Expert in Nepal
                                 </motion.h2>
                             </motion.div>
 
@@ -203,7 +203,7 @@ export default function HeroSection() {
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ duration: 0.6, delay: 0.4 }}
                             >
-                                Machine Learning Engineer specializing in AI automation, time-series forecasting (ARIMA, SARIMA), and intelligent workflow orchestration using n8n. Experienced in computer vision with CNN and YOLO-based object detection, as well as NLP for text analysis and language understanding. Focused on building scalable, production-ready AI systems that solve real-world business problems and improve operational efficiency.
+                                As a top Machine Learning Engineer based in Kathmandu, Nepal, I specialize in building production-ready AI systems, intelligent automation workflows using n8n, computer vision applications with YOLO, and scalable ML solutions. Expert in AI development, NLP, time-series forecasting (ARIMA, SARIMA), and intelligent automation that transforms businesses in Nepal and globally.
                             </motion.p>
 
                             {/* Contact Info */}
@@ -240,7 +240,7 @@ export default function HeroSection() {
                                     className="inline-flex items-center justify-center px-6 py-3 bg-primary-600 hover:bg-primary-700 text-white font-medium rounded-lg transition-colors group relative overflow-hidden"
                                 >
                                     <span className="relative z-10 flex items-center">
-                                        View Projects
+                                        View AI & ML Projects
                                         <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={20} />
                                     </span>
                                 </button>
@@ -251,7 +251,7 @@ export default function HeroSection() {
                                     className="inline-flex items-center justify-center px-6 py-3 border border-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-300 font-medium rounded-lg transition-colors group disabled:opacity-50 disabled:cursor-not-allowed"
                                 >
                                     <Download className="mr-2 group-hover:scale-110 transition-transform" size={20} />
-                                    Download Resume
+                                    Download CV
                                 </button>
                             </motion.div>
                         </motion.div>

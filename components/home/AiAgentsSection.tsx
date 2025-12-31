@@ -18,10 +18,6 @@ export default function AiAgentsSection() {
 
             <div className="max-w-7xl mx-auto relative z-10">
                 <AnimatedSection className="text-center mb-20">
-                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary-100 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400 text-sm font-medium mb-4">
-                        <Bot size={16} />
-                        <span>Autonomous Intelligence</span>
-                    </div>
                     <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6">
                         AI Agents <span className="text-primary-600 dark:text-primary-400">&</span> Automations
                     </h2>

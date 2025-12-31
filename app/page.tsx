@@ -5,7 +5,9 @@ import HeroSection from '@/components/home/HeroSection'
 import AboutSection from '@/components/home/AboutSection'
 import SkillsSection from '@/components/home/SkillsSection'
 import ProjectsSection from '@/components/home/ProjectsSection'
+import WhyChooseMeSection from '@/components/home/WhyChooseMeSection'
 import AiAgentsSection from '@/components/home/AiAgentsSection'
+import FAQSection from '@/components/home/FAQSection'
 import BlogSection from '@/components/home/BlogSection'
 import ContactSection from '@/components/home/ContactSection'
 
@@ -33,7 +35,9 @@ export default async function Home() {
         <AboutSection />
         <SkillsSection />
         <ProjectsSection />
+        {/* <WhyChooseMeSection /> */}
         <AiAgentsSection />
+        {/* <FAQSection /> */}
         <BlogSection blogs={latestBlogs} />
         <ContactSection />
       </div>

@@ -10,11 +10,14 @@ export default function AboutSection() {
         <section id="about" className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-gray-900/50">
             <div className="max-w-4xl mx-auto">
                 <AnimatedSection className="text-center mb-16">
-                    <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6">
-                        About Me
+                    <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 dark:text-white mb-8 tracking-tight">
+                        About <span className="gradient-text font-extrabold">Nabin Nepali</span>
+                        <span className="text-2xl md:text-3xl block mt-3 font-semibold text-gray-500 dark:text-gray-400">
+                            Machine Learning Engineer & AI Automation Expert in Nepal
+                        </span>
                     </h2>
-                    <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto leading-relaxed">
-                        Learn more about my journey, including my background, education, experience, and the technologies I work with as an ML Engineer.
+                    <p className="text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
+                        Based in <span className="text-primary-600 dark:text-primary-400 font-medium whitespace-nowrap">Kathmandu, Nepal</span>, my journey spans from intensive <span className="italic">BSc.IT</span> studies at <span className="font-medium">Techspire College</span> to architecting production-ready AI systems at <span className="font-medium">Tridev Innovation</span>. I specialize in <span className="font-semibold text-gray-900 dark:text-white">Computer Vision</span> and advanced <span className="text-primary-600 dark:text-primary-400 font-medium">n8n automation</span> workflows that empower businesses globally.
                     </p>
                 </AnimatedSection>
 
@@ -39,12 +42,13 @@ export default function AboutSection() {
                                 period: 'Sep 2025 – Present',
                                 location: 'Kupondole, Lalitpur',
                                 website: 'https://www.tridevinnovation.com/',
+                                tech: ['Python', 'YOLOv8', 'n8n', 'FastAPI', 'OpenCV', 'AI Agents'],
                                 responsibilities: [
-                                    'Designing, developing, and deploying machine learning models with a focus on computer vision.',
-                                    'Built and deployed production-ready models for real-world applications.',
-                                    'Implemented workflow automations using n8n to improve operational efficiency.',
-                                    'Enabled 24/7 automated business processes through reliable automation pipelines.',
-                                    'Collaborated with teams to translate requirements into scalable AI solutions.'
+                                    'Architecting production-ready Computer Vision systems utilizing YOLO-based object detection for real-time industrial applications.',
+                                    'Engineering complex AI automation ecosystems with n8n, significantly optimizing business operations and reducing manual overhead.',
+                                    'Developing high-performance API infrastructures using FastAPI for seamless ML model deployment and cross-system integration.',
+                                    'Designing "Self-Healing" 24/7 intelligent workflows that automate critical business processes across multiple departments.',
+                                    'Collaborating with stakeholders to translate abstract business requirements into scalable, practical AI solutions.'
                                 ],
                                 color: 'border-primary-500 bg-primary-500'
                             }
@@ -73,11 +77,11 @@ export default function AboutSection() {
                                         <h4 className="text-xl md:text-2xl font-bold text-gray-900 dark:text-white mb-1 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
                                             {exp.position}
                                         </h4>
-                                        <div className="text-primary-600 dark:text-primary-400 font-semibold mb-4">
+                                        <div className="text-primary-600 dark:text-primary-400 font-semibold mb-6">
                                             {exp.company}
                                         </div>
 
-                                        <div className="space-y-2 mt-auto">
+                                        <div className="space-y-3">
                                             <div className="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
                                                 <Calendar size={14} className="text-primary-500" />
                                                 <span>{exp.period}</span>
@@ -87,17 +91,26 @@ export default function AboutSection() {
                                                 <span>{exp.location}</span>
                                             </div>
                                         </div>
+
+                                        {/* Tech Stack for this role */}
+                                        <div className="mt-8 flex flex-wrap gap-2">
+                                            {exp.tech.map((t) => (
+                                                <span key={t} className="px-2 py-1 text-[10px] font-bold uppercase tracking-wider bg-primary-100 dark:bg-primary-900/30 text-primary-700 dark:text-primary-300 rounded-md">
+                                                    {t}
+                                                </span>
+                                            ))}
+                                        </div>
                                     </div>
 
                                     {/* Right Panel: Responsibilities */}
-                                    <div className="md:w-2/3 p-5 sm:p-6 md:p-8 flex flex-col justify-center">
-                                        <h5 className="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-4 border-b border-gray-100 dark:border-gray-700 pb-2">
-                                            Key Responsibilities
+                                    <div className="md:w-2/3 p-5 sm:p-6 md:p-8 flex flex-col justify-center bg-white dark:bg-gray-800/50">
+                                        <h5 className="text-xs font-bold text-primary-500 uppercase tracking-[0.2em] mb-6 border-b border-gray-100 dark:border-gray-700/50 pb-2">
+                                            Impact & Contributions
                                         </h5>
-                                        <ul className="space-y-4">
+                                        <ul className="space-y-5">
                                             {exp.responsibilities.map((resp, idx) => (
-                                                <li key={idx} className="text-gray-600 dark:text-gray-300 text-sm md:text-base leading-relaxed flex gap-3">
-                                                    <span className="mt-2 h-1.5 w-1.5 rounded-full bg-primary-500 shrink-0 shadow-[0_0_8px_rgba(var(--primary-600),0.4)]" />
+                                                <li key={idx} className="text-gray-600 dark:text-gray-300 text-sm md:text-base leading-relaxed flex gap-4">
+                                                    <span className="mt-1.5 h-2 w-2 rounded-full bg-primary-500 shrink-0 shadow-[0_0_10px_rgba(var(--primary-600),0.5)]" />
                                                     {resp}
                                                 </li>
                                             ))}

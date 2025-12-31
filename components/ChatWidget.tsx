@@ -78,9 +78,11 @@ export default function ChatWidget() {
   useEffect(() => {
     const handlePaymentMessage = (event: MessageEvent) => {
       if (event.data.type === 'PAYMENT_SUCCESS') {
-        const { orderId } = event.data.data;
+        const { orderId, amount } = event.data.data;
+        const formattedAmount = amount ? (parseFloat(amount) / 100).toLocaleString() : 'N/A';
+
         const successMsg: Message = {
-          text: `✅ Payment received successfully! Order ID: ${orderId}. Your order is confirmed. Please check your email for the order confirmation and summary.`,
+          text: `🎉 Payment Successful!\n\n📦 Order Number: ${orderId}\n💰 Amount Paid: NPR ${formattedAmount}\n\nYour order is now confirmed. I've sent a confirmation email with all the details to your inbox. Thank you for choosing SastoSale! 🚀`,
           sender: "ai",
           timestamp: formatTimestamp(),
         };

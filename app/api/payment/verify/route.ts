@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-const N8N_WEBHOOK_URL = 'https://nabin8n.tridevinnovation.com/webhook/payment-verify';
+const N8N_WEBHOOK_URL = process.env.N8N_PAYMENT_WEBHOOK_URL || 'https://nabin8n.tridevinnovation.com/webhook/payment-verify';
 
 export async function POST(request: NextRequest) {
     try {
@@ -29,31 +29,46 @@ export async function POST(request: NextRequest) {
             body: JSON.stringify({ pidx: pidx.trim() }),
         });
 
-        // Check if n8n responded
+        // Get response text first to handle both JSON and plain text
+        const responseText = await response.text();
+        console.log('n8n verification response raw:', responseText);
+
         if (!response.ok) {
-            console.error('n8n webhook error:', response.status, response.statusText);
+            console.error('n8n webhook error:', response.status, responseText);
             return NextResponse.json(
                 {
                     success: false,
-                    message: 'Payment verification service unavailable'
+                    message: 'Payment verification service error',
+                    details: responseText.substring(0, 100)
                 },
-                { status: 502 }
+                { status: response.status }
             );
         }
 
-        // Parse n8n response
-        const data = await response.json();
-        console.log('n8n response:', data);
+        // Try to parse n8n response as JSON
+        try {
+            const data = JSON.parse(responseText);
+            console.log('n8n parsed response:', data);
 
-        // Return the response from n8n
-        return NextResponse.json(data, { status: response.status });
+            // If n8n returns success: true, or similar structure
+            return NextResponse.json(data);
+        } catch (e) {
+            // If not JSON, but status was OK, assume success if text indicates it
+            // or just return the text wrapped in a success object
+            console.log('n8n returned non-JSON response, status OK');
+            return NextResponse.json({
+                success: true,
+                message: responseText || 'Verification processed',
+                pidx: pidx
+            });
+        }
 
     } catch (error) {
-        console.error('Payment verification error:', error);
+        console.error('Payment verification exception:', error);
         return NextResponse.json(
             {
                 success: false,
-                message: 'Internal server error during payment verification',
+                message: 'Internal server error during verification',
                 error: error instanceof Error ? error.message : 'Unknown error'
             },
             { status: 500 }
