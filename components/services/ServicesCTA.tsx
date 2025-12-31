@@ -122,7 +122,7 @@ export default function ServicesCTA() {
                         <span>Based in Kathmandu, Nepal</span>
                         <span>•</span>
                         <span>Serving clients globally</span>
-                    </div>
+                    </motion.div>
                 </motion.div>
             </div>
         </section>
