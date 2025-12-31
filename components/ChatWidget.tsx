@@ -144,6 +144,7 @@ export default function ChatWidget() {
     setIsLoading(true);
     setIsTyping(true);
 
+    let data;
     try {
       const response = await fetch("/api/chat", {
         method: "POST",
@@ -156,7 +157,7 @@ export default function ChatWidget() {
         }),
       });
 
-      const data = await response.json();
+      data = await response.json();
 
       if (data.success) {
         // Fix: Check for data.response first as returned by our API route
@@ -182,7 +183,45 @@ export default function ChatWidget() {
     } finally {
       setIsTyping(false);
       setIsLoading(false);
+
+      // If the AI response contains a payment URL, start polling for status
+      if (data && data.success && data.payment_url) {
+        startPaymentPolling(data.pidx, data.orderId, data.price * data.quantity);
+      }
     }
+  };
+
+  const startPaymentPolling = (pidx: string, orderId: string, amount: number) => {
+    console.log('🔄 Starting status polling for pidx:', pidx);
+
+    const pollInterval = setInterval(async () => {
+      try {
+        const response = await fetch("/api/payment/verify", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ pidx })
+        });
+
+        const data = await response.json();
+
+        if (data.success) {
+          clearInterval(pollInterval);
+          console.log('✅ Polling detected success!');
+
+          const successMsg: Message = {
+            text: `🎉 Payment Successful!\n\n📦 Order Number: ${data.order_id || orderId}\n💰 Amount Paid: NPR ${(data.total_amount ? data.total_amount / 100 : amount).toLocaleString()}\n\nYour order is now confirmed. I've sent a confirmation email with all the details to your inbox. Thank you for choosing SastoSale! 🚀`,
+            sender: "ai",
+            timestamp: formatTimestamp(),
+          };
+          setMessages((prev) => [...prev, successMsg]);
+        }
+      } catch (err) {
+        console.error('Polling error:', err);
+      }
+    }, 5000); // Poll every 5 seconds
+
+    // Stop polling after 10 minutes to save resources
+    setTimeout(() => clearInterval(pollInterval), 10 * 60 * 1000);
   };
 
   return (

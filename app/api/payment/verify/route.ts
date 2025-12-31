@@ -45,23 +45,24 @@ export async function POST(request: NextRequest) {
             );
         }
 
-        // Try to parse n8n response as JSON
+        // Parse n8n response as JSON or fallback to text
+        let n8nData: any = {};
         try {
-            const data = JSON.parse(responseText);
-            console.log('n8n parsed response:', data);
-
-            // If n8n returns success: true, or similar structure
-            return NextResponse.json(data);
+            n8nData = JSON.parse(responseText);
+            console.log('n8n parsed response:', n8nData);
         } catch (e) {
-            // If not JSON, but status was OK, assume success if text indicates it
-            // or just return the text wrapped in a success object
             console.log('n8n returned non-JSON response, status OK');
-            return NextResponse.json({
-                success: true,
-                message: responseText || 'Verification processed',
-                pidx: pidx
-            });
+            n8nData = { success: true, message: responseText };
         }
+
+        // Return the response with fallbacks to ensure UI gets needed fields
+        return NextResponse.json({
+            success: true,
+            order_id: n8nData.order_id || n8nData.purchase_order_id || null,
+            total_amount: n8nData.total_amount || n8nData.amount || null,
+            pidx: pidx,
+            message: n8nData.message || 'Payment verification processed'
+        });
 
     } catch (error) {
         console.error('Payment verification exception:', error);
