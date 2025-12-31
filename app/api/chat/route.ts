@@ -107,7 +107,10 @@ export async function POST(request: NextRequest) {
 
             console.log('✅ Sending AI response:', aiResponse.substring(0, 100));
 
+            const n8nData = responseText.trim().startsWith('{') ? JSON.parse(responseText) : {};
+
             return NextResponse.json({
+                ...n8nData,
                 response: aiResponse,
                 success: true,
             });

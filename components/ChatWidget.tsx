@@ -79,7 +79,7 @@ export default function ChatWidget() {
     const handlePaymentMessage = (event: MessageEvent) => {
       if (event.data.type === 'PAYMENT_SUCCESS') {
         const { orderId, amount } = event.data.data;
-        const formattedAmount = amount ? (parseFloat(amount) / 100).toLocaleString() : 'N/A';
+        const formattedAmount = amount ? parseFloat(amount).toLocaleString() : 'N/A';
 
         const successMsg: Message = {
           text: `🎉 Payment Successful!\n\n📦 Order Number: ${orderId}\n💰 Amount Paid: NPR ${formattedAmount}\n\nYour order is now confirmed. I've sent a confirmation email with all the details to your inbox. Thank you for choosing SastoSale! 🚀`,
@@ -209,7 +209,7 @@ export default function ChatWidget() {
           console.log('✅ Polling detected success!');
 
           const successMsg: Message = {
-            text: `🎉 Payment Successful!\n\n📦 Order Number: ${data.order_id || orderId}\n💰 Amount Paid: NPR ${(data.total_amount ? data.total_amount / 100 : amount).toLocaleString()}\n\nYour order is now confirmed. I've sent a confirmation email with all the details to your inbox. Thank you for choosing SastoSale! 🚀`,
+            text: `🎉 Payment Successful!\n\n📦 Order Number: ${data.order_id || orderId}\n💰 Amount Paid: NPR ${(data.total_amount ? data.total_amount : amount).toLocaleString()}\n\nYour order is now confirmed. I've sent a confirmation email with all the details to your inbox. Thank you for choosing SastoSale! 🚀`,
             sender: "ai",
             timestamp: formatTimestamp(),
           };

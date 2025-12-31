@@ -17,7 +17,7 @@ function PaymentSuccessContent() {
 
     const [verificationStatus, setVerificationStatus] = useState<'loading' | 'success' | 'failed'>('loading');
     const [verificationData, setVerificationData] = useState<VerificationResult | null>(null);
-    const [countdown, setCountdown] = useState(5);
+    const [countdown, setCountdown] = useState(2);
     const [debugUrl, setDebugUrl] = useState('');
 
     useEffect(() => {
@@ -124,7 +124,7 @@ function PaymentSuccessContent() {
 
     const formatAmount = (amount: string | undefined): string => {
         if (!amount) return '0';
-        return `Rs. ${(parseFloat(amount) / 100).toLocaleString()}`;
+        return `Rs. ${parseFloat(amount).toLocaleString()}`;
     };
 
     return (
@@ -148,10 +148,18 @@ function PaymentSuccessContent() {
                         <h2 className="text-2xl font-bold text-slate-900 mb-2">Success!</h2>
                         <p className="text-slate-500 mb-6">Order #{verificationData?.order_id} confirmed.</p>
                         <div className="bg-slate-50 rounded-2xl p-4 mb-6 text-sm flex justify-between">
-                            <span className="text-slate-400">Paid:</span>
+                            <span className="text-slate-400">Total Paid:</span>
                             <span className="font-bold text-teal-600">{formatAmount(verificationData?.total_amount)}</span>
                         </div>
-                        <p className="text-xs text-slate-400">Closing in {countdown}s...</p>
+
+                        <button
+                            onClick={() => { if (window.opener) window.close(); else router.push('/'); }}
+                            className="w-full bg-teal-600 text-white font-bold py-3 px-6 rounded-xl mb-4 hover:bg-teal-700 transition-colors"
+                        >
+                            Back to Chat
+                        </button>
+
+                        <p className="text-xs text-slate-400 italic">This window will close automatically in {countdown}s...</p>
                     </div>
                 )}
 
