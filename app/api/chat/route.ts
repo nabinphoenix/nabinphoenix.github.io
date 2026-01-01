@@ -40,7 +40,7 @@ export async function POST(request: NextRequest) {
 
         // Forward to n8n webhook with timeout
         const controller = new AbortController();
-        const timeoutId = setTimeout(() => controller.abort(), 25000); // 25s timeout
+        const timeoutId = setTimeout(() => controller.abort(), 50000); // 50s timeout
 
         try {
             const response = await fetch(N8N_WEBHOOK_URL, {
@@ -95,10 +95,15 @@ export async function POST(request: NextRequest) {
             let aiResponse;
 
             try {
-                const data = JSON.parse(responseText);
+                const parsedData = JSON.parse(responseText);
+                // Handle n8n array response
+                const data = Array.isArray(parsedData) ? parsedData[0] : parsedData;
+
                 console.log('✅ Parsed as JSON successfully');
                 console.log('📊 Response fields:', Object.keys(data).join(', '));
-                aiResponse = data.output || data.response || data.message || 'No response from assistant';
+
+                // Prioritize originalOutput as it contains formatting (bolding), then output, response, or message
+                aiResponse = data.originalOutput || data.output || data.response || data.message || 'No response from assistant';
             } catch (parseError: any) {
                 // Not JSON, treat as plain text response (which is what your n8n returns)
                 console.log('📝 Response is plain text, not JSON - using as-is');

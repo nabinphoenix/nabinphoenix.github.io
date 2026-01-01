@@ -9,9 +9,9 @@ import { aiAgents } from '@/data/ai-agents'
 
 export default function AiAgentsSection() {
     return (
-        <section id="ai-agents" className="py-20 px-4 sm:px-6 lg:px-8">
+        <section id="ai-agents" className="py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
             {/* Background Decoration */}
-            <div className="absolute top-0 left-0 w-full h-full pointer-events-none z-0">
+            <div className="absolute top-0 left-0 w-full h-full pointer-events-none z-0 overflow-hidden">
                 <div className="absolute top-1/4 -left-20 w-80 h-80 bg-primary-500/5 rounded-full blur-3xl" />
                 <div className="absolute bottom-1/4 -right-20 w-80 h-80 bg-teal-500/5 rounded-full blur-3xl" />
             </div>
@@ -19,7 +19,7 @@ export default function AiAgentsSection() {
             <div className="max-w-7xl mx-auto relative z-10">
                 <AnimatedSection className="text-center mb-20">
                     <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6">
-                        AI Agents <span className="text-primary-600 dark:text-primary-400">&</span> Automations
+                        AI Agents <span className="gradient-text">&</span> Automations
                     </h2>
                     <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto leading-relaxed">
                         Next-generation AI agents designed for automation, interaction, and practical problem-solving.

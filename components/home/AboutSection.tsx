@@ -139,7 +139,8 @@ export default function AboutSection() {
                                 institution: 'Techspire College',
                                 degree: 'BSc.IT (Bachelor of Science in Information Technology)',
                                 period: '2023 – Present',
-                                gpa: '3.48',
+                                gpa: '3.5',
+                                label: 'CGPA',
                                 status: 'Current',
                                 color: 'border-teal-500 bg-teal-500'
                             },
@@ -148,6 +149,7 @@ export default function AboutSection() {
                                 degree: '+2 Biology',
                                 period: 'Completed',
                                 gpa: '3.31',
+                                label: 'GPA',
                                 status: 'Graduated',
                                 color: 'border-blue-500 bg-blue-500'
                             },
@@ -156,6 +158,7 @@ export default function AboutSection() {
                                 degree: 'SEE (Secondary Education Examination)',
                                 period: 'Completed',
                                 gpa: '3.85',
+                                label: 'GPA',
                                 status: 'Graduated',
                                 color: 'border-purple-500 bg-purple-500'
                             }
@@ -198,7 +201,7 @@ export default function AboutSection() {
                                         </div>
                                         <div className="flex items-center gap-1.5 text-gray-700 dark:text-gray-300 font-semibold bg-gray-50 dark:bg-gray-700/50 px-2 py-1 rounded">
                                             <Award size={14} className="text-yellow-500" />
-                                            <span>GPA {edu.gpa}</span>
+                                            <span>{edu.label} {edu.gpa}</span>
                                         </div>
                                     </div>
                                 </div>

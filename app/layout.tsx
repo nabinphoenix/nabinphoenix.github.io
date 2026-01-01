@@ -108,7 +108,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={`${inter.variable} ${montserrat.variable} font-sans`} suppressHydrationWarning>
+    <html lang="en" className={`${inter.variable} ${montserrat.variable} font-sans overflow-x-hidden`} suppressHydrationWarning>
       <head>
         {/* Geo Tags for Local SEO */}
         <meta name="geo.region" content="NP-BA" />

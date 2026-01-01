@@ -1,9 +1,15 @@
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-    title: 'AI & Machine Learning Blog | Nabin Nepali',
-    description: 'Technical articles, insights, and tutorials on Artificial Intelligence and Machine Learning by Nabin Nepali.',
-    keywords: ['Nabin Nepali Blog', 'AI Blog Nepal', 'Machine Learning Tutorials', 'Tech Blog Kathmandu'],
+    title: 'AI, Machine Learning & Automation Blog | Nabin Nepali - Nepal',
+    description: 'Technical insights, n8n automation tutorials, and Machine Learning research from Nabin Nepali, a leading AI Automation Expert in Nepal.',
+    keywords: [
+        'Nabin Nepali Blog',
+        'Machine Learning Blog Nepal',
+        'AI Automation Tutorials',
+        'n8n Tips Nepal',
+        'AI Industry Nepal'
+    ],
 }
 
 export default function BlogLayout({

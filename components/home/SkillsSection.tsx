@@ -11,7 +11,7 @@ export default function SkillsSection() {
             <div className="max-w-6xl mx-auto">
                 <AnimatedSection className="text-center mb-16">
                     <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6">
-                        Skills & Expertise
+                        Skills & <span className="gradient-text">Expertise</span>
                     </h2>
                     <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto leading-relaxed">
                         A detailed summary of my technical expertise, soft skills, and professional capabilities.

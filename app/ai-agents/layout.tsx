@@ -1,9 +1,15 @@
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-    title: 'AI Agents & Automation | Nabin Nepali',
-    description: 'Explore autonomous AI agents developed by Nabin Nepali using cutting-edge technologies like n8n, OpenAI, and custom ML models for business automation.',
-    keywords: ['AI Agents Nepal', 'Autonomous AI', 'Automation Solutions Nepal', 'Nabin Nepali AI Agents'],
+    title: 'AI Agents & Business Automation | Nabin Nepali - AI Expert Nepal',
+    description: 'Leading AI Automation Specialist in Nepal. Custom autonomous AI agents, n8n workflow automation, and intelligent systems built by Nabin Nepali to scale your business operations.',
+    keywords: [
+        'AI Agents Nepal',
+        'AI Automation Expert Nepal',
+        'Business Automation Specialist Kathmandu',
+        'n8n Workflow Automation Nepal',
+        'Autonomous AI Developers Nepal'
+    ],
 }
 
 export default function AiAgentsLayout({

@@ -12,7 +12,8 @@ const education = [
     institution: 'Techspire College',
     degree: 'BSc.IT (Bachelor of Science in Information Technology)',
     period: '2023 – Present',
-    gpa: '3.48',
+    gpa: '3.5',
+    label: 'CGPA',
     status: 'Current',
     color: 'border-teal-500 bg-teal-500'
   },
@@ -21,6 +22,7 @@ const education = [
     degree: '+2 Biology',
     period: 'Completed',
     gpa: '3.31',
+    label: 'GPA',
     status: 'Graduated',
     color: 'border-blue-500 bg-blue-500'
   },
@@ -29,6 +31,7 @@ const education = [
     degree: 'SEE (Secondary Education Examination)',
     period: 'Completed',
     gpa: '3.85',
+    label: 'GPA',
     status: 'Graduated',
     color: 'border-purple-500 bg-purple-500'
   }
@@ -41,12 +44,13 @@ const experiences = [
     period: 'Sep 2025 – Present',
     location: 'Kupondole, Lalitpur',
     website: 'https://www.tridevinnovation.com/',
+    tech: ['Python', 'YOLOv8', 'n8n', 'FastAPI', 'OpenCV', 'AI Agents'],
     responsibilities: [
-      'Designing, developing, and deploying machine learning models with a primary focus on computer vision.',
-      'Built and deployed production-ready models for real-world applications.',
-      'Designed and implemented workflow automations using n8n to reduce manual effort and improve operational efficiency.',
-      'Enabled 24/7 automated business processes through reliable automation pipelines.',
-      'Collaborated with cross-functional teams to translate business requirements into scalable AI-driven solutions.'
+      'Architecting production-ready Computer Vision systems utilizing YOLO-based object detection for real-time industrial applications.',
+      'Engineering complex AI automation ecosystems with n8n, significantly optimizing business operations and reducing manual overhead.',
+      'Developing high-performance API infrastructures using FastAPI for seamless ML model deployment and cross-system integration.',
+      'Designing "Self-Healing" 24/7 intelligent workflows that automate critical business processes across multiple departments.',
+      'Collaborating with stakeholders to translate abstract business requirements into scalable, practical AI solutions.'
     ],
     color: 'border-primary-500 bg-primary-500'
   }
@@ -83,12 +87,12 @@ export default function About() {
         <div className="max-w-4xl mx-auto">
           {/* Header */}
           <AnimatedSection className="text-center mb-16">
-            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
-              <span className="gradient-text">About Nabin Nepali</span>
+            <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 dark:text-white mb-8 tracking-tight">
+              About <span className="gradient-text font-extrabold">Nabin Nepali</span>
+              <span className="text-2xl md:text-3xl block mt-3 font-semibold text-gray-500 dark:text-gray-400">
+                Machine Learning Engineer & AI Automation Expert in Nepal
+              </span>
             </h1>
-            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-              Machine Learning Engineer | AI Developer | Kathmandu, Nepal
-            </p>
           </AnimatedSection>
 
           {/* Professional Summary */}
@@ -166,17 +170,26 @@ export default function About() {
                           <span>{exp.location}</span>
                         </div>
                       </div>
+
+                      {/* Tech Stack for this role */}
+                      <div className="mt-8 flex flex-wrap gap-2">
+                        {exp.tech?.map((t) => (
+                          <span key={t} className="px-2 py-1 text-[10px] font-bold uppercase tracking-wider bg-primary-100 dark:bg-primary-900/30 text-primary-700 dark:text-primary-300 rounded-md">
+                            {t}
+                          </span>
+                        ))}
+                      </div>
                     </div>
 
                     {/* Right Panel: Responsibilities */}
-                    <div className="md:w-2/3 p-5 sm:p-6 md:p-8 flex flex-col justify-center">
-                      <h4 className="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-4 border-b border-gray-100 dark:border-gray-700 pb-2">
-                        Key Responsibilities
+                    <div className="md:w-2/3 p-5 sm:p-6 md:p-8 flex flex-col justify-center bg-white dark:bg-gray-800/50">
+                      <h4 className="text-xs font-bold text-primary-500 uppercase tracking-[0.2em] mb-6 border-b border-gray-100 dark:border-gray-700/50 pb-2">
+                        Impact & Contributions
                       </h4>
-                      <ul className="space-y-4">
+                      <ul className="space-y-5">
                         {exp.responsibilities.map((resp, idx) => (
-                          <li key={idx} className="text-gray-600 dark:text-gray-300 text-sm md:text-base leading-relaxed flex gap-3">
-                            <span className="mt-2 h-1.5 w-1.5 rounded-full bg-primary-500 shrink-0 shadow-[0_0_8px_rgba(var(--primary-600),0.4)]" />
+                          <li key={idx} className="text-gray-600 dark:text-gray-300 text-sm md:text-base leading-relaxed flex gap-4">
+                            <span className="mt-1.5 h-2 w-2 rounded-full bg-primary-500 shrink-0 shadow-[0_0_10px_rgba(var(--primary-600),0.5)]" />
                             {resp}
                           </li>
                         ))}
@@ -237,7 +250,7 @@ export default function About() {
                       </div>
                       <div className="flex items-center gap-1.5 text-gray-700 dark:text-gray-300 font-semibold bg-gray-50 dark:bg-gray-700/50 px-2 py-1 rounded">
                         <Award size={14} className="text-yellow-500" />
-                        <span>GPA {edu.gpa}</span>
+                        <span>{edu.label} {edu.gpa}</span>
                       </div>
                     </div>
                   </div>

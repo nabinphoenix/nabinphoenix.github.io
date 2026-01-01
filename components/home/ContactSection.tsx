@@ -13,7 +13,7 @@ export default function ContactSection() {
             <div className="max-w-6xl mx-auto">
                 <AnimatedSection className="text-center mb-16">
                     <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6">
-                        Get In Touch
+                        Get In <span className="gradient-text">Touch</span>
                     </h2>
                     <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto leading-relaxed">
                         Whether it’s a new opportunity, a project idea, or a tech discussion, feel free to reach out using the form below.

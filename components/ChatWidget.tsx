@@ -255,10 +255,36 @@ export default function ChatWidget() {
               const khaltiMatch = msg.text.match(khaltiUrlPattern);
               const paymentUrl = msg.paymentUrl || (khaltiMatch ? khaltiMatch[0] : null);
 
+              // Helper to format message text with bold support and newline handling
+              const formatText = (text: string) => {
+                if (!text) return "";
+
+                // Handle literal \n if they exist as characters
+                const processedText = text.replace(/\\n/g, '\n');
+
+                // Split by ** for bold
+                const parts = processedText.split(/(\*\*.*?\*\*)/g);
+
+                return parts.map((part, i) => {
+                  if (part.startsWith("**") && part.endsWith("**")) {
+                    return (
+                      <strong key={i} className="font-bold text-teal-700 dark:text-teal-400">
+                        {part.slice(2, -2)}
+                      </strong>
+                    );
+                  }
+                  return part;
+                });
+              };
+
               return (
                 <div key={index} className={`message-wrapper ${msg.sender === "user" ? "message-user" : "message-ai"}`}>
                   <div className={`message ${msg.sender === "user" ? "message-bubble-user" : msg.sender === "error" ? "message-bubble-error" : "message-bubble-ai"}`}>
-                    <p className="message-text">{paymentUrl ? msg.text.replace(khaltiUrlPattern, "").trim() || "Complete your payment:" : msg.text}</p>
+                    <div className="message-text">
+                      {paymentUrl
+                        ? formatText(msg.text.replace(khaltiUrlPattern, "").trim() || "Complete your payment:")
+                        : formatText(msg.text)}
+                    </div>
 
                     {paymentUrl && (
                       <div className="payment-card">
@@ -311,12 +337,13 @@ export default function ChatWidget() {
         .message-wrapper { display: flex; animation: messageSlideIn 0.3s ease-out; }
         .message-user { justify-content: flex-end; }
         .message-ai { justify-content: flex-start; }
-        .message { max-width: 80%; padding: 10px 14px; border-radius: 12px; word-wrap: break-word; }
+        .message { max-width: 80%; padding: 10px 14px; border-radius: 11px; word-wrap: break-word; }
         .message-bubble-user { background: linear-gradient(135deg, #14b8a6 0%, #0d9488 100%); color: white; border-bottom-right-radius: 4px; }
         .message-bubble-ai { background: white; color: #1f2937; border-bottom-left-radius: 4px; box-shadow: 0 1px 2px rgba(0,0,0,0.05); }
         :global(.dark) .message-bubble-ai { background: #374151; color: #f3f4f6; }
-        .message-text { margin: 0; font-size: 14px; line-height: 1.5; }
-        .message-timestamp { display: block; font-size: 9px; margin-top: 4px; opacity: 0.7; }
+        .message-text { margin: 0; font-size: 14px; line-height: 1.6; white-space: pre-wrap; word-break: break-word; }
+        .message-text strong { font-weight: 700; }
+        .message-timestamp { display: block; font-size: 11px; margin-top: 6px; opacity: 0.6; }
         .payment-card { margin-top: 8px; padding: 10px; background: #f0fdfa; border: 1px solid #5eead4; border-radius: 8px; text-align: center; }
         :global(.dark) .payment-card { background: rgba(20,184,166,0.1); }
         .payment-action-btn { width: 100%; padding: 8px; background: #14b8a6; color: white; border: none; border-radius: 6px; font-weight: 600; font-size: 12px; cursor: pointer; transition: background 0.2s; }
@@ -329,13 +356,15 @@ export default function ChatWidget() {
         :global(.dark) .chat-input-area { background: #1f2937; border-top: 1px solid #374151; }
         .chat-input { flex: 1; padding: 12px 18px; border: 1px solid #14b8a6; border-radius: 24px; outline: none; background: white; color: #1f2937; font-size: 14px; }
         :global(.dark) .chat-input { background: #111827; border: 1px solid #374151; color: #f3f4f6; }
-        .chat-send-button { width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(135deg, #14b8a6 0%, #0d9488 100%); color: white; display: flex; align-items: center; justify-content: center; cursor: pointer; flex-shrink: 0; border: none; }
-        .chat-toggle-button { width: 60px; height: 60px; border-radius: 50%; background: linear-gradient(135deg, #14b8a6 0%, #0d9488 100%); color: white; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(0,0,0,0.15); transition: all 0.3s; position: fixed; bottom: 24px; right: 24px; border: none; }
+        .chat-toggle-button { width: 60px; height: 60px; border-radius: 50%; background: linear-gradient(135deg, #14b8a6 0%, #0d9488 100%); color: white; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(0,0,0,0.15); transition: all 0.3s; position: fixed; bottom: 24px; right: 24px; border: none; z-index: 50; }
         .chat-toggle-button:hover { transform: scale(1.1); }
         .chat-toggle-button.hidden { opacity: 0; visibility: hidden; }
         @keyframes messageSlideIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
         @keyframes typingDot { 0%, 60%, 100% { transform: translateY(0); opacity: 0.7; } 30% { transform: translateY(-10px); opacity: 1; } }
-        @media (max-width: 768px) { .chat-window { position: fixed !important; width: 100% !important; height: 100% !important; top: 0 !important; left: 0 !important; border-radius: 0 !important; } }
+        @media (max-width: 768px) { 
+          .chat-window { position: fixed !important; width: 100% !important; height: 100% !important; bottom: 0 !important; right: 0 !important; border-radius: 0 !important; z-index: 9999; } 
+          .chat-toggle-button { width: 50px; height: 50px; bottom: 16px; right: 16px; }
+        }
       `}</style>
     </>
   );
