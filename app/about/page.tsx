@@ -109,7 +109,7 @@ export default function About() {
                   My main focus these days is building <strong>intelligent AI agents</strong> that don't just automate tasks—they help businesses scale. I love creating systems that reduce manual grunt work and can practically run and generate value for you while you're sleeping. On the tech side, I build robust backends using <strong>FastAPI</strong> and <strong>Python</strong>, and I'm particularly fond of working with <strong>Time Series Forecasting</strong> (like ARIMA, SARIMA, LSTM) and <strong>Computer Vision</strong> (CNN, YOLO) to solve complex problems.
                 </p>
                 <p>
-                  Right now, I'm finishing up my BSc.IT at <a href="https://techspire.edu.np/" target="_blank" rel="noopener noreferrer" className="text-primary-600 hover:underline">Techspire College</a>, which is affiliated with the <a href="https://www.apu.edu.my/" target="_blank" rel="noopener noreferrer" className="text-primary-600 hover:underline">Asia Pacific University of Technology & Innovation (APU)</a>. For me, it's all about bridging the gap between what's taught in books and what actually works in the real world. I thrive on turning messy data into clear, actionable insights and deploying AI that actually works at scale.
+                  Right now, I'm finishing up my BSc.IT at <a href="https://techspire.edu.np/" target="_blank" rel="noopener noreferrer" aria-label="Visit Techspire College website" className="text-primary-600 hover:underline">Techspire College</a>, which is affiliated with the <a href="https://www.apu.edu.my/" target="_blank" rel="noopener noreferrer" aria-label="Visit Asia Pacific University of Technology & Innovation website" className="text-primary-600 hover:underline">Asia Pacific University of Technology & Innovation (APU)</a>. For me, it's all about bridging the gap between what's taught in books and what actually works in the real world. I thrive on turning messy data into clear, actionable insights and deploying AI that actually works at scale.
                 </p>
               </div>
             </div>
@@ -147,6 +147,7 @@ export default function About() {
                           href={exp.website}
                           target="_blank"
                           rel="noopener noreferrer"
+                          aria-label={`Visit ${exp.company} website`}
                           className="p-2 text-gray-400 hover:text-primary-500 hover:bg-primary-50 dark:hover:bg-primary-900/20 rounded-lg transition-all"
                         >
                           <ExternalLink size={18} />

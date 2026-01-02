@@ -68,6 +68,7 @@ export default function AboutSection() {
                                                 href={exp.website}
                                                 target="_blank"
                                                 rel="noopener noreferrer"
+                                                aria-label={`Visit ${exp.company} website`}
                                                 className="p-2 text-gray-400 hover:text-primary-500 hover:bg-primary-50 dark:hover:bg-primary-900/20 rounded-lg transition-all"
                                             >
                                                 <ExternalLink size={18} />

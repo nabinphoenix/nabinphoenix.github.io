@@ -31,6 +31,7 @@ export default function AiAgentsSection() {
                         <AnimatedSection delay={0.2}>
                             <Link
                                 href="/ai-agents"
+                                aria-label="View all AI agents"
                                 className="inline-flex items-center gap-2 text-primary-600 dark:text-primary-400 font-semibold hover:gap-3 transition-all group px-2"
                             >
                                 View All Agents
@@ -52,6 +53,7 @@ export default function AiAgentsSection() {
                         <AnimatedSection delay={0.2}>
                             <Link
                                 href="/ai-agents"
+                                aria-label="View all AI agents"
                                 className="inline-flex items-center gap-2 text-primary-600 dark:text-primary-400 font-semibold hover:gap-3 transition-all group"
                             >
                                 View All Agents

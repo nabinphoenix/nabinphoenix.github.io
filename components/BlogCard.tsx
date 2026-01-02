@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { useRouter } from 'next/navigation'
 import { Calendar, ArrowRight } from 'lucide-react'
+import Link from 'next/link'
 import { IBlog } from '@/models/Blog'
 
 interface BlogCardProps {
@@ -49,12 +50,16 @@ export default function BlogCard({ blog }: BlogCardProps) {
 
     return (
         <motion.div
-            className="group relative bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100 dark:border-gray-700 cursor-pointer h-full flex flex-col"
+            className="group relative bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100 dark:border-gray-700 h-full"
             whileHover={{ y: -5 }}
             onHoverStart={() => setIsHovered(true)}
             onHoverEnd={() => setIsHovered(false)}
-            onClick={handleCardClick}
         >
+            <Link
+                href={`/blog/${blog.slug}`}
+                className="absolute inset-0 z-40"
+                aria-label={`Read article: ${blog.title}`}
+            />
             {/* Decorative Gradient Overlay (Subtle) */}
             <div
                 className={`absolute top-0 right-0 w-32 h-32 bg-gradient-to-br ${getGradient(blog.title)} opacity-10 rounded-bl-full -mr-6 -mt-6 transition-transform group-hover:scale-110`}

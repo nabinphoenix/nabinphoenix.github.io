@@ -1,6 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import Image from 'next/image'
 
 const skills = [
     { name: 'n8n', logo: 'https://cdn.simpleicons.org/n8n/FF6D5A' },
@@ -49,10 +50,13 @@ export default function SkillSlider() {
                         className="flex-shrink-0 mx-4 md:mx-8 flex flex-col items-center justify-center group cursor-pointer"
                     >
                         <div className="w-20 h-20 relative mb-3 transition-transform group-hover:scale-110 duration-300 p-2">
-                            <img
+                            <Image
                                 src={skill.logo}
-                                alt={skill.name}
-                                className="w-full h-full object-contain filter drop-shadow-sm"
+                                alt={`${skill.name} logo`}
+                                fill
+                                sizes="80px"
+                                className="object-contain filter drop-shadow-sm"
+                                unoptimized
                             />
                         </div>
                         <span className="text-sm font-medium text-gray-600 dark:text-gray-400 group-hover:text-primary-500 transition-colors">

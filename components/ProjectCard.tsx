@@ -3,7 +3,8 @@
 
 import { useState, useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
-import { useRouter } from 'next/navigation'
+import Link from 'next/link'
+import Image from 'next/image'
 import { ExternalLink, Github, Calendar } from 'lucide-react'
 
 interface Project {
@@ -23,17 +24,14 @@ interface ProjectCardProps {
 
 export default function ProjectCard({ project }: ProjectCardProps) {
   const [isHovered, setIsHovered] = useState(false)
-  const router = useRouter()
+
   const svgRef = useRef<SVGSVGElement>(null)
   const animationFrameRef = useRef<number | undefined>(undefined)
   const frameRef = useRef(0)
   const boltsGroupRef = useRef<SVGGElement>(null)
 
-  const handleCardClick = () => {
-    router.push(`/projects/${project.id}`)
-  }
-
   const handleLinkClick = (e: React.MouseEvent, url: string) => {
+    e.preventDefault()
     e.stopPropagation()
     window.open(url, '_blank', 'noopener,noreferrer')
   }
@@ -175,23 +173,21 @@ export default function ProjectCard({ project }: ProjectCardProps) {
       whileHover={{ y: -8, scale: 1.02 }}
       onHoverStart={() => setIsHovered(true)}
       onHoverEnd={() => setIsHovered(false)}
-      onClick={handleCardClick}
       style={{
         transformStyle: 'preserve-3d',
         boxShadow: '0 0 30px rgba(0, 255, 255, 0.15)',
       }}
     >
+      <Link href={`/projects/${project.id}`} className="absolute inset-0 z-40" aria-label={`View details for ${project.title}`} />
+
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
-        <img
+        <Image
           src={project.image}
-          alt={project.title}
+          alt={`Screenshot of ${project.title} project`}
+          fill
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-          onError={(e) => {
-            // Fallback if image fails
-            e.currentTarget.style.display = 'none'
-            e.currentTarget.parentElement!.style.background = 'linear-gradient(to bottom right, #1a202c, #2d3748)'
-          }}
         />
         {/* Dark Gradient Overlay */}
         <div className="absolute inset-0 bg-gradient-to-t from-gray-950 via-gray-900/80 to-transparent opacity-90 group-hover:opacity-80 transition-opacity duration-500" />

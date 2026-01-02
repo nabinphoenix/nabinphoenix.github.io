@@ -25,6 +25,7 @@ export default function ProjectsSection() {
                         <AnimatedSection delay={0.2}>
                             <Link
                                 href="/projects"
+                                aria-label="View all projects"
                                 className="inline-flex items-center gap-2 text-primary-600 dark:text-primary-400 font-semibold hover:gap-3 transition-all group px-2"
                             >
                                 View All Projects
@@ -48,6 +49,7 @@ export default function ProjectsSection() {
                         <AnimatedSection delay={0.2}>
                             <Link
                                 href="/projects"
+                                aria-label="View all projects"
                                 className="inline-flex items-center gap-2 text-primary-600 dark:text-primary-400 font-semibold hover:gap-3 transition-all group"
                             >
                                 View All Projects

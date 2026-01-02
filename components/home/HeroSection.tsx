@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Link from 'next/link'
 import Image from 'next/image'
-import { Download, ArrowRight, Mail, Phone, MapPin } from 'lucide-react'
+import { Download, ArrowRight, Mail, Phone, MapPin, XCircle } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 
 export default function HeroSection() {
@@ -35,7 +35,7 @@ export default function HeroSection() {
         setIsZooming(true)
         setTimeout(() => {
             router.push('/projects')
-        }, 400)
+        }, 700)
     }
 
     // Rotate badges every 5 seconds (only after mounted)
@@ -70,6 +70,7 @@ export default function HeroSection() {
         }
     }
 
+
     // Calculate parachute position based on progress
     const getParachutePosition = (progress: number) => {
         if (progress <= 50) {
@@ -91,6 +92,7 @@ export default function HeroSection() {
         } else if (progress <= 70) {
             return 40
         } else {
+            // Speed up the final descent
             return 40 - ((progress - 70) / 30) * 40
         }
     }
@@ -105,25 +107,25 @@ export default function HeroSection() {
 
         if (intervalRef.current) clearInterval(intervalRef.current)
 
+        // Faster interval for smoother/faster descent
         intervalRef.current = setInterval(() => {
             setProgress((prev) => {
-                const newProgress = prev + Math.random() * 10
+                const newProgress = prev + Math.random() * 15 // Increased increment for more speed
 
                 if (newProgress >= 100) {
                     if (intervalRef.current) clearInterval(intervalRef.current)
-                    setIsDownloading(false)
 
                     setTimeout(() => {
                         setIsDownloading(false)
 
-                        // Trigger actual download
+                        // Trigger actual download after landing animation
                         const link = document.createElement('a')
                         link.href = '/assets/resume/Nabin Nepali CV Resume.pdf'
                         link.download = 'Nabin_Nepali_CV_Resume.pdf'
                         document.body.appendChild(link)
                         link.click()
                         document.body.removeChild(link)
-                    }, 1000)
+                    }, 800)
 
                     return 100
                 }
@@ -132,7 +134,7 @@ export default function HeroSection() {
                 setParachuteY(newY)
                 return newProgress
             })
-        }, 200)
+        }, 120) // Reduced interval (200ms -> 120ms) for faster fall
     }
 
     const handleCancelDownload = () => {
@@ -160,15 +162,17 @@ export default function HeroSection() {
                     <motion.div
                         className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
                         animate={isZooming ? {
-                            scale: 1.5,
+                            scale: 3.5,
+                            rotate: 5,
                             opacity: 0,
-                            filter: "blur(10px)"
+                            filter: "blur(20px)"
                         } : {
                             scale: 1,
+                            rotate: 0,
                             opacity: 1,
                             filter: "blur(0px)"
                         }}
-                        transition={{ duration: 0.4, ease: "easeInOut" }}
+                        transition={{ duration: 0.7, ease: [0.4, 0, 0.2, 1] }}
                     >
                         {/* Text Content */}
                         <motion.div
@@ -237,6 +241,7 @@ export default function HeroSection() {
                                 <button
                                     onClick={handleViewProjects}
                                     suppressHydrationWarning={true}
+                                    aria-label="View AI and Machine Learning Projects"
                                     className="inline-flex items-center justify-center px-6 py-3 bg-primary-600 hover:bg-primary-700 text-white font-medium rounded-lg transition-colors group relative overflow-hidden"
                                 >
                                     <span className="relative z-10 flex items-center">
@@ -248,10 +253,11 @@ export default function HeroSection() {
                                     onClick={handleDownload}
                                     disabled={isDownloading}
                                     suppressHydrationWarning={true}
+                                    aria-label="Download CV Resume"
                                     className="inline-flex items-center justify-center px-6 py-3 border border-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-300 font-medium rounded-lg transition-colors group disabled:opacity-50 disabled:cursor-not-allowed"
                                 >
                                     <Download className="mr-2 group-hover:scale-110 transition-transform" size={20} />
-                                    Download CV
+                                    Download Resume
                                 </button>
                             </motion.div>
                         </motion.div>
@@ -378,42 +384,77 @@ export default function HeroSection() {
                     </motion.div>
                 </div>
 
-                {/* Speed Lines Overlay */}
+                {/* Premium Hyperdrive Warp Overlay */}
                 <AnimatePresence>
                     {isZooming && (
                         <motion.div
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}
-                            transition={{ duration: 0.2 }}
-                            className="absolute inset-0 z-0 pointer-events-none"
+                            className="fixed inset-0 z-[100] pointer-events-none flex items-center justify-center overflow-hidden"
                         >
-                            <div className="absolute inset-0 bg-primary-50/20 dark:bg-primary-900/10 mix-blend-overlay" />
-                            <svg className="w-full h-full opacity-30" viewBox="0 0 100 100" preserveAspectRatio="none">
-                                <motion.path
-                                    d="M50 50 L0 0 M50 50 L100 0 M50 50 L100 100 M50 50 L0 100"
-                                    stroke="currentColor"
-                                    strokeWidth="0.5"
-                                    className="text-primary-500"
-                                    initial={{ pathLength: 0 }}
-                                    animate={{ pathLength: 1 }}
-                                    transition={{ duration: 0.4, ease: "easeIn" }}
-                                />
-                                <motion.circle
-                                    cx="50"
-                                    cy="50"
-                                    r="0"
-                                    className="fill-none stroke-primary-500"
-                                    strokeWidth="0.5"
-                                    animate={{ r: 100, opacity: 0 }}
-                                    transition={{ duration: 0.8, ease: "easeOut" }}
-                                />
+                            {/* Flash Background */}
+                            <motion.div
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: [0, 1, 0.8] }}
+                                transition={{ duration: 0.4 }}
+                                className="absolute inset-0 bg-white dark:bg-primary-950 mix-blend-overlay"
+                            />
+
+                            {/* Radial Burst Lines */}
+                            <svg className="w-[200vw] h-[200vh] absolute" viewBox="0 0 100 100" preserveAspectRatio="none">
+                                {[...Array(30)].map((_, i) => (
+                                    <motion.line
+                                        key={i}
+                                        x1="50" y1="50"
+                                        x2={50 + Math.cos(i * (Math.PI / 15)) * 100}
+                                        y2={50 + Math.sin(i * (Math.PI / 15)) * 100}
+                                        stroke="currentColor"
+                                        strokeWidth="0.2"
+                                        className="text-primary-500/40"
+                                        initial={{ pathLength: 0, opacity: 0 }}
+                                        animate={{
+                                            pathLength: [0, 1],
+                                            opacity: [0, 1, 0],
+                                            strokeDashoffset: [0, -100]
+                                        }}
+                                        transition={{
+                                            duration: 0.6,
+                                            ease: "easeIn",
+                                            delay: Math.random() * 0.2,
+                                            repeat: Infinity
+                                        }}
+                                    />
+                                ))}
                             </svg>
+
+                            {/* Expanding Portal Rings */}
+                            {[...Array(3)].map((_, i) => (
+                                <motion.div
+                                    key={i}
+                                    className="absolute w-20 h-20 border-2 border-primary-500/30 rounded-full"
+                                    initial={{ scale: 0, opacity: 0 }}
+                                    animate={{ scale: 20, opacity: [0, 0.5, 0] }}
+                                    transition={{
+                                        duration: 0.8,
+                                        ease: "easeOut",
+                                        delay: i * 0.2
+                                    }}
+                                />
+                            ))}
+
+                            {/* Center Flash */}
+                            <motion.div
+                                initial={{ scale: 0, opacity: 0 }}
+                                animate={{ scale: [0, 1.5, 2.5], opacity: [0, 1, 0] }}
+                                transition={{ duration: 0.6 }}
+                                className="w-64 h-64 bg-white rounded-full blur-3xl"
+                            />
                         </motion.div>
                     )}
                 </AnimatePresence>
 
-                {/* Parachute Animation */}
+                {/* Realistic Parachute Animation */}
                 <div
                     className={`fixed bottom-24 left-1/2 -translate-x-1/2 flex flex-col items-center pointer-events-auto cursor-pointer z-50 transition-opacity duration-500 ${isDownloading || isBroken ? 'opacity-100' : 'opacity-0 pointer-events-none'
                         }`}
@@ -422,33 +463,76 @@ export default function HeroSection() {
                         transform: `translate(-50%, ${-parachuteY}px)`,
                     }}
                 >
-                    {/* Parachute */}
-                    <svg
-                        className={`w-20 h-10 transition-transform duration-500 ${isBroken ? 'animate-parachute-break' : ''
-                            }`}
-                        viewBox="0 0 120 60"
-                    >
-                        <path
-                            d="M60,15 C85,15 105,30 105,50 C105,65 85,65 60,65 C35,65 15,65 15,50 C15,30 35,15 60,15 Z"
-                            fill="#14b8a6"
-                            stroke="rgba(255, 255, 255, 0.8)"
-                            strokeWidth="4"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                        />
-                    </svg>
+                    <div className={isBroken ? '' : 'animate-sway'}>
+                        {/* Parachute & Person SVG */}
+                        <svg
+                            width="140"
+                            height="180"
+                            viewBox="0 0 140 180"
+                            className={`transition-transform duration-500 ${isBroken ? 'animate-parachute-break' : ''}`}
+                        >
+                            {/* Parachute Canopy */}
+                            <g className="parachute-canopy">
+                                <path
+                                    d="M10,60 C10,10 130,10 130,60 C130,80 110,80 100,80 C90,80 80,70 70,70 C60,70 50,80 40,80 C30,80 10,80 10,60"
+                                    fill="#14b8a6"
+                                    stroke="#0d9488"
+                                    strokeWidth="2"
+                                />
+                                {/* Canopy Details (lines) */}
+                                <path d="M70,12 L70,70" stroke="rgba(255,255,255,0.2)" strokeWidth="1" />
+                                <path d="M40,20 L55,75" stroke="rgba(255,255,255,0.2)" strokeWidth="1" />
+                                <path d="M100,20 L85,75" stroke="rgba(255,255,255,0.2)" strokeWidth="1" />
+                            </g>
 
-                    {/* Strings */}
-                    <div
-                        className={`w-1 h-10 bg-white/80 transition-transform duration-800 delay-300 ${isBroken ? 'animate-string-break' : 'scale-y-100'
-                            }`}
-                    />
+                            {/* Strings */}
+                            <g className={`transition-opacity duration-300 ${isBroken ? 'opacity-0' : 'opacity-100'}`}>
+                                <path d="M15,65 L70,130" stroke="rgba(0,0,0,0.2)" strokeWidth="1" />
+                                <path d="M40,80 L70,130" stroke="rgba(0,0,0,0.2)" strokeWidth="1" />
+                                <path d="M100,80 L70,130" stroke="rgba(0,0,0,0.2)" strokeWidth="1" />
+                                <path d="M125,65 L70,130" stroke="rgba(0,0,0,0.2)" strokeWidth="1" />
+                            </g>
 
-                    {/* Person */}
-                    <div
-                        className={`w-8 h-10 bg-primary-500 rounded-t-2xl transition-transform duration-500 ${isBroken ? 'animate-person-fall' : ''
-                            }`}
-                    />
+                            {/* Human Character in "Carrying" Pose */}
+                            <g className={isBroken ? 'animate-person-fall' : ''}>
+                                {/* Head */}
+                                <circle cx="70" cy="122" r="7" fill="#4b5563" />
+
+                                {/* Body/Torso */}
+                                <path d="M70,129 L70,152" stroke="#4b5563" strokeWidth="7" strokeLinecap="round" />
+
+                                {/* Right Arm - Holding Parachute String */}
+                                <path d="M70,135 L45,110" stroke="#4b5563" strokeWidth="3" strokeLinecap="round" />
+
+                                {/* Left Arm - Securely wrapping around/holding the Resume */}
+                                <path d="M70,138 L85,145" stroke="#4b5563" strokeWidth="3" strokeLinecap="round" />
+
+                                {/* Resume Paper - Placed in front as if being carried */}
+                                <motion.g
+                                    animate={{
+                                        rotate: [-3, 3, -3],
+                                        y: [0, -2, 0]
+                                    }}
+                                    transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+                                >
+                                    {/* Paper Shadow */}
+                                    <rect x="75" y="138" width="22" height="30" fill="rgba(0,0,0,0.1)" rx="2" />
+                                    {/* Paper */}
+                                    <rect x="72" y="135" width="22" height="30" fill="white" rx="2" stroke="#14b8a6" strokeWidth="1.5" />
+                                    {/* Realistic Resume Content Lines */}
+                                    <line x1="77" y1="142" x2="89" y2="142" stroke="#14b8a6" strokeWidth="2" />
+                                    <line x1="77" y1="148" x2="87" y2="148" stroke="#e5e7eb" strokeWidth="1" />
+                                    <line x1="77" y1="152" x2="87" y2="152" stroke="#e5e7eb" strokeWidth="1" />
+                                    <line x1="77" y1="156" x2="87" y2="156" stroke="#e5e7eb" strokeWidth="1" />
+                                    <circle cx="88" cy="158" r="2" fill="#14b8a6" opacity="0.5" />
+                                </motion.g>
+
+                                {/* Legs */}
+                                <path d="M70,152 L60,170" stroke="#4b5563" strokeWidth="3" strokeLinecap="round" />
+                                <path d="M70,152 L82,168" stroke="#4b5563" strokeWidth="3" strokeLinecap="round" />
+                            </g>
+                        </svg>
+                    </div>
 
                     {/* Progress Text */}
                     <div
@@ -459,49 +543,56 @@ export default function HeroSection() {
                     </div>
                 </div>
 
-                {/* Cancel Message */}
-                <div
-                    className={`fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-black/80 backdrop-blur-sm px-8 py-4 rounded-xl text-xl text-white z-50 transition-opacity duration-500 ${showCancelMessage ? 'opacity-100' : 'opacity-0 pointer-events-none'
-                        }`}
-                >
-                    Download Cancelled
-                </div>
+                {/* Sleek Teal Cancel Notification */}
+                <AnimatePresence>
+                    {showCancelMessage && (
+                        <motion.div
+                            initial={{ opacity: 0, scale: 0.95, y: -20, x: '-50%' }}
+                            animate={{ opacity: 1, scale: 1, y: 0, x: '-50%' }}
+                            exit={{ opacity: 0, scale: 0.95, y: -20, x: '-50%' }}
+                            className="fixed top-1/2 left-1/2 z-[100] pointer-events-none"
+                        >
+                            <div className="bg-gradient-to-r from-teal-500 to-teal-600 text-white px-8 py-4 rounded-xl shadow-[0_20px_60px_rgba(20,184,166,0.4)] border border-teal-400/50 flex items-center gap-4 backdrop-blur-sm">
+                                <div className="bg-white/20 p-1.5 rounded-lg">
+                                    <XCircle size={22} className="text-white" />
+                                </div>
+                                <span className="text-lg font-bold tracking-tight uppercase tracking-wider">
+                                    Download Cancelled
+                                </span>
+                            </div>
+                        </motion.div>
+                    )}
+                </AnimatePresence>
             </section>
 
             {/* Parachute Animation Styles */}
             <style jsx>{`
-                @keyframes parachute-break {
-                    0% { transform: translateY(0) rotate(0deg); }
-                    30% { transform: translateY(0) rotate(10deg); }
-                    70% { transform: translateY(20px) rotate(-15deg) scale(0.9); }
-                    100% { transform: translateY(100px) rotate(-30deg) scale(0.7); opacity: 0; }
+                @keyframes sway {
+                    0%, 100% { transform: rotate(-5deg); }
+                    50% { transform: rotate(5deg); }
                 }
 
-                @keyframes string-break {
-                    0% { transform: scaleY(1); }
-                    50% { transform: scaleY(0.5); opacity: 0.7; }
-                    100% { transform: scaleY(0); opacity: 0; }
+                .animate-sway {
+                    animation: sway 3s ease-in-out infinite;
+                    transform-origin: top center;
+                }
+
+                @keyframes parachute-break {
+                    0% { transform: translateY(0) rotate(0deg) scale(1); }
+                    100% { transform: translateY(-500px) rotate(45deg) scale(0.5); opacity: 0; }
                 }
 
                 @keyframes person-fall {
                     0% { transform: translateY(0) rotate(0deg); }
-                    20% { transform: translateY(10px) rotate(5deg); }
-                    40% { transform: translateY(30px) rotate(-10deg); }
-                    60% { transform: translateY(60px) rotate(15deg); }
-                    80% { transform: translateY(90px) rotate(-20deg); }
-                    100% { transform: translateY(120px) rotate(-25deg); opacity: 0; }
+                    100% { transform: translateY(800px) rotate(360deg); opacity: 0; }
                 }
 
                 .animate-parachute-break {
-                    animation: parachute-break 1s forwards;
-                }
-
-                .animate-string-break {
-                    animation: string-break 0.5s forwards;
+                    animation: parachute-break 2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
                 }
 
                 .animate-person-fall {
-                    animation: person-fall 1.5s forwards;
+                    animation: person-fall 1.5s cubic-bezier(0.55, 0.055, 0.675, 0.19) forwards;
                 }
             `}</style>
         </>

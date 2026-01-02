@@ -20,6 +20,7 @@ export default function ChatWidget() {
   const [isDarkMode, setIsDarkMode] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+  const processedPidxs = useRef<Set<string>>(new Set());
 
   // Khalti URL Pattern for detection
   const khaltiUrlPattern = /https:\/\/test-pay\.khalti\.com\/\?pidx=[a-zA-Z0-9]+|https:\/\/pay\.khalti\.com\/\?pidx=[a-zA-Z0-9]+/;
@@ -78,7 +79,12 @@ export default function ChatWidget() {
   useEffect(() => {
     const handlePaymentMessage = (event: MessageEvent) => {
       if (event.data.type === 'PAYMENT_SUCCESS') {
-        const { orderId, amount } = event.data.data;
+        const { orderId, amount, pidx } = event.data.data;
+
+        // Prevent duplicate messages
+        if (pidx && processedPidxs.current.has(pidx)) return;
+        if (pidx) processedPidxs.current.add(pidx);
+
         const formattedAmount = amount ? parseFloat(amount).toLocaleString() : 'N/A';
 
         const successMsg: Message = {
@@ -206,10 +212,26 @@ export default function ChatWidget() {
 
         if (data.success) {
           clearInterval(pollInterval);
-          console.log('✅ Polling detected success!');
+
+          // CRITICAL: Prevent duplicate messages
+          if (!pidx || processedPidxs.current.has(pidx)) {
+            console.log('🚫 Skipping duplicate success message for:', pidx);
+            return;
+          }
+          processedPidxs.current.add(pidx);
+
+          console.log('✅ Polling detected success!', data);
+
+          const finalOrderId = data.order_id || orderId;
+          const finalAmount = data.total_amount || amount;
+
+          // Only show message if we have at least an order ID
+          if (!finalOrderId || finalOrderId === "undefined") {
+            console.warn('⚠️ Received success but Order ID is missing. Retrying summary...');
+          }
 
           const successMsg: Message = {
-            text: `🎉 Payment Successful!\n\n📦 Order Number: ${data.order_id || orderId}\n💰 Amount Paid: NPR ${(data.total_amount ? data.total_amount : amount).toLocaleString()}\n\nYour order is now confirmed. I've sent a confirmation email with all the details to your inbox. Thank you for choosing SastoSale! 🚀`,
+            text: `🎉 Payment Successful!\n\n📦 Order Number: ${finalOrderId}\n💰 Amount Paid: NPR ${Number(finalAmount).toLocaleString()}\n\nYour order is now confirmed. I've sent a confirmation email with all the details to your inbox. Thank you for choosing SastoSale! 🚀`,
             sender: "ai",
             timestamp: formatTimestamp(),
           };
@@ -259,16 +281,20 @@ export default function ChatWidget() {
               const formatText = (text: string) => {
                 if (!text) return "";
 
-                // Handle literal \n if they exist as characters
-                const processedText = text.replace(/\\n/g, '\n');
+                // 1. Handle literal \n and all standard markdown list markers (*, -, +)
+                const processedText = text
+                  .replace(/\\n/g, '\n')
+                  // Converts lines starting with *, -, or + followed by space into bullets
+                  .replace(/^\s*[-*+]\s+/gm, '• ');
 
-                // Split by ** for bold
-                const parts = processedText.split(/(\*\*.*?\*\*)/g);
+                // 2. Split by ** for bold, using [\s\S] to support multi-line bolding
+                const parts = processedText.split(/(\*\*[\s\S]*?\*\*)/g);
 
                 return parts.map((part, i) => {
-                  if (part.startsWith("**") && part.endsWith("**")) {
+                  // Check if the part is actually a bolded block
+                  if (part.startsWith("**") && part.endsWith("**") && part.length > 4) {
                     return (
-                      <strong key={i} className="font-bold text-teal-700 dark:text-teal-400">
+                      <strong key={i} className="font-bold text-teal-800 dark:text-teal-400">
                         {part.slice(2, -2)}
                       </strong>
                     );

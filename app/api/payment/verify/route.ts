@@ -55,11 +55,36 @@ export async function POST(request: NextRequest) {
             n8nData = { success: true, message: responseText };
         }
 
+        // --- NEW: DATABASE FALLBACK ---
+        // If n8n didn't return order_id or total_amount, fetch them from the database
+        let orderId = n8nData.order_id || n8nData.purchase_order_id;
+        let totalAmount = n8nData.total_amount || n8nData.amount;
+
+        if (!orderId || !totalAmount) {
+            try {
+                const dbConnect = (await import('@/lib/db')).default;
+                const mongoose = await dbConnect();
+                const db = mongoose.connection.db;
+
+                if (db) {
+                    const order = await db.collection('orders').findOne({ pidx: pidx.trim() });
+
+                    if (order) {
+                        console.log('🔍 Found order details in database fallback:', order.order_id);
+                        orderId = orderId || order.order_id;
+                        totalAmount = totalAmount || order.total_amount;
+                    }
+                }
+            } catch (dbError) {
+                console.error('❌ Database fallback failed:', dbError);
+            }
+        }
+
         // Return the response with fallbacks to ensure UI gets needed fields
         return NextResponse.json({
             success: true,
-            order_id: n8nData.order_id || n8nData.purchase_order_id || null,
-            total_amount: n8nData.total_amount || n8nData.amount || null,
+            order_id: orderId || null,
+            total_amount: totalAmount || null,
             pidx: pidx,
             message: n8nData.message || 'Payment verification processed'
         });
