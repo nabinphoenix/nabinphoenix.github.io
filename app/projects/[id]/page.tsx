@@ -27,6 +27,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       images: [project.image],
     },
     keywords: [...project.technologies, 'Nabin Nepali Projects', 'AI Engineer Nepal'],
+    alternates: {
+      canonical: `https://nabinnepali.com.np/projects/${id}`,
+    },
   }
 }
 

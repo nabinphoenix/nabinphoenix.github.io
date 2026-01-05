@@ -1,9 +1,11 @@
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-    title: 'Technical Skills & Expertise | Nabin Nepali',
-    description: 'Technical skillset of Nabin Nepali, including Python, FastAPI, TensorFlow, PyTorch, MongoDB, and AWS for Machine Learning and Backend development.',
-    keywords: ['Nabin Nepali Skills', 'Python ML Skills', 'FastAPI Developer Skills', 'AI Expertise Nepal'],
+    title: 'Skills & Expertise | Nabin Nepali - Technical Proficiency',
+    description: 'A comprehensive overview of Nabin Nepali\'s technical skills, including Machine Learning, AI Automation, Python, and soft skills.',
+    alternates: {
+        canonical: 'https://nabinnepali.com.np/skills',
+    },
 }
 
 export default function SkillsLayout({

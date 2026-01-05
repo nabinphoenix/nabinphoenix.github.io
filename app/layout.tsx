@@ -97,9 +97,6 @@ export const metadata: Metadata = {
     description: 'Top-rated Machine Learning Engineer and AI Automation Expert in Nepal. Specializing in n8n workflow automation, computer vision, NLP, and intelligent automation solutions.',
   },
   metadataBase: new URL('https://nabinnepali.com.np'),
-  alternates: {
-    canonical: 'https://nabinnepali.com.np',
-  },
 }
 
 export default function RootLayout({

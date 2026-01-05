@@ -58,6 +58,9 @@ export async function generateMetadata({
             publishedTime: new Date(blog.date).toISOString(),
             authors: ['Nabin Nepali'],
         },
+        alternates: {
+            canonical: `https://nabinnepali.com.np/blog/${slug}`,
+        },
     };
 }
 

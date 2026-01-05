@@ -1,26 +1,26 @@
 import { MetadataRoute } from 'next'
 import { projects } from '@/data/projects'
 import { aiAgents } from '@/data/ai-agents'
-import { promises as fs } from 'fs'
-import path from 'path'
+
+import dbConnect from '@/lib/db'
+import Blog from '@/models/Blog'
 
 // Define the Blog type
-interface Blog {
-    id: number;
+interface BlogType {
+    _id: any;
     title: string;
-    slug: string
-    content: string;
+    slug: string;
     date: string;
 }
 
-// Function to get all blogs
-async function getBlogs(): Promise<Blog[]> {
+// Function to get all blogs from MongoDB
+async function getBlogs(): Promise<BlogType[]> {
     try {
-        const blogsFilePath = path.join(process.cwd(), 'data', 'blogs.json');
-        const fileContent = await fs.readFile(blogsFilePath, 'utf-8');
-        return JSON.parse(fileContent);
+        await dbConnect();
+        const blogs = await Blog.find({}).sort({ date: -1 }).lean();
+        return JSON.parse(JSON.stringify(blogs));
     } catch (error) {
-        console.error('Error reading blogs for sitemap:', error);
+        console.error('Error fetching blogs for sitemap:', error);
         return [];
     }
 }
@@ -72,6 +72,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
             lastModified: new Date(),
             changeFrequency: 'monthly',
             priority: 0.7,
+        },
+        {
+            url: `${domain}/services`,
+            lastModified: new Date(),
+            changeFrequency: 'weekly',
+            priority: 0.9,
         },
     ];
 

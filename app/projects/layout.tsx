@@ -1,15 +1,11 @@
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-    title: 'Machine Learning & AI Projects | Nabin Nepali - Expert in Nepal',
-    description: 'Explore the portfolio of Nabin Nepali, featuring top-tier Machine Learning, Computer Vision, and AI Automation projects developed in Nepal. Production-ready AI solutions and custom ML models.',
-    keywords: [
-        'Nabin Nepali Projects',
-        'Best Machine Learning Portfolio Nepal',
-        'AI Projects Nepal',
-        'Computer Vision Solutions Nepal',
-        'AI Automation Portfolio'
-    ],
+    title: 'Projects | Nabin Nepali - Portfolio of AI & ML Work',
+    description: 'Explore the portfolio of Nabin Nepali, featuring machine learning projects, computer vision applications, and AI automation workflows.',
+    alternates: {
+        canonical: 'https://nabinnepali.com.np/projects',
+    },
 }
 
 export default function ProjectsLayout({

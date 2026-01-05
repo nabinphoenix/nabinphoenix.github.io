@@ -1,6 +1,13 @@
 import dbConnect from '@/lib/db'
 import Blog from '@/models/Blog'
 import PageTransition from '@/components/PageTransition'
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  alternates: {
+    canonical: 'https://nabinnepali.com.np',
+  },
+}
 import HeroSection from '@/components/home/HeroSection'
 import AboutSection from '@/components/home/AboutSection'
 import SkillsSection from '@/components/home/SkillsSection'

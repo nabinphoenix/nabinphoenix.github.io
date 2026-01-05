@@ -3,6 +3,15 @@ import Blog from '@/models/Blog';
 import PageTransition from '@/components/PageTransition';
 import AnimatedSection from '@/components/AnimatedSection';
 import BlogCard from '@/components/BlogCard';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+    title: 'Blog | Nabin Nepali - Insights on AI & Machine Learning',
+    description: 'Read the latest insights on Artificial Intelligence, Machine Learning, and Automation by Nabin Nepali.',
+    alternates: {
+        canonical: 'https://nabinnepali.com.np/blog',
+    },
+};
 
 // Function to get all blogs
 async function getBlogs() {
