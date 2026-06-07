@@ -1,0 +1,35 @@
+{
+  "schema_version": "1.0",
+  "name": "Nabin Nepali",
+  "description": "Portfolio of Nabin Nepali, Machine Learning Engineer and AI Automation Expert based in Kathmandu, Nepal. Specializing in n8n workflow automation, computer vision (YOLO), NLP, time series forecasting, and production-ready ML solutions.",
+  "url": "https://nabinnepali.com.np",
+  "capabilities": [
+    "portfolio",
+    "contact",
+    "hire",
+    "blog",
+    "ai-agents",
+    "projects",
+    "services"
+  ],
+  "contact": "nabinepali012@gmail.com",
+  "author": {
+    "name": "Nabin Nepali",
+    "email": "nabinepali012@gmail.com",
+    "location": "Kathmandu, Nepal",
+    "github": "https://github.com/nabinphoenix",
+    "linkedin": "https://www.linkedin.com/in/nabinnepali"
+  },
+  "topics": [
+    "machine learning",
+    "AI automation",
+    "n8n",
+    "computer vision",
+    "YOLO",
+    "NLP",
+    "FastAPI",
+    "Python",
+    "time series forecasting",
+    "AI agents"
+  ]
+}

@@ -1,0 +1,96 @@
+# Nabin Nepali
+> Machine Learning Engineer & AI Automation Expert based in Kathmandu, Nepal
+
+Nabin Nepali is a Machine Learning Engineer and AI Automation Specialist at Tridev Innovation, Kathmandu. He builds production-ready AI systems, intelligent n8n automation workflows, computer vision applications using YOLO, and scalable ML solutions for businesses in Nepal and globally. Currently pursuing BSc.IT at Techspire College (CGPA 3.5).
+
+## Contact
+
+- Email: nabinepali012@gmail.com
+- Phone: +977-9829592158
+- Location: Shankhamul, Kathmandu, Nepal
+- Website: https://nabinnepali.com.np
+- GitHub: https://github.com/nabinphoenix
+- LinkedIn: https://www.linkedin.com/in/nabinnepali
+- ResearchGate: https://www.researchgate.net/profile/Nabin-Nepali-2
+
+## Work Experience
+
+### Machine Learning Engineer Intern — Tridev Innovation (Sep 2025 – Present)
+- Architecting production-ready Computer Vision systems using YOLO-based object detection for real-time industrial applications
+- Engineering complex AI automation ecosystems with n8n to optimize business operations
+- Developing high-performance FastAPI infrastructures for ML model deployment
+- Designing self-healing 24/7 intelligent workflows that automate critical business processes
+- Translating business requirements into scalable, practical AI solutions
+
+## Skills
+
+### Machine Learning & AI
+Python, TensorFlow, PyTorch, Scikit-learn, Pandas, NumPy, OpenCV, YOLO (object detection), SARIMAX/ARIMA (time series forecasting), NLP, Computer Vision, Convolutional Neural Networks (CNN), Transfer Learning
+
+### AI Automation
+n8n (workflow automation), AI Agents, Google Gemini AI, Pinecone Vector DB, Airtable, Slack API, REST API integration
+
+### Backend & APIs
+FastAPI, Python, JWT authentication, MongoDB, MySQL
+
+### Frontend
+React, Next.js, JavaScript
+
+### Other Tools
+Git, Docker (basic), Postman
+
+### Soft Skills
+Leadership, Problem Solving, Fast Learning, Team Collaboration, Communication, Brainstorming
+
+## Projects
+
+### To-Do List CRUD API (Aug 2024)
+Secure RESTful API built with FastAPI and MongoDB. Implements full CRUD operations, JWT-based user authentication, and password hashing.
+Technologies: FastAPI, MongoDB, JWT, Python
+URL: https://nabinnepali.com.np/projects/1
+
+### Energy Consumption Forecasting (Jul 2025)
+Time series forecasting model using SARIMAX to predict energy consumption patterns. Includes data preprocessing, model training, and confidence interval evaluation.
+Technologies: SARIMAX, Python, Statsmodels, Time Series Analysis
+URL: https://nabinnepali.com.np/projects/2
+
+### CNN Cat vs Dog Classification (Jun 2025)
+Binary image classification using a custom CNN in PyTorch. Achieved high accuracy through data augmentation, transfer learning, and hyperparameter tuning.
+Technologies: PyTorch, CNN, Python, Computer Vision
+URL: https://nabinnepali.com.np/projects/3
+
+### Automated Blog Generation Engine (Dec 2025)
+AI system that turns a website into a self-sustaining content engine. Generates, formats, and publishes blog posts automatically.
+Technologies: n8n, Google Gemini 2.5 Flash, Google Sheets API, REST API
+URL: https://nabinnepali.com.np/projects/101
+
+### Maya — AI Shopping Assistant (Dec 2025)
+End-to-end e-commerce order processing AI agent. Handles product search through order confirmation with zero human intervention in under 2 seconds.
+Technologies: n8n, Google Gemini AI, MongoDB, Pinecone Vector DB
+URL: https://nabinnepali.com.np/projects/102
+
+### Smart Feedback Classification & Automation Agent (Dec 2025)
+Fully automated AI-driven system that classifies, routes, and acknowledges user feedback submissions in real-time.
+Technologies: n8n, Google Gemini 2.0 Flash, Airtable, Slack API
+URL: https://nabinnepali.com.np/projects/103
+
+## Education
+
+- BSc.IT (Information Technology) — Techspire College, 2023–Present, CGPA 3.5
+- +2 Biology — Tulsi Boarding School, GPA 3.31
+- SEE — Bright Pearl Academy, GPA 3.85
+
+## Languages
+
+- Nepali: Fluent
+- English: Intermediate
+- Hindi: Intermediate
+
+## Blog
+
+Latest articles on AI, machine learning, and emerging technology trends:
+https://nabinnepali.com.np/blog
+
+## Hire / Availability
+
+Open to freelance projects, consulting, and full-time opportunities in ML engineering, AI automation, and computer vision. Contact via email or LinkedIn.

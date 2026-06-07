@@ -1,4 +1,4 @@
-﻿// app/layout.tsx
+// app/layout.tsx
 import type { Metadata } from 'next'
 import { Inter, Montserrat } from 'next/font/google' // Import Google Fonts
 import './globals.css'
@@ -25,7 +25,7 @@ const montserrat = Montserrat({
 
 export const metadata: Metadata = {
   title: 'Nabin Nepali - Best Machine Learning Engineer & AI Automation Expert in Nepal',
-  description: 'Top Machine Learning Engineer and AI Automation Expert in Nepal. Specializing in AI development, n8n workflow automation, computer vision (YOLO), NLP, and production-ready ML solutions for businesses in Kathmandu and across Nepal.',
+  description: 'Nabin Nepali — Machine Learning Engineer & AI Automation Expert in Kathmandu, Nepal. Specializing in n8n, YOLO, NLP, FastAPI, and production-ready ML solutions.',
   keywords: [
     // Primary Keywords - SEO Optimized
     'Machine Learning Engineer Nepal',
@@ -90,6 +90,14 @@ export const metadata: Metadata = {
     title: 'Nabin Nepali - Top Machine Learning Engineer & AI Automation Expert in Nepal',
     description: 'Professional Machine Learning Engineer & AI Automation Specialist in Nepal. Expert in AI, ML, n8n automation, computer vision, YOLO, and building intelligent solutions for businesses in Kathmandu and globally.',
     siteName: 'Nabin Nepali - Machine Learning Engineer Portfolio',
+    images: [
+      {
+        url: 'https://nabinnepali.com.np/assets/images/ml-expert-nepal.png',
+        width: 1200,
+        height: 630,
+        alt: 'Nabin Nepali - Machine Learning Engineer & AI Automation Expert in Nepal',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',

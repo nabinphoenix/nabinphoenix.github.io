@@ -79,7 +79,21 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
             changeFrequency: 'weekly',
             priority: 0.9,
         },
+        {
+            url: `${domain}/privacy`,
+            lastModified: new Date(),
+            changeFrequency: 'monthly',
+            priority: 0.3,
+        },
+        {
+            url: `${domain}/terms`,
+            lastModified: new Date(),
+            changeFrequency: 'monthly',
+            priority: 0.3,
+        },
     ];
+
+
 
     // Project Detail Pages (IDs 1-5, etc.)
     const projectEntries: MetadataRoute.Sitemap = projects.map((project) => ({
@@ -101,9 +115,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const blogEntries: MetadataRoute.Sitemap = blogs.map((blog) => ({
         url: `${domain}/blog/${blog.slug}`,
         lastModified: new Date(blog.date),
-        changeFrequency: 'monthly',
-        priority: 0.7,
+        changeFrequency: 'daily',
+        priority: 0.8,
     }));
 
     return [...staticPages, ...projectEntries, ...aiAgentEntries, ...blogEntries];
 }
+

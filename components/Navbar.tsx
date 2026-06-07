@@ -13,11 +13,13 @@ const navItems = [
   { name: 'Home', href: '/' },
   { name: 'About', href: '/about' },
   { name: 'Skills', href: '/skills' },
+  { name: 'Services', href: '/services' },
   { name: 'Projects', href: '/projects' },
   { name: 'AI Agent', href: '/ai-agents' },
   { name: 'Blog', href: '/blog' },
   { name: 'Contact', href: '/contact' },
 ]
+
 
 export default function Navbar() {
   const [mounted, setMounted] = useState(false)

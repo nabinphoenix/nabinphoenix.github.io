@@ -43,11 +43,13 @@ const quickLinks = [
   { name: 'Home', href: '/' },
   { name: 'About', href: '/about' },
   { name: 'Skills', href: '/skills' },
+  { name: 'Services', href: '/services' },
   { name: 'Projects', href: '/projects' },
   { name: 'AI Agents', href: '/ai-agents' },
   { name: 'Blog', href: '/blog' },
   { name: 'Contact', href: '/contact' },
 ]
+
 
 export default function Footer() {
   return (
