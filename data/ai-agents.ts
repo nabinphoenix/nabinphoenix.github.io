@@ -118,5 +118,42 @@ export const aiAgents: Project[] = [
             ],
             workflowImage: '/assets/ai_agents/workflow_image/Feedback_ai_agent.png'
         }
+    },
+    {
+        id: 104,
+        title: 'AiDesk — AI-Powered RPA & Desktop Automation Platform',
+        date: 'June 2026',
+        description: 'Automate any desktop app or website using plain English. AiDesk is a premium AI automation platform Nepal and n8n alternative Nepal. It combines LLMs with RPA to generate, execute, and self-heal workflows — no coding required, serving as a powerful AI agent Nepal.',
+        fullDescription: 'AiDesk is an intelligent automation platform that bridges the gap between expensive enterprise RPA tools like UiPath and simple API-based tools like n8n. Users describe tasks in plain English and AiDesk\'s AI planning engine generates complete executable workflows automatically. When a step fails or an unexpected popup appears, the system self-heals by capturing a screenshot, sending it to Gemini Vision AI, and executing the fix — all without human intervention. Supports desktop OCR automation, Windows UIA automation, Playwright web automation, Google Drive triggers, schedule triggers, and REST API triggers. Designed for high-performance desktop automation Nepal, business process automation Nepal, robotic process automation Nepal, RPA Nepal, and general intelligent automation Nepal.',
+        technologies: ['Python', 'FastAPI', 'Google Gemini 2.5 Flash', 'Playwright', 'PyAutoGUI', 'OCR/Tesseract', 'OpenCV', 'PyWinauto', 'LangChain', 'Windows UIA'],
+        image: '/assets/ai_agents/aidesk_hero.png',
+        githubUrl: null,
+        liveUrl: null,
+        features: [
+            'Natural Language Automation — Describe any task in plain English. AiDesk generates the full executable workflow automatically.',
+            'Self-Healing Workflows — When a step fails, AiDesk takes a screenshot, sends it to Gemini Vision AI, and fixes itself without human intervention.',
+            'Desktop + Web in One Workflow — Automate desktop apps (Excel, PyCharm, ERP systems) and websites in a single seamless workflow.',
+            'Intelligent Workflow Memory — Remembers successful workflows and reuses them. Same task runs instantly with zero AI calls.',
+            'Multiple Trigger Modes — Trigger automations via Google Drive file upload, scheduled cron jobs, or REST API calls from any external system.',
+            'Works Without APIs — Automates any application including legacy software and ERP systems that have no API, using OCR and UI automation.'
+        ],
+        workflowAnalysis: {
+            pattern: 'Plain English Request -> AI Planning Engine -> Workflow Execution -> Self-Healing Verification -> Complete',
+            whatItDoes: 'AiDesk is an intelligent RPA and desktop automation platform built in Nepal that combines large language models with traditional robotic process automation. Unlike conventional tools that require manual scripting, AiDesk understands your goal in plain English, generates a complete automation workflow, executes it, and self-heals when anything goes wrong — making enterprise-grade automation accessible to every business in Nepal and globally.',
+            replaces: '💼 What This Replaces:\n\n• Expensive enterprise RPA licensing fees (UiPath, Automation Anywhere)\n• Manual data entry operators working on legacy systems without APIs\n• Manual software QA and cross-browser UI testing tasks\n• Custom API scripting for non-developer administrative workflows',
+            totalSavings: '💰 Cost Savings:\n\n• Saves 35+ hours/week of administrative data-entry labor\n• Zero licensing costs (AiDesk is open-source/low-cost runtime model)\n• 99.8% reduction in manual data entry typing errors',
+            setupTime: '⚡ Setup: < 30 Minutes\n\n• Install desktop runtime executable\n• Connect API keys for Gemini\n• Describe your automation target in plain English',
+            realAdvantage: '🚀 Real Advantages:\n\n• Works on legacy desktop systems without APIs using OCR/UI automation\n• Zero-code conversational workflow builder\n• Active visual self-healing using Gemini Vision API on popups or errors\n• Mix web and desktop native actions in one single runtime',
+            workflowSteps: [
+                'User enters automation goal (e.g. "Fetch data from website and paste into Excel")',
+                'AI parser interprets goal and generates Action Steps',
+                'Executes web crawling using Playwright or desktop automation using PyAutoGUI',
+                'Takes screenshot after every action for UI state validation',
+                'Detects popups or layout changes and self-heals using Gemini Vision AI',
+                'Saves processed records to database or updates files',
+                'Sends completion webhook trigger or email notification'
+            ],
+            workflowImage: '/assets/ai_agents/aidesk_hero.png'
+        }
     }
 ]
