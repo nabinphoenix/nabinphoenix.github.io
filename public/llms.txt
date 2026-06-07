@@ -44,6 +44,12 @@ Leadership, Problem Solving, Fast Learning, Team Collaboration, Communication, B
 
 ## Projects
 
+### Kriya AI — Intelligent RPA & Desktop Automation Platform (Jun 2026)
+Nepal's first AI-powered RPA platform. Automates any desktop app or website using plain English instructions. Features self-healing workflows, Gemini Vision AI integration, OCR-based screen understanding, Windows UIA automation, Playwright web automation, and multiple trigger modes including Google Drive, cron schedule, and REST API.
+Technologies: Python, FastAPI, Google Gemini 2.5 Flash, LangChain, Playwright, PyAutoGUI, Tesseract OCR, OpenCV, PyWinauto
+Status: Coming Soon
+URL: https://nabinnepali.com.np/projects/104
+
 ### To-Do List CRUD API (Aug 2024)
 Secure RESTful API built with FastAPI and MongoDB. Implements full CRUD operations, JWT-based user authentication, and password hashing.
 Technologies: FastAPI, MongoDB, JWT, Python
